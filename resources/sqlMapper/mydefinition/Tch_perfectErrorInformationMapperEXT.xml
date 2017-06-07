@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="edu.man.Tch_perfectErrorInformation" >
+
+	<!-- 通过会话中的email查询，退回的错误信息tea_result -->
+	<select id="eerrorInformation" parameterType="String" resultType="edu.man.bean.RegisterTch">
+		select tea_result from tea_register where tea_email = #{email}
+	</select>
+	
+	<!-- 通过会话中的email查询，查询自己的基本信息 -->
+	<select id="Information" parameterType="String" resultType="edu.man.bean.TeacherExtendsRole">
+		select id,name,email,id_card as idCard,sex,nation,birth_place as birthPlace,political,education,school,major,phone,qq,department,course,working_way as workingWay,working_place as workingPlace,r.role_name as role_name from teacher as t,role as r where t.role_id = r.role_id and email = #{email} 
+	</select>
+	
+	<!-- 通过会话中的email查询，更新基本信息 -->
+	<update id="upData" parameterType="edu.man.bean.TeacherExtendsRole">
+		update teacher set sex = #{sex},phone=#{phone},qq=#{qq},nation=#{nation},birth_place=#{birthPlace},political=#{political},education=#{education},school=#{school},major=#{major},department=#{department},role_id=#{roleId},course=#{course},working_way=#{workingWay},working_place=#{workingPlace} where email = #{email}
+	</update>
+	<update id="updateRegister" parameterType="edu.man.bean.TeacherExtendsRole">
+		update tea_register set tea_status = 2 where tea_email = #{email}
+	</update>
+</mapper>

@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="edu.man.mapper.CourseAExamMapper" >
+<resultMap id="CoursePageResult" type="edu.man.bean.CourseMore" ></resultMap>
+<resultMap id="StudentPageResult2" type="edu.man.bean.Student" ></resultMap>
+<resultMap id="ScorePageResult" type="edu.man.bean.ScoreMore" ></resultMap>
+<!-- 分页查询所有课程表信息  --> 
+<select id="showCourse"   parameterType="map"  resultMap="CoursePageResult">
+ 	select  c.id as id,c.name as name,l.lesson_name as lname,t.name as tname,t.id as teacher_id,l.lesson_id as lesson_id
+ 	  from  course c,lesson l,teacher t where c.lesson_id=l.lesson_id and c.teacher_id=t.id
+ 	  limit  #{currentPage},#{pageSize}
+ </select>
+<!--  查询信息的条数 -->
+ <select id="getCourseCount" resultType="int">
+   select  count(id)  from  course
+ </select>
+ <!-- 课程删除前删除考试信息 -->
+ <delete id="deleteExamByCid" parameterType="int">
+ 	delete from score_info where scid in (select sc.id from stu_course sc where sc.cid=#{id} ) 
+ </delete>
+ <!-- 课程删除前删除选课信息 -->
+ <delete id="deleteScByCid" parameterType="int">
+ 	delete from stu_course where cid = #{id} 
+ </delete>
+  <!-- 课程删除 -->
+ <delete id="deleteCourse" parameterType="int">
+ 	delete from course where id = #{id} 
+ </delete>
+<!-- 课程新增  -->
+ <insert id="insertCourse" parameterType="map" >
+ 	insert into course(name,lesson_id,teacher_id) 
+ 		values(#{name},#{lesson_id},#{teacher_id})
+ </insert>
+ <!-- 课程编辑 -->
+ <update id="updateCourse" parameterType="map" >
+ 	update course set name=#{name},lesson_id=#{lesson_id},teacher_id=#{teacher_id}
+ 	 where id=#{id}
+ </update>
+ <!-- 根据课程查询课程信息  --> 
+<select id="showCourseById"   parameterType="int"  resultMap="CoursePageResult">
+ 	select  c.id as id,c.name as name,l.lesson_name as lname,t.name as tname,t.id as teacher_id,l.lesson_id as lesson_id
+ 	  from  course c,lesson l,teacher t where c.lesson_id=l.lesson_id and c.teacher_id=t.id
+ 	  and c.id=#{id}
+ </select>
+ <!-- 分页查询课程id相应的所有学生信息  --> 
+<select id="showStuByCourseId"   parameterType="map"  resultMap="StudentPageResult2">
+ 	select  s.* from student s,stu_course sc,course c where s.id=sc.sid and c.id=sc.cid 
+ 	  and c.id=#{id} limit  #{currentPage},#{pageSize}
+ </select>
+ <!--  查询学生信息的条数 -->
+ <select id="countStuByCourseId" parameterType="int" resultType="int">
+   select  count(s.id)  from  student s,stu_course sc,course c where s.id=sc.sid 
+   and c.id=sc.cid and c.id=#{id}
+ </select>
+ <!-- 删除课程表学生信息前先将对应的考试信息删除 -->
+ <delete id="deleteExamByScid" parameterType="map">
+ 	delete from score_info where scid=(select id from stu_course sc where sc.sid=#{sid} and cid=#{id}) 
+ </delete>
+ <!-- 课程中学生信息删除 -->
+ <delete id="deleteCStu" parameterType="map">
+ 	delete from stu_course where sid = #{sid} and cid=#{id} 
+ </delete>
+  <!-- 学生信息查询 -->
+ <select id="showCStu" resultType="edu.man.bean.Student">
+ 	select  s.*  from  student s,stu_register sr 
+ 	where  s.email=sr.stu_email and sr.stu_status=6
+ </select>
+  <!-- 课程中学生信息添加 -->
+ <delete id="addCStu" parameterType="map">
+ 	insert into stu_course (cid,sid,sdate) values(#{cid},#{sid},(select current_date as systemtime)) 
+ </delete>
+ 
+ <!-- 分页查询所有考试表信息  --> 
+<select id="showScore"   parameterType="map"  resultMap="ScorePageResult">
+ 	select  si.*,sc.cid as cid,sc.sid as sid,sc.sdate as sdate,c.name as cname,l.lesson_name as lname,t.name as tname,s.stus_name as sname,s.school as school
+ 	  from  course c,lesson l,teacher t,stu_course sc,score_info si,student s where c.lesson_id=l.lesson_id and c.teacher_id=t.id
+		and  sc.sid=s.id and sc.cid=c.id and si.scid=sc.id limit  #{currentPage},#{pageSize}
+ </select>
+<!--  查询信息的条数 -->
+ <select id="getScoreCount" resultType="int">
+   select  count(id)  from  score_info
+ </select>
+  <!-- 考试信息删除 -->
+ <delete id="deleteExam" parameterType="int">
+ 	delete from score_info where id=#{id} 
+ </delete>
+ <!-- 考试信息修改 -->
+ <update id="updateExam" parameterType="map">
+ 	update score_info set score=#{score},exam_date=#{date} where id=#{id}
+ </update>
+ <!-- 根据课程id和学生id查询选课信息 -->
+ <select id="showScById" parameterType="map" resultType="edu.man.bean.ScoreMore">
+ 	select c.name as cname,t.name as tname,s.stus_name as sname,l.lesson_name as lname 
+ 	from student s,course c,teacher t,stu_course sc,lesson l
+ 	where sc.cid=c.id and c.teacher_id=t.id and c.lesson_id=l.lesson_id and sc.sid=s.id
+ 	and sc.cid=#{cid} and sc.sid=#{sid}
+ </select>
+ <!-- 根据课程id和学生id等添加考试信息 -->
+ <insert id="addExam" parameterType="map" >
+ 	insert into score_info(score,exam_date,remark,comment,scid) 
+ 		values(#{score},#{date},#{remark},#{comment},(select id from stu_course where cid=#{cid} and sid=#{sid}))
+ </insert>
+</mapper>

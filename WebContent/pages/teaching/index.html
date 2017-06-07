@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta charset="UTF-8">
+    <title>睿智教务系统</title>
+    <link rel="stylesheet" type="text/css" href="css/css.css">
+    <link rel="stylesheet" type="text/css" href="css/index.css">
+    <script type="text/javascript" src="js/jquery-1.12.3.min.js"></script>
+    <script type="text/javascript" src="js/index.js"></script>
+    <script type="text/javascript">
+    </script>
+</head>
+<body>
+<header>
+    <div class="logo"><a href="index.html"><img src="images/logo.png" width="283" height="47"></a></div>
+    <div class="out"><a href="login.html">退出</a></div>
+</header>
+<section>
+    <div class="left">
+        <div class="shadow"></div>
+        <div class="portrait">
+            <a href="#"><img src="images/portrait.jpg"><br></a>
+            <a id ="tea_name"href="#">王小明</a>
+        </div>
+        <div class="shadowDouble"></div>
+        <nav>
+            <div id = "baseinfo" class="classA">
+                <a>基础信息</a>
+                <ul class="classB">
+                    <li id="myClass"><a href="base_myClass.html" target="lemon">我的班级</a></li>
+                    <li id="stuAudit">
+                        <a>学生审核</a>
+                        <ul class="classC">
+                            <li id="stuAudit1"><a href="base_admissionAudit.html" target="lemon" >成绩审核</a></li>
+                            <!-- <li><a href="base_registerAudit.html" target="lemon">注册审核</a></li> -->
+                            <li id="stuAudit2"><a href="base_informationAuditStudent.html" target="lemon">信息审核</a></li>
+                        </ul>
+                    </li>
+                    <li id="employInfo"><a href="base_employmentInformationClass.html" target="lemon">就业信息</a></li>
+                    <li id="teaMag">
+                        <a>教师管理</a>
+                        <ul class="classC">
+                            <li id="teaMag1"><a href="base_teacherAudit.html" target="lemon">教师审核</a></li>
+                            <li id="teaMag2"><a href="base_teacherList.html" target="lemon">教师列表</a></li>
+                        </ul>
+                    </li>
+                    <li id="classMag">
+                        <a>班级管理</a>
+                        <ul class="classC">
+                            <li id="classMag1"><a href="base_classAdd.html" target="lemon">创建班级</a></li>
+                            <li id="classMag2"><a href="base_classList.html" target="lemon">班级列表</a></li>
+                        </ul>
+                    </li>
+                    <li id="stuMag"><a href="base_studentList.html" target="lemon">学生管理</a></li>
+                    <li id="roleMag"><a href="base_roleList.html" target="lemon">角色管理</a></li>
+                    <li id="courseMag"><a href="base_courseList.html" target="lemon">课程管理</a></li>
+					<li id="examMag"><a href="base_examList.html" target="lemon">考试管理</a></li>
+                </ul>
+            </div>
+            
+            <div class="shadowDouble"></div>
+            <div id="systools" class="classA">
+                <a>系统工具</a>
+                <ul class="classB">
+                    <li id="repwd"><a href="tool_passwordModify.html" target="lemon">修改密码</a></li>
+                </ul>
+            </div>
+            <div class="shadowDouble"></div>
+        </nav>
+    </div>
+    <div class="right"><iframe name="lemon" frameborder=”no” border=”0″ marginwidth=”0″ marginheight=”0″ src="welcome.html"></iframe></div>
+</section>
+
+</body>
+
+<link rel="stylesheet" type="text/css" href="mCustomScrollbar/jquery.mCustomScrollbar.css">
+<script src="js/jquery-ui.min.js"></script>
+<script src="mCustomScrollbar/jquery.mousewheel.min.js"></script>
+<script src="mCustomScrollbar/jquery.mCustomScrollbar.js"></script>
+<script type='text/javascript'>
+    (function ($) {
+        $(document).ready(function () {
+            $("nav").mCustomScrollbar({
+                scrollButtons: {
+                    enable: false,
+                    scrollType: "continuous",
+                    scrollSpeed: 20,
+                    scrollAmount: 40
+                },
+                horizontalScroll: false,
+            });
+        });
+
+    })(jQuery);
+</script>
+</html>

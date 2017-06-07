@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="edu.man.mapper.ClassMapper" >
+<resultMap id="ClassPageResult" type="edu.man.bean.Class" ></resultMap>
+<resultMap id="StudentPageResult2" type="edu.man.bean.Student" ></resultMap>
+<!-- 班级新增  班级人数默认为0人-->
+ <insert id="InsertClassMes" parameterType="map" >
+ 	insert into class_info(name,lesson,lecturer,assistant,teacher,class_place,class_way,status,class_num,class_start) 
+ 		values(#{name},#{lesson},#{lecturer},#{assistant},#{teacher},#{class_place},"新创建","开课前",0,(select current_date as systemtime))
+ </insert>
+ <!-- 班级合并  -->
+ <insert id="InsertClassMes2" parameterType="map" >
+ 	insert into class_info(name,lesson,lecturer,assistant,teacher,class_place,class_way,class_start,status,class_num,job_num) 
+ 		values(#{name},#{lesson},#{lecturer},#{assistant},#{teacher},#{class_place},"合并后",#{class_start},"开课前",#{class_num},#{job_num})
+ </insert>
+ <!-- 班级编辑 -->
+ <insert id="UpdateClassMes" parameterType="map" >
+ 	update class_info set name=#{name},lesson=#{lesson},lecturer=#{lecturer},assistant=#{assistant},
+ 	 	teacher=#{teacher},class_place=#{class_place} where class_id=#{class_id}
+ </insert>
+ <!-- 查询就业人数 -->
+ <select id="queryJobNum" parameterType="int" resultType="int">
+ 	select job_num from class_info where class_id = #{id}
+ </select>
+ <!-- 班级删除 -->
+ <delete id="deleteClassById" parameterType="map">
+ 	delete from class_info where class_id = #{id1} or class_id = #{id2}
+ </delete>
+ <!-- 更新班级表中的班级人数 -->
+ <update id="updateClassNum">
+  update class_info c set class_num = 
+(select count(id) from student s,stu_register sr 
+where s.class_sid = c.class_id and s.email=sr.stu_email and sr.stu_status=6)  
+ </update>
+ <!-- 根据班级姓名修改学生表里的班级id -->
+ <update id="updateStuByClassName" parameterType="map">
+ 	update student set class_sid=(select class_id from class_info where name=#{name}) 
+ 	where class_sid=#{id1} or class_sid=#{id2}
+ </update>
+ <!-- 根据学生id修改班级id -->
+ <update id="updateStuByStuId" parameterType="map">
+ 	update student set class_sid=#{tid} where id=#{id}
+ </update>
+ <!-- 根据班级id修改班级人数 -->
+ <update id="updateNumByClassId" parameterType="map">
+ 	update class_info set class_num=#{num} where class_id=#{id}
+ </update>
+ <!--  查询所有课程 -->
+ <select id="SelectLesson" resultType="edu.man.bean.LessonName">
+ 	select lesson_name from lesson
+ </select>
+ <!-- 根据教师身份显示教师信息 -->
+ <select id="SelectTeaByRole" parameterType="int" resultType="edu.man.bean.Teacher">
+ 	select id,name,sex,course from teacher where role_id=#{roleId}
+ </select>
+ <!-- 根据名字和角色id查询教师信息 -->
+ <select id="SearchTeaByNameARole" parameterType="edu.man.bean.Teacher" resultType="edu.man.bean.Teacher">
+ 	select id,name,sex,course from teacher where name like #{name} and role_id=#{roleId}
+ </select>
+ <!--根据班级id查询两个班级信息  -->
+ <select id="selectClassById2" parameterType="map" resultType="edu.man.bean.Class">
+ 	select * from class_info where class_id=#{id1} or class_id=#{id2}
+ </select>
+ <!--根据班级id查询一个班级信息  -->
+ <select id="selectClassById1" parameterType="int" resultType="edu.man.bean.Class">
+ 	select * from class_info where class_id=#{class_id}
+ </select>
+ <!-- 根据班级id查询对应的学生信息 -->
+ <select id="selectStuById" parameterType="int" resultType="edu.man.bean.Student">
+ 	select * from student s,stu_register sr where s.class_sid=#{class_id} and s.email=sr.stu_email and sr.stu_status=6
+ </select>
+ <!-- 查询所有班级信息 -->
+ <select id="showAllClassMes" resultType="edu.man.bean.Class">
+ 	select * from class_info 
+ </select>
+ <!-- 根据班级名称查询班级信息 -->
+ <select id="selectClassByName" parameterType="String" resultType="edu.man.bean.Class">
+ 	select * from class_info where name like CONCAT('%',#{name},'%')  
+ </select>
+ <!-- 根据班级名称，课程方向，班级状态等多种条件查询符合条件的班级信息 -->
+ <select id="showSearchClass" parameterType="map" resultMap="ClassPageResult">
+    select * from class_info 
+    where 1=1  
+        <if test="name != '' and name != null">  
+            and name like CONCAT('%',#{name},'%')  
+        </if>  
+        <if test="lesson != '' and lesson != null">  
+            and lesson = #{lesson}  
+        </if>
+        <if test="status != '' and status != null">  
+            and status = #{status}  
+        </if> 
+        <if test="lecturer != '' and lecturer != null">  
+            and lecturer like CONCAT('%',#{lecturer},'%') 
+        </if> 
+        <if test="assistant != '' and assistant != null">  
+            and assistant like CONCAT('%',#{assistant},'%') 
+        </if> 
+        <if test="teacher != '' and teacher != null">  
+            and teacher like CONCAT('%',#{teacher},'%')
+        </if> 
+        <if test="class_way != '' and class_way != null">  
+            and class_way = #{class_way}  
+        </if> 
+        <if test="timeChoice == '开课时间'">   
+            and course_start BETWEEN #{time1} and #{time2}
+        </if>
+        <if test="timeChoice == '开班时间'">  
+            and class_start BETWEEN #{time1} and #{time2}  
+        </if> 
+        <if test="timeChoice == '结课时间'">  
+            and course_end BETWEEN #{time1} and #{time2}  
+        </if>    
+        <if test="class_place != '' and class_place != null">  
+            and class_place like CONCAT('%',#{class_place},'%') 
+        </if>
+        limit  #{currentPage},#{pageSize}  
+    </select>
+    <!--  查询搜索信息的条数 -->
+    <select id="getSearchCount" parameterType="map" resultType="int">
+    select count(class_id) from class_info 
+    where 1=1  
+        <if test="name != '' and name != null">  
+            and name like CONCAT('%',#{name},'%')  
+        </if>  
+        <if test="lesson != '' and lesson != null">  
+            and lesson = #{lesson}  
+        </if>
+        <if test="status != '' and status != null">  
+            and status = #{status}  
+        </if> 
+        <if test="lecturer != '' and lecturer != null">  
+            and lecturer like CONCAT('%',#{lecturer},'%') 
+        </if> 
+        <if test="assistant != '' and assistant != null">  
+            and assistant like CONCAT('%',#{assistant},'%') 
+        </if> 
+        <if test="teacher != '' and teacher != null">  
+            and teacher like CONCAT('%',#{teacher},'%')
+        </if> 
+        <if test="class_way != '' and class_way != null">  
+            and class_way = #{class_way}  
+        </if> 
+        <if test="timeChoice == '开课时间'">   
+            and course_start BETWEEN #{time1} and #{time2}
+        </if>
+        <if test="timeChoice == '开班时间'">  
+            and class_start BETWEEN #{time1} and #{time2}  
+        </if> 
+        <if test="timeChoice == '结课时间'">  
+            and course_end BETWEEN #{time1} and #{time2}  
+        </if>    
+        <if test="class_place != '' and class_place != null">  
+            and class_place like CONCAT('%',#{class_place},'%') 
+        </if>
+    </select>
+<!-- 分页查询所有班级表信息  --> 
+<select id="showAllClass"   parameterType="map"  resultMap="ClassPageResult">
+ 	select  *  from  class_info limit  #{currentPage},#{pageSize}
+ </select>
+<!--  查询信息的条数 -->
+ <select id="getAllCount" resultType="int">
+   select  count(class_id)  from  class_info
+ </select>
+ <!-- 根据班级id分页查询对应所有学生表信息  --> 
+<select id="showSplitStu"   parameterType="map"  resultMap="StudentPageResult2">
+ 	select  s.*  from  student s,stu_register sr where s.class_sid = #{class_id} 
+ 		and s.email=sr.stu_email and sr.stu_status=6 limit  #{currentPage},#{pageSize}
+ </select>
+<!--  查询班级id分页查询对应信息的条数 -->
+ <select id="getSplitStuCount" parameterType="int" resultType="int">
+   select  count(s.id)  from  student s,stu_register sr where class_sid = #{class_id} 
+   		and s.email=sr.stu_email and sr.stu_status=6
+ </select>
+</mapper>

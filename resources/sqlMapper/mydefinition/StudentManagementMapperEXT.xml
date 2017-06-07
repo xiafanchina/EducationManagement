@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="edu.man.mapper.UserMapper" >
+<resultMap id="StudentResultMap" type="edu.man.bean.StudentAndClass" >
+</resultMap>
+<!-- 查询全部学生分页显示 -->
+<select id="showAllStudent"   parameterType="map"  resultMap="StudentResultMap">
+ 	<!-- SELECT * FROM (select  *  from  student s inner join class_info c on s.class_sid=c.class_id where teacher=#{loginteacher} OR lecturer=#{loginteacher} OR assistant=#{loginteacher}) r -->
+ 	select * from student s,stu_register sr,class_info ci 
+ 	<where>
+ 		s.email=sr.stu_email and ci.class_id=s.class_sid and sr.stu_status=6
+      <if test="stus_name !=null">
+          AND s.stus_name like CONCAT('%',#{stus_name},'%') 
+      </if>
+      <if test="sex !=null">
+          AND s.sex=#{sex}
+      </if>
+      <if test="email !=null">
+          AND s.email like CONCAT('%',#{email},'%') 
+      </if>
+      <if test="account_status !=null">
+         AND s.account_status=#{account_status}
+      </if>
+      <if test="phone !=null">
+         AND s.phone like CONCAT('%',#{phone},'%') 
+      </if>
+      <if test="qq !=null">
+         AND s.qq like CONCAT('%',#{qq},'%') 
+      </if>
+      <if test="stu_status !=null">
+         AND s.stu_status=#{stu_status}
+      </if>
+       <if test="school !=null">
+         AND s.school like CONCAT('%',#{school},'%') 
+      </if>
+       <if test="name !=null">
+         AND ci.name like CONCAT('%',#{name},'%') 
+      </if>
+       <if test="lesson !=null">
+         AND ci.lesson like CONCAT('%',#{lesson},'%') 
+      </if>
+       <if test="class_place !=null">
+         AND ci.class_place like CONCAT('%',#{class_place},'%') 
+      </if>
+       <if test="lecturer !=null">
+         AND ci.lecturer like CONCAT('%',#{lecturer},'%') 
+      </if>
+      <if test="assistant !=null">
+         AND ci.assistant like CONCAT('%',#{assistant},'%') 
+      </if>
+      <if test="teacher2 !=null">
+         AND ci.teacher like CONCAT('%',#{teacher2},'%') 
+      </if>
+      </where>
+ 	 limit  #{currentPage},#{pageSize}
+ </select>
+ <!-- 查询学生总数 -->
+ <select id="getAllCount"   parameterType="map" resultType="int">
+  <!-- SELECT count(id) FROM (select  *  from  student s inner join class_info c on s.class_sid=c.class_id where teacher=#{loginteacher} OR lecturer=#{loginteacher} OR assistant=#{loginteacher}) t -->
+   select count(s.id) from student s,stu_register sr,class_info ci  
+   <where>
+   		s.email=sr.stu_email and ci.class_id=s.class_sid and sr.stu_status=6
+      <if test="stus_name !=null">
+          AND s.stus_name like CONCAT('%',#{stus_name},'%') 
+      </if>
+      <if test="sex !=null">
+          AND s.sex=#{sex}
+      </if>
+      <if test="email !=null">
+          AND s.email like CONCAT('%',#{email},'%') 
+      </if>
+      <if test="account_status !=null">
+         AND s.account_status=#{account_status}
+      </if>
+      <if test="phone !=null">
+         AND s.phone like CONCAT('%',#{phone},'%') 
+      </if>
+      <if test="qq !=null">
+         AND s.qq like CONCAT('%',#{qq},'%') 
+      </if>
+      <if test="stu_status !=null">
+         AND s.stu_status=#{stu_status}
+      </if>
+       <if test="school !=null">
+         AND s.school like CONCAT('%',#{school},'%') 
+      </if>
+       <if test="name !=null">
+         AND ci.name like CONCAT('%',#{name},'%') 
+      </if>
+       <if test="lesson !=null">
+         AND ci.lesson like CONCAT('%',#{lesson},'%') 
+      </if>
+       <if test="class_place !=null">
+         AND ci.class_place like CONCAT('%',#{class_place},'%') 
+      </if>
+       <if test="lecturer !=null">
+         AND ci.lecturer like CONCAT('%',#{lecturer},'%') 
+      </if>
+      <if test="assistant !=null">
+         AND ci.assistant like CONCAT('%',#{assistant},'%') 
+      </if>
+      <if test="teacher2 !=null">
+         AND ci.teacher like CONCAT('%',#{teacher2},'%') 
+      </if>
+</where>
+ </select>
+ 
+ <select id="selectById" parameterType="int" resultType="edu.man.bean.StudentAndClass" >
+  select  *  from  student s inner join class_info c on s.class_sid=c.class_id
+  where id=#{id}
+ </select>
+ <update id="updateStudentMsg" parameterType="map">
+ 	 update student set
+ 	 account_status=#{account_status},
+ 	 stu_status=#{stu_status},
+ 	 sex=#{sex},
+ 	 qq=#{qq},
+ 	 phone=#{phone},
+ 	 nation=#{nation},
+ 	 school=#{school},
+ 	 brith_place=#{brith_place},
+ 	 political=#{political},
+ 	 education=#{education},
+ 	 major=#{major},
+ 	 schooldate=#{schooldate} 
+ 	  where id=#{id} 
+ </update>
+</mapper>

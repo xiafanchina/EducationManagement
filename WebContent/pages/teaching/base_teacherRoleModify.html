@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta charset="UTF-8">
+    <title>角色修改</title>
+    <link rel="stylesheet" type="text/css" href="css/frameHtml.css">
+    <script type="text/javascript" src="js/jquery-1.12.3.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+        	$("div.buttonGather > button.back").click(function () {
+                history.back();
+            })
+            $('div.roleContent table tr').click(function () {
+                if ($(this).find("input").is(":checked")) {
+                    $(this).addClass("selected");
+                } else {
+                    $(this).removeClass("selected");
+                }
+            })
+        })
+
+    </script>
+    <script type="text/javascript" src="js/base_teacherList/base_teacherRoleModify.js"></script>
+</head>
+<body>
+<header>
+    <div><a href="">教师列表</a>&nbsp;&rAarr;&nbsp;<a href="">角色编辑</a></div>
+</header>
+
+<div class="buttonGather"><button class="back">返回</button></div>
+
+<table class="teacherTranslate" border="0" cellpadding="0" cellspacing="0">
+    <tr><th>教师编号</th><td id="id">TH12006</td></tr>
+    <tr><th>姓名</th><td id="name">王里斯本</td></tr>
+    <tr><th>当前角色</th><td id="role">总监，角色1，角色2，角色3</td></tr>
+</table>
+<table class="roleTitle" border="0" cellpadding="0" cellspacing="0">
+    <tr><td width="50"></td><td width="70">角色ID</td><td width="95">角色名称</td><td>描述</td></tr>
+</table>
+<div class="roleContent">
+    <table border="0" cellpadding="0" cellspacing="0">
+        <tr id="director"><td width="50"><input type="radio" name="role" value="2"></td><td width="70">2</td><td width="95">教学总监</td><td>&nbsp;</td></tr>
+        <tr><td width="50"><input type="radio" name="role" value="3"></td><td width="70">3</td><td width="95">班主任</td><td>&nbsp;</td></tr>
+        <tr><td width="50"><input type="radio" name="role" value="4"></td><td width="70">4</td><td width="95">讲师</td><td>&nbsp;</td></tr>
+        <tr><td width="50"><input type="radio" name="role" value="5"></td><td width="70">5</td><td width="95">助教</td><td>&nbsp;</td></tr>
+    </table>
+</div>
+
+<div class="operationGather"><button class="modify" onclick="RoleModify()">提&nbsp;&nbsp;&nbsp;&nbsp;交</button></div>
+</body>
+<!--滚动条开始-->
+<link rel="stylesheet" type="text/css" href="mCustomScrollbar/jquery.mCustomScrollbar.css">
+
+<script src="mCustomScrollbar/jquery.mousewheel.min.js"></script>
+<script src="mCustomScrollbar/jquery.mCustomScrollbar.js"></script>
+<style>
+
+</style>
+<script type='text/javascript'>
+    (function ($) {
+        $(document).ready(function () {
+            $("div.roleContent").mCustomScrollbar({
+                scrollButtons: {
+                    enable: false,
+                    scrollType: "continuous",
+                    scrollSpeed: 20,
+                    scrollAmount: 40
+                },
+                horizontalScroll: false
+            });
+        });
+
+    })(jQuery);
+</script>
+<!--滚动条结束-->
+
+</html>

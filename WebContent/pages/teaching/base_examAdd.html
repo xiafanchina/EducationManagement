@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta charset="UTF-8">
+    <title>新建考试信息</title>
+    <link rel="stylesheet" type="text/css" href="css/frameHtml.css">
+    <script type="text/javascript" src="js/jquery-1.12.3.min.js"></script>
+    <script type="text/javascript" src="js/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="js/menu.js"></script>
+    <script type="text/javascript" src="js/CourseAndExam/examAdd.js"></script>
+</head>
+<body>
+<header>
+    <div>新&nbsp;建&nbsp;考&nbsp;试</div>
+</header>
+
+<table class="addClass" border="0" cellspacing="0" cellpadding="0">
+    <tr><th width="100">课程名称</th><td><span>aaa</span></td></tr>
+    <tr><th width="100">课程方向</th><td><span>aaa</span></td></tr>
+    <tr><th width="100">授课教师</th><td><span>aaa</span></td></tr>
+    <tr><th width="100">学生姓名</th><td><span>aaa</span></td></tr>
+    <tr><th width="100">考试成绩</th><td><input type="text" class="name1" ></td></tr>
+    <tr><th>考试时间</th><td><input class="datainp" type="text" placeholder="考试时间"  style="width: 88px;" readonly></td></tr>
+	<tr><th width="100">教师评价</th><td><textarea rows="10" cols="30" class="name1"></textarea></td></tr>
+	<tr><th width="100">备注</th><td><input type="text" class="name1" ></td></tr>
+</table>
+<div class="operationGather"><button class="submit">提&nbsp;&nbsp;&nbsp;&nbsp;交</button><button class="cancel">取&nbsp;&nbsp;&nbsp;&nbsp;消</button></div>
+
+</body>
+</html>
+<!--select选框开始-->
+<link type="text/css" rel="stylesheet" href="css/drop-down.css">
+<script type="text/javascript" src="js/select-widget-min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $(".ui-select").selectWidget({
+            change: function (changes) {
+                return changes;
+            },
+            effect: "slide",
+            keyControl: true,
+            speed: 200,
+            scrollHeight: 250
+        });
+    });
+</script>
+<!--select选框结束-->
+<!--滚动条开始-->
+<link rel="stylesheet" type="text/css" href="mCustomScrollbar/jquery.mCustomScrollbar.css">
+
+<script src="mCustomScrollbar/jquery.mousewheel.min.js"></script>
+<script src="mCustomScrollbar/jquery.mCustomScrollbar.js"></script>
+<style>
+
+</style>
+<script type='text/javascript'>
+    (function ($) {
+        $(document).ready(function () {
+            $("div.popTeacher").mCustomScrollbar({
+                scrollButtons: {
+                    enable: false,
+                    scrollType: "continuous",
+                    scrollSpeed: 20,
+                    scrollAmount: 40
+                },
+                horizontalScroll: false
+            });
+        });
+
+    })(jQuery);
+</script>
+<!--滚动条结束-->
+<!--时间选择开始-->
+<script type="text/javascript" src="jedate/jedate.js"></script>
+<link type="text/css" rel="stylesheet" href="jedate/skin/jedate.css">
+<style>
+    .bodys{ padding:50px 0 0 50px;}
+    .datainp{ width:200px; height:30px; border:1px #ccc solid;}
+    .datep{ margin-bottom:40px; line-height:24px; margin-right:15px;}
+</style>
+<script type="text/javascript">
+    jeDate({
+        dateCell: '.datainp',
+        isinitVal:true,
+        format: 'YYYY-MM-DD', // 分隔符可以任意定义，该例子表示只显示年月
+        minDate: '2010-06-01', //最小日期
+        maxDate: '2020-06-01' //最大日期
+    })
+</script>
+<!--时间选择结束-->

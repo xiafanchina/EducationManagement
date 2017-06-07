@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="edu.man.mapper.ClassJobInfo">
+ <!-- 查询各个班级的就业情况 -->
+ <select id="selectclass_info" parameterType="map" resultType="edu.man.bean.Class">
+ 	select  *  from class_info  limit #{pageIndex},#{pageSize}
+ </select>
+ 
+<!--  查询有几个班级就业 -->
+ <select id="selectclass_infoCount"  resultType="Integer">
+ 	select  count(class_id)  from class_info  
+ </select>
+ 
+<!--  查询某个班级的就业情况 -->
+  <select id="selectclass_infoOne"  resultType="edu.man.bean.Class" parameterType="String">
+ 	select  *  from class_info  where class_id=#{class_id}
+ </select>
+ 
+<!-- 查询某个班每个学生的就业信息（根据班级ID） -->
+<select id="selectAllstudent_info"  resultType="edu.man.bean.JobInfoAndStudent" parameterType="map">
+select *from (select *,count(distinct student_id) from job_info group by student_id) job 
+	right join(select s.id,s.stus_name,s.sex,s.phone,s.qq from student s,stu_register sr 
+	where s.email=sr.stu_email and sr.stu_status=6 and s.class_sid=#{class_id}) stu 
+	on stu.id=job.student_id limit #{pageIndex},#{pageCount} 
+ </select>
+  
+<!-- 查询某个班有多少学生  -->
+ <select id="selectstudent_infoCount"  parameterType="String" resultType="Integer">
+ 	select  count(s.id)  from student s,stu_register sr where class_sid=#{class_id} and s.email=sr.stu_email and sr.stu_status=6
+ </select>
+ 
+ <!-- 查询某个学生的个人信息 -->
+  <select id="selectstudent_infoOne"  parameterType="String" resultType="edu.man.bean.Student">
+ 	select * from student where id=#{student_id} 
+ </select>
+ 
+<!--  查询某个学生所有的就业历史 -->
+ <select id="selectstudent_AllJobInfo"  parameterType="map" resultType="edu.man.bean.JobInfo">
+ 	select * from job_info where student_id=#{student_id} LIMIT #{pageIndex},#{pageCount}
+ </select>
+ 
+ <!--  查询某个学生所有的就业历史条数 -->
+ <select id="selectstudent_AllJobInfoCount"  parameterType="String" resultType="Integer">
+ 	select count(student_id) from job_info where student_id=#{student_id}
+ </select>
+ 
+<!--  添加学生就业信息 -->
+ <insert id="addStudentJobInfo" parameterType="map" useGeneratedKeys="true" keyProperty="job_id">
+  insert into job_info(student_id,com_name,com_phone,address,job,salary,entry_date,submit_date,submit_person) values(#{student_id},#{com_name},#{com_phone},#{address},#{job},#{salary},#{entry_date},#{submit_date},#{submit_person})
+ </insert>
+ <select id="countStudentJob" parameterType="java.lang.String" resultType="int">
+ 	SELECT count(job_id) FROM job_info WHERE student_id = #{student_id}
+ </select>
+ 
+ <select id="selectClassId" parameterType="java.lang.String" resultType="int">
+ 	select class_sid from student where id = #{student_id}
+ </select>
+ <update id="updateJobNum" parameterType="int">
+ 	update class_info set job_num = job_num+1 where class_id =#{classid}
+ </update>
+<!--  修改学生就业信息 -->
+<update id="modifyStudentJobInfo" parameterType="map">
+	 update job_info set com_name=#{com_name},com_phone=#{com_phone},address=#{address},job=#{job},salary=#{salary},submit_date=#{date},submit_person=#{name} where job_id=#{job_id}
+</update> 
+</mapper>

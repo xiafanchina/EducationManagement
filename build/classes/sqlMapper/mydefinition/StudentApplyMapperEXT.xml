@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="edu.man.StudentApply" >
+
+<!-- 配置这个的作用就是根据数据库中的字段查询数据封装到对应的实体类中， -->
+  <resultMap id="BaseResultMap" type="edu.man.bean.StudentApply" >
+
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="ex_idcard" property="ID" jdbcType="VARCHAR" />
+    <result column="ex_name" property="name" jdbcType="VARCHAR" />
+    <result column="ex_school" property="oldSchool" jdbcType="VARCHAR" />
+    <result column="ex_choice" property="direction" jdbcType="VARCHAR" />
+    <result column="ex_score" property="score" jdbcType="VARCHAR" />
+    <result column="ex_date" property="date" jdbcType="VARCHAR" />
+    <result column="ex_status" property="scoreStatus" jdbcType="VARCHAR" />
+  </resultMap>
+  
+ <!--  根据前台传入的数据通过动态sql查询 -->
+ 
+	<select id="StudentApply_sousuo"   parameterType="map"  resultMap="BaseResultMap">
+	select * from exam_info 
+	<where>
+			ex_status =1 
+		<if test="search_userName != null and search_userName !=''">
+			and ex_name like CONCAT('%',#{search_userName},'%') 
+		</if>
+		<if test="search_school != null and search_school !=''">
+			and ex_school like CONCAT('%',#{search_school},'%')
+		</if>
+		<if test="direction != null and direction !=''">
+			and ex_choice = #{direction}
+		</if>
+		<if test="min_score != null and min_score !=''">
+		<![CDATA[
+			and ex_score >= #{min_score,jdbcType=INTEGER}
+		]]>
+		</if>
+		<if test="max_score != null and max_score !=''">
+		<![CDATA[
+			and ex_score <= #{max_score,jdbcType=INTEGER}
+			]]>
+		</if>
+		<if test="score_status != null and score_status !=''">
+			and ex_status = #{score_status,jdbcType=INTEGER}
+		</if>
+	</where>
+	limit #{pageIndex},#{pageSize}
+	</select>
+	
+	<!-- 查询总条数的sql -->
+	<select id="getCount" resultType="int">
+		select count(ex_idcard) from exam_info
+		<where>
+			ex_status =1
+		<if test="search_userName != null and search_userName !=''">
+			and ex_name like CONCAT('%',#{search_userName},'%') 
+		</if>
+		<if test="search_school != null and search_school !=''">
+			and ex_school like CONCAT('%',#{ex_school},'%') 
+		</if>
+		<if test="direction != null and direction !=''">
+			and ex_choice = #{direction}
+		</if>
+		<if test="min_score != null and min_score !=''">
+		<![CDATA[
+			and ex_score >= #{min_score,jdbcType=INTEGER}
+		]]>
+		</if>
+		<if test="max_score != null and max_score !=''">
+		<![CDATA[
+			and ex_score <= #{max_score,jdbcType=INTEGER}
+			]]>
+		</if>
+		<if test="score_status != null and score_status !=''">
+			and ex_status = #{score_status,jdbcType=INTEGER}
+		</if>
+	</where>
+	</select>
+</mapper>

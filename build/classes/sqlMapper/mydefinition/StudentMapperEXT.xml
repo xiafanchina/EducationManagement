@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="edu.man.mapper.StudentMapper" >
+  <!-- 数据库teacher中的字段和Teacher实体类中的属性进行映射 -->
+  <resultMap id="StudentResultMap" type="edu.man.bean.Student" >
+     <id column="id" property="id"  />
+     <result column="email" property="email"  />
+     <result column="id_card" property="id_card"  />
+     <result column="stus_name" property="stus_name"  />
+     <result column="sex" property="sex"  />
+     <result column="phone" property="phone"  />
+     <result column="qq" property="qq"  />
+     <result column="account_status" property="account_status"  />
+     <result column="nation" property="nation"  />
+     <result column="birth_place" property="birth_place"  />
+     <result column="political" property="political"  />
+     <result column="education" property="education"  />
+     <result column="school" property="school"  />
+     <result column="major" property="major"  />
+     <result column="schooldate" property="schooldate"/>
+     <result column="img" property="img"  />
+     <result column="info" property="info"  />
+     <result column="class_sid" property="class_sid"  />
+     <result column="job_id" property="job_id"  />
+     <result column="submit_date" property="submit_date"/>
+     <result column="class_name" property="class_name"/>
+     <result column="class_place" property="class_place"/>
+    </resultMap>
+    <resultMap type="edu.man.bean.Class" id="studentclassdata">
+    <result column="class_place" property="class_place"/>
+    <result column="name" property="name"/>
+    </resultMap>
+    <!-- 查询数据库中的所有数据，返回int数据总数 -->
+    <select id="getstudentdatasum"  resultType="int" >
+    	 <!--select count(*) from student -->
+	SELECT COUNT(*) from student WHERE id_card in(select  stu_idcard from stu_register where stu_status=5) 
+    </select>
+    
+    <!-- 查询学生班级信息 -->
+    <select id="getstuclassdata" parameterType="map" resultMap="studentclassdata">
+    	select * FROM class_info WHERE class_id=#{class_sid}
+    </select>
+    
+    <!-- 以5个位一组，将数据库中的数据查询出来 -->
+  <select id="getallStudent" parameterType="map"  resultMap="StudentResultMap">
+       <!-- select  *  from  student  limit #{pageCount},5  -->
+	SELECT * from student WHERE id_card in(select  stu_idcard from stu_register where stu_status =5) LIMIT #{pageCount},5 
+  </select>
+  
+   <!-- 双击时以id为条件将数据库符合条件的数据查询出来 -->
+  <select id="getstudentdata" resultMap="StudentResultMap" resultType="edu.man.bean.Student">
+  	SELECT * FROM student where  id=#{id}
+  </select>
+ 
+   <!-- 从数据库中找到符合审核通过id条件的学生，并将状态和原因清零 -->
+  <update id="updatestudent" parameterType="map">
+  update stu_register set  stu_status=#{stu_status},stu_result=#{stu_result},stu_reason=#{stu_reason}   where  stu_idcard=(select id_card from student where id=#{id})
+  </update>
+  
+  <!-- 从数据库中找到符合审核不通过的同学的id，并将状态和原因存入数据库 -->
+  <update id="updatestudentstares" parameterType="map">
+  	update stu_register set  stu_status=#{stu_status},stu_result=#{stu_result},stu_reason=#{stu_reason}  where  stu_idcard=(select id_card from student where id=#{id})
+  </update>
+  
+</mapper>

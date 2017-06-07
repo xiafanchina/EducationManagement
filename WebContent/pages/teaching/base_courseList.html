@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta charset="UTF-8">
+    <title>课程列表</title>
+    <link rel="stylesheet" type="text/css" href="css/frameHtml.css">
+    <script type="text/javascript" src="js/jquery-1.12.3.min.js"></script>
+    <script type="text/javascript" src="js/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="js/CourseAndExam/courseList.js"></script>
+</head>
+<body>
+<header>
+    <div><a href="">课程列表</a></div>
+</header>
+<div>
+	<input type="hidden" name="ids"  id="ids">
+</div>
+<div class="buttonGather"><button class="courseAdd">添加课程</button></div>
+<div class="tableList">
+    <table border="0" cellpadding="0" cellspacing="0">
+        <tr>
+            <th width="50">课程ID</th>
+            <th width="170">课程名称</th>
+            <th width="170">课程方向</th>
+            <th width="70">课程教师ID</th>
+            <th width="170">课程教师姓名</th>
+            <th width="60">操作</th>
+        </tr>
+        <tbody id="tb">
+        <tr onDblclick="showDetail(this)">
+            <td class="td1">CL001</td>
+            <td class="td1">袁正宜</td>
+            <td class="td1">张三一一</td>
+            <td class="td1">55</td>
+            <td class="td1">55</td>
+            <td><span class="courseModify" onclick="modifyCourse(this)">修改</span>
+            <span class="courseDelete" onclick="deleteCourse(this)">删除</span></td>
+        </tr>
+        </tbody>       
+    </table>
+</div>
+<div class="tablePage">
+    <div>共<span id="count">0</span>条记录，每页<span id="pageSize">0</span>条，共<span id="pageNum">0</span>页</div>
+    <a href="#" class="pageTop" onclick="pageFirst()"></a>
+    <a href="#" class="pageUp" onclick="pageUp()"></a>
+    <em><input type="text" name="tablePage"id="tablePage" ></em>
+    <a href="#" class="pageDown" onclick="pageDown()"></a>
+    <a href="#" class="pageBottom" onclick="pageLast()"></a>
+</div>
+</body>
+</html>
+<!--滚动条开始-->
+<link rel="stylesheet" type="text/css" href="mCustomScrollbar/jquery.mCustomScrollbar.css">
+
+<script src="mCustomScrollbar/jquery.mousewheel.min.js"></script>
+<script src="mCustomScrollbar/jquery.mCustomScrollbar.js"></script>
+<style>
+    ._mCS_1 .mCSB_scrollTools .mCSB_dragger .mCSB_dragger_bar,._mCS_1 .mCSB_scrollTools .mCSB_draggerRail{
+        border-radius: 0;
+        margin: 0;
+    }
+    ._mCS_1 .mCSB_scrollTools .mCSB_dragger .mCSB_dragger_bar{
+        /* 2nd scrollbar dragger style... */
+        background-color: #355372;
+        height: 10px;
+    }
+    ._mCS_1 .mCSB_scrollTools .mCSB_draggerRail{
+        height: 8px;
+        border: 1px solid #355372;
+        background-color: #FFFFFF;
+    }
+</style>
+<script type='text/javascript'>
+    (function ($) {
+        $(document).ready(function () {
+            $("div.tableList").mCustomScrollbar({
+                scrollButtons: {
+                    enable: false,
+                    scrollType: "continuous",
+                    scrollSpeed: 20,
+                    scrollAmount: 40
+                },
+                horizontalScroll: true
+            });
+        });
+
+    })(jQuery);
+</script>
+<!--滚动条结束-->
+<!--select选框开始-->
+<link type="text/css" rel="stylesheet" href="css/drop-down.css">
+<script type="text/javascript" src="js/select-widget-min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $(".ui-select").selectWidget({
+            change: function (changes) {
+                return changes;
+            },
+            effect: "slide",
+            keyControl: true,
+            speed: 200,
+            scrollHeight: 250
+        });
+    });
+</script>
+<!--select选框结束-->
+<!--时间选择开始-->
+<script type="text/javascript" src="jedate/jedate.js"></script>
+<link type="text/css" rel="stylesheet" href="jedate/skin/jedate.css">
+<style>
+    .bodys{ padding:50px 0 0 50px;}
+    .datainp{ width:200px; height:30px; border:1px #ccc solid;}
+    .datep{ margin-bottom:40px; line-height:24px; margin-right:15px;}
+</style>
+<script type="text/javascript">
+    jeDate({
+        dateCell: '.datainp',
+        isinitVal:true,
+        format: 'YYYY-MM-DD', // 分隔符可以任意定义，该例子表示只显示年月
+        minDate: '2010-06-01', //最小日期
+        maxDate: '2020-06-01' //最大日期
+    })
+</script>
+<!--时间选择结束-->

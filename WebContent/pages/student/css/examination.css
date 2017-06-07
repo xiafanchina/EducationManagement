@@ -1,0 +1,235 @@
+h1, h2, h3, h4, h5, h6 {
+    margin: 0;
+    font-weight: lighter;
+}
+
+input, button {
+    font-family: "黑体";
+}
+
+html, body {
+    background: #FFFFFF;
+    margin: 0;
+    font-family: "黑体";
+    color: #000000;
+}
+
+ul {
+    margin: 0px;
+    padding: 0px;
+    list-style: none;
+}
+
+a {
+    font-size: 16px;
+    font-family: "黑体";
+    text-decoration: none;
+    color: #000000;
+}
+
+a:visited {
+    color: #000000;
+}
+
+a:hover {
+    color: #000000;
+}
+
+header {
+    width: 100%;
+    height: 55px;
+    border-bottom: 5px solid #38B65A;
+    background: #FFFFFF;
+}
+
+header > div {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+header > div > img {
+    margin-left: 15px;
+}
+
+header > div > a {
+    font-size: 14px;
+    float: right;
+    margin-right: 15px;
+    margin-left: 15px;
+    margin-top: 35px;
+}
+
+footer {
+    width: 100%;
+    height: 45px;
+    border-top: 1px solid #38B65A;
+    background: #FFFFFF;
+    text-align: center;
+    line-height: 45px;
+}
+section{
+    width: 1200px;
+    margin: 0 auto;
+}
+section > div{float: left; overflow: auto;}
+
+section > div.information {
+     width: 335px;
+     border-right: 1px solid #38B65A;
+ }
+section > div.content {width: 863px;}
+section > div.information h1{
+    font-size: 22px;
+    text-align: center;
+    font-weight: lighter;
+    height: 42px;
+    line-height: 42px;
+}
+
+section > div.information div.timing{
+    width: 285px;
+    height: 32px;
+    line-height: 32px;
+    font-size: 18px;
+}
+section > div.information div.timing > time{
+    color: #ff0000;
+}
+section > div.information div.timing > button{
+    float: right;
+    width: 105px;
+    height: 32px;
+    font-size: 18px;
+    color: #FFFFFF;
+    background: #38B65A;
+    border: 0;
+    cursor:pointer;
+}
+section > div.information div.timing > button:hover{
+    background: #3bbf5f;
+}
+section > div.information div.timing > button.prohibit{background: #C8C8C8; cursor: not-allowed; }
+
+section > div.information ul.note{
+    line-height: 20px;
+    font-size: 16px;
+    color: #464646;
+}
+section > div.information h2{font-size: 18px; margin: 10px auto 5px auto;}
+section > div.information table{width: 285px; border-collapse: collapse}
+section > div.information table td{
+    width: 45px;
+    height: 45px;
+    color: #38B65A;
+    border: 1px solid #38B65A;
+    text-align: center;
+    cursor:pointer;
+}
+section > div.information table td.eG{
+    background: #8FF6B3;
+    color: #38B65A;
+}
+section > div.information table td.eR{
+    font-weight: bold;
+    color: red;
+}
+section > div.information table td.eGray{
+    background: #C8C8C8;
+}
+
+section > div.content h1{
+    font-size: 22px;
+    color: #38B65A;
+    height: 42px;
+    line-height: 42px;
+}
+section > div.content div.stem{min-width: 750px;}
+section > div.content div.stem > div{margin:10px 0px;}
+section > div.content div.stem > div.words{font-size: 18px;}
+section > div.content div.stem > div > span{padding: 0px 10px; border-bottom: 1px solid #000;}
+section > div.content div.stem > div > span > b{
+    width: 20px;
+    height: 20px;
+    line-height: 20px;
+    display: inline-block;
+    border: 1px solid #000;
+    color: #000;
+    text-align: center;
+    vertical-align: text-bottom;
+    border-radius: 50%;
+}
+section > div.content div.stem > div.picture img{max-width: 750px; border: 1px solid #38B65A;}
+section > div.content div.stem > div.code{min-width: 750px; min-height: 100px; border: 1px solid #38B65A; background: #8FF6B3;}
+
+section > div.content div.answer > ul{margin: 30px 50px;}
+section > div.content div.answer > ul > li{height: 30px; line-height: 30px;}
+section > div.content div.answer > ul > li > label{cursor:pointer;}
+section > div.content div.answer input[type="radio"],
+section > div.content div.answer input[type="checkbox"]{display: none;}
+section > div.content div.answer input[type="text"]{border: 0; border-bottom: 1px solid #38B65A;width:300px;height: 20px; line-height: 20px; font-size: 16px;}
+section > div.content div.answer input[type="text"]:focus{outline: none;border-bottom: 1px solid #3495E5}
+section > div.content div.answer > ul > li > label > span{
+    width: 20px;
+    height: 20px;
+    line-height: 20px;
+    display: inline-block;
+    border: 1px solid #38B65A;
+    color: #38B65A;
+    text-align: center;
+    vertical-align: middle;
+    margin-right: 10px;
+}
+section > div.content div.answer > ul.singleChoice > li > label > span,
+section > div.content div.answer > ul.fillIn > li > label > span {border-radius: 50%;}
+section > div.content div.answer > ul.fillIn > li > label > span.checked{background:#38B65A; color: #FFFFFF; }
+section > div.content div.answer > ul.multipleChoice > li > label > span{border-radius: 10%;}
+section > div.content div.answer > ul > li > label > span.checked{background:#38B65A; color: #FFFFFF; }
+section > div.content div.answer > div.programAnalysis{margin: 30px 0px;}
+section > div.content div.answer > div.programAnalysis > textarea{
+    width: 750px;
+    height: 100px;
+    font-size: 16px;
+    font-family: "黑体";
+    resize: none;
+    border: 1px solid #38B65A;
+}
+section > div.content div.answer > div.programAnalysis > textarea:focus{outline: none;}
+section > div.content div.uncertain > label{cursor:pointer;}
+section > div.content div.uncertain > label > em{
+    width: 20px;
+    height: 20px;
+    line-height: 20px;
+    display: inline-block;
+    border: 1px solid #38B65A;
+    color: #38B65A;
+    text-align: center;
+    vertical-align: middle;
+    margin-right: 10px;
+    font-style: normal;
+    font-weight: bold;
+}
+section > div.content div.uncertain > label > em.checked{background:#38B65A; color: #FFFFFF}
+section > div.content div.uncertain > label > span{padding-left: 30px; font-size: 14px; color: #949494;}
+section > div.content div.uncertain > label > input[type="checkbox"]{display: none;}
+section > div.content div.button{text-align: center; min-width: 750px;}
+section > div.content div.button > button.prohibit{
+    background: #38B65A;
+    cursor:pointer;
+}
+section > div.content div.button > button.prohibit:hover{
+    background: #3bbf5f;
+}
+section > div.content div.button > button{
+    background: #C8C8C8;
+    cursor: not-allowed;
+    width: 147px;
+    height: 40px;
+    font-size: 18px;
+    color: #FFFFFF;
+    border: 0;
+    margin: 30px 100px;
+}
+section > div.content div.contentSubject{padding-left: 30px;}
+section > div.content div.contentSubject > div{display: none;}
+section > div.content div.contentSubject > div.display{display: block;}

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta charset="UTF-8">
+    <title>教师审核-教师档案</title>
+    <link rel="stylesheet" type="text/css" href="css/frameHtml.css">
+    <script type="text/javascript" src="js/jquery-1.12.3.min.js"></script>
+    <script type="text/javascript">
+       $(document).ready(function () {
+           
+        	$("div.buttonGather > button.back").click(function () {
+                history.back();
+            })
+            $("div.operationGather > button.modify").click(function () {
+                location.href = "base_teacherTranslateModify.html?id=" + $("#id").text();
+            });
+        })
+
+    </script>
+    <script type="text/javascript" src="js/base_teacherList/base_teacherTranslate.js"> </script>
+</head>
+<body>
+<header>
+    <div><a href="">教师列表</a>&nbsp;&rAarr;&nbsp;<a href="">教师档案详情</a></div>
+</header>
+
+<div class="buttonGather"><button class="back">返回</button></div>
+
+<h1 class="finishTitle"><span class="name">王里斯本</span>个人档案</h1>
+<ul class="finishInformation">
+    <li>
+        <ul>
+            <li><img src="images/portrait1.jpg" width="97" height="137"></li>
+            <li><span>账号状态</span><span id="accountStatus">正常</span></li>
+            <li><span>教师编号</span><span id="id">TH006001</span></li>
+            <li><span>部门</span><span id="department">教学部</span></li>
+            <li><span>代课方向</span><span id="course">Android开发</span></li>
+            <li><span>办公方式</span><span id="workingWay">在家办公</span></li>
+            <li><span>常驻地</span><span id="workingPlace">北京市大兴区</span></li>
+            <li><span>邮箱</span><span id="email">wenyg@lanqiao.org</span></li>
+            
+        </ul>
+    </li>
+    <li>
+        <ul>
+            <li><span>身份证号</span><span id="idCard">411023198002182090</span></li>
+            <li><span>姓名</span><span class="name">王里斯本</span></li>
+            <li><span>性别</span><span id="sex">男</span></li>
+            <li><span>手机号</span><span id="phone">13934567890</span></li>
+            <li><span>QQ号</span><span id="qq">987676543</span></li>
+            <li><span>民族</span><span id="nation">汉族</span></li>
+            <li><span>籍贯</span><span id="birthPlace">黑龙江</span></li>
+            <li><span>政治面貌</span><span id="political">群众</span></li>
+            <li><span>学历</span><span id="education">硕士</span></li>
+            <li><span>毕业院校</span><span id="school">北京航天科技大学</span></li>
+            <li><span>所学专业</span><span id="major">计算机软件</span></li>
+        </ul>
+    </li>
+</ul>
+
+<div class="operationGather"><button class="modify">编&nbsp;&nbsp;&nbsp;&nbsp;辑</button></div>
+</body>
+</html>

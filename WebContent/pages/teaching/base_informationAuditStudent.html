@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta charset="UTF-8">
+    <title>待审核学生列表</title>
+    <link rel="stylesheet" type="text/css" href="css/frameHtml.css">
+	<link rel="stylesheet" type="text/css" href="css/pages.css">
+    <script type="text/javascript" src="js/jquery-1.12.3.min.js"></script>
+	<script type="text/javascript" src="js/jquery.page.js"></script>
+	<script type="text/javascript" src="js/base_informationAuditStudent/base_informationAuditStudent.js"></script>
+</head>
+<body>
+<header>
+    <div><a href="">待审核学生列表</a></div>
+</header>
+<div class="tableList">
+    <table border="0" cellpadding="0" cellspacing="0">
+        <tr>
+            <th width="30"></th>
+            <th width="80">学号</th>
+            <th width="90">姓名</th>
+            <th width="50">性别</th>
+            <th width="150">手机号</th>
+            <th>身份证号</th>
+            <th>提交时间</th>
+        </tr>
+        <tbody  id="sd">
+	        <tr dataId="ST006001">
+	            <td id="ids">1</td>
+	            <td id="id">ST006001</td>
+	            <td id="name">张三</td>
+	            <td id="sex">男</td>
+	            <td id="id_card">411024198708078989</td>
+	            <td id="phone">18999876765</td>
+	            <td id="submit_date">2016-03-08</td>
+	        </tr>
+        </tbody>
+    </table>
+</div>
+<div style="text-align:center;">
+                  <ul class="conntent_paging_list_g141166 tcdPageCode" id="getproinvestinglist2">
+                  </ul>
+    </div>
+
+<div class="tablePage">
+    <div>共<span id="totalNums">34</span>条记录，每页<span>5</span>条，共<span id="pageNums">4</span>页</div>
+    <a href="#" class="pageTop" onclick="first() "></a>
+    <a href="#" class="pageUp"  onclick="pageUp()"></a>
+    <em><input type="text" name="tablePage" id="demo_input"></em>
+    <a href="#" class="pageDown" onclick="pageDown()"></a>
+    <a href="#" class="pageBottom" onclick="last()"></a>
+</div>
+</body>
+</html>
+<!--滚动条开始-->
+<link rel="stylesheet" type="text/css" href="mCustomScrollbar/jquery.mCustomScrollbar.css">
+<script src="js/jquery-ui.min.js"></script>
+<script src="mCustomScrollbar/jquery.mousewheel.min.js"></script>
+<script src="mCustomScrollbar/jquery.mCustomScrollbar.js"></script>
+<style>
+    ._mCS_1 .mCSB_scrollTools .mCSB_dragger .mCSB_dragger_bar,._mCS_1 .mCSB_scrollTools .mCSB_draggerRail{
+        border-radius: 0;
+        margin: 0;
+    }
+    ._mCS_1 .mCSB_scrollTools .mCSB_dragger .mCSB_dragger_bar{
+        /* 2nd scrollbar dragger style... */
+        background-color: #355372;
+        height: 10px;
+    }
+    ._mCS_1 .mCSB_scrollTools .mCSB_draggerRail{
+        height: 8px;
+        border: 1px solid #355372;
+        background-color: #FFFFFF;
+    }
+</style>
+<script type='text/javascript'>
+
+</script>
+<!--滚动条结束-->

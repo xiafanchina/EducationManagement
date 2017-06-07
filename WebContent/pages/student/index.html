@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en" style="width: 100%; height: 100%;">
+<head>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta charset="UTF-8">
+    <title>睿智教务系统</title>
+    <link type="text/css" rel="stylesheet" href="css/css.css">
+    <!-- <link type="text/css" rel="stylesheet" href="css/sexIndex.css"> -->
+    <link type="text/css" rel="stylesheet" href="css/banner.css">
+    <link href="css/List.css" rel="stylesheet" type="text/css"/> 
+    <script type="text/javascript" src="js/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="js/jquery.SuperSlide.2.1.1.js"></script>
+    <script type="text/javascript" src="js/fan.js"></script>
+    <script type="text/javascript" src="js/stuindex.js"></script>
+    <script>
+        $(document).ready(function () {
+            screenWidth = $(window).width();
+            if (screenWidth < 600) {
+                document.write(screenWidth);
+                window.location.href = "webIndex.html"
+            }
+        })
+    </script>
+</head>
+<body>
+<header>
+    <div class="center">
+        <!-- <img src="images/ruizhi01.png"> -->
+        <a href="login.html">退出</a>
+        <div class="personal">
+            <a class="sname">王里斯本</a>
+        
+        </div>
+    </div>
+</header>
+
+<nav class="nav">
+    <ul class="nav_menu">
+        <li class="nav_menu-item"><a href="index.html">首页</a></li>
+        <li class="nav_menu-item"><a class="toExam">在线考试</a></li>
+        <li class="nav_menu-item"><a class="toStu">学生档案</a></li>
+        <!-- <li class="nav_menu-item"><a href="testTimetable.html">在线考试</a>
+            <ul class="nav_submenu">
+                <li class="nav_submenu-item"><a href="onlineExam.html">在线考试</a></li>
+                <li class="nav_submenu-item"><a href="">成绩查询</a></li>
+            </ul>
+        </li> -->
+    </ul>
+</nav>
+<article>
+    <div class="index-banner">
+        <div class="hd">
+            <ul class="num">
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+            </ul>
+        </div>
+        <div class="bd">
+            <ul class="pic" >
+                <li> <a ><img src="images/banner1.jpg"  width="1024" height="303" /></a> </li>
+                <li> <a ><img src="images/banner2.jpg"  width="1024" height="303" /></a></li>
+                <li> <a ><img src="images/banner3.jpg"  width="1024" height="303" /></a></li>
+                <li> <a ><img src="images/banner4.jpg"  width="1024" height="303"/></a> </li>
+            </ul>
+        </div>
+        <div class="pnBtn prev"> <span class="blackBg"></span> <a class="arrow" href="javascript:void(0)"></a> </div>
+        <div class="pnBtn next"> <span class="blackBg"></span> <a class="arrow" href="javascript:void(0)"></a> </div>
+    </div>
+    
+    <div style="text-align:center;height:240px;font-size:20px">欢迎进入睿智教务系统
+    </div>
+</article>
+<footer>&copy; - 湖北工程学院</footer>
+</body>
+</html>

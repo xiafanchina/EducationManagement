@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta charset="UTF-8">
+    <title>教师审核-教师档案</title>
+    <link rel="stylesheet" type="text/css" href="css/frameHtml.css">
+    <script type="text/javascript" src="js/jquery-1.12.3.min.js"></script>
+    <script type="text/javascript" src="js/base_teacherAudit/base_teacherAuditTranslate.js"></script>
+  
+    <script type="text/javascript">
+        $(document).ready(function () {
+        	$("div.button button.popSubmit").click(function(){
+        		agree();
+        		$(".blackBg").css("display","none");
+                $(".popTips").css("display","none");
+        	});
+        	$("div.button button.popSubmita").click(function(){
+        		var reason =$("#textarea").val();
+        		var wrong = "";
+        		$("li.auditWarning").each(function() {
+
+        			if ($(this).find("input[type='checkbox']").attr("checked") != undefined) {
+
+        				wrong = wrong + "、"+ $(this).find("span:eq(0)").html();
+        				}
+        			
+        		});
+        		if(wrong!=""){
+        			
+        		disagree(reason);
+        		$(".blackBg").css("display","none");
+                $(".popTips").css("display","none");
+        		}
+        		else{
+        			alert("请选出不合格的项!!!");
+            		$(".blackBg").css("display","none");
+                    $(".popTips").css("display","none");
+        		}
+        	});
+        	
+            $("div.buttonGather > button.back").click(function () {
+                history.back();
+            })
+            $("div.operationGather > button.adopt").click(function () {
+                $(".blackBg").css("display","block");
+                $(".popTipsAdopt").css("display","block");
+            });
+            $("div.operationGather > button.return").click(function () {
+                $(".blackBg").css("display","block");
+                $(".popTipsReturn").css("display","block");
+            });
+            $(".blackBg,span.popOut,button.popBack").click(function () {
+                $(".blackBg").css("display","none");
+                $(".popTips").css("display","none");
+            });
+            $("li.auditWarning").click(function () {
+                $(this).toggleClass("auditRed");
+                if($(this).find("input[type='checkbox']").attr("checked") == undefined){
+                    $(this).find("input[type='checkbox']").attr("checked","checked");
+                }else{
+                    $(this).find("input[type='checkbox']").removeAttr("checked");
+                }
+            })
+        })
+
+    </script>
+</head>
+<body onload="init()">
+<header>
+    <div><a href="base_teacherAudit.html">待审核教师</a>&nbsp;&rAarr;&nbsp;<a href=""></a><a href="#">待审核教师档案</a></div>
+</header>
+
+<div class="buttonGather"><button class="back">返回</button></div>
+
+<h1 class="finishTitle"><span id="name2"></span>个人档案</h1>
+<ul class="finishInformation">
+    <li>
+        <ul>
+            <li><img src="images/portrait1.jpg" width="97" height="137"></li>
+            <li><span>账号状态</span><span id="zt"></span></li>
+            <li><span>教师编号</span><span id="id"></span></li>
+            <li class="auditWarning" title="标红表示此项为问题项"><span>部门</span><span id="bm"></span><input type="checkbox"></li>
+            <li class="auditWarning" title="标红表示此项为问题项"><span>职务</span><span id="zw"></span><input type="checkbox"></li>
+            <li class="auditWarning" title="标红表示此项为问题项"><span>代课方向</span><span id="dkfx"></span><input type="checkbox"></li>
+            <li class="auditWarning" title="标红表示此项为问题项"><span>办公方式</span><span id="bgfs"></span><input type="checkbox"></li>
+            <li class="auditWarning" title="标红表示此项为问题项"><span>常驻地</span><span id="czd"></span><input type="checkbox"></li>
+        </ul>
+    </li>
+    <li>
+        <ul>
+            <li><span>邮箱</span><span id="yx"></span></li>
+            <li><span>身份证号</span><span id="sfzh"></span></li>
+            <li><span>姓名</span><span id="name1"></span></li>
+            <li><span>性别</span><span id="sex"></span></li>
+            <li class="auditWarning" title="标红表示此项为问题项"><span>手机号</span><span id="sjh"></span><input type="checkbox"></li>
+            <li class="auditWarning" title="标红表示此项为问题项"><span>QQ号</span><span id="qq"></span><input type="checkbox"></li>
+            <li class="auditWarning" title="标红表示此项为问题项"><span>民族</span><span id="mz"></span><input type="checkbox"></li>
+            <li class="auditWarning" title="标红表示此项为问题项"><span>籍贯</span><span id="jg"></span><input type="checkbox"></li>
+            <li class="auditWarning" title="标红表示此项为问题项"><span>政治面貌</span><span id="zzmm"></span><input type="checkbox"></li>
+            <li class="auditWarning" title="标红表示此项为问题项"><span>学历</span><span id="xl"></span><input type="checkbox"></li>
+            <li class="auditWarning" title="标红表示此项为问题项"><span>毕业院校</span><span id="byyx"></span><input type="checkbox"></li>
+            <li class="auditWarning" title="标红表示此项为问题项"><span>所学专业</span><span id="sxzy"></span><input type="checkbox"></li>
+        </ul>
+    </li>
+</ul>
+
+<div class="operationGather"><button class="adopt">审核通过</button><button class="return">退&nbsp;&nbsp;&nbsp;&nbsp;回</button></div>
+<!--弹窗开始-->
+<link type="text/css" rel="stylesheet" href="css/popTips.css">
+<div class="blackBg"></div>
+<div class="popTips popTipsAdopt" style="width: 310px; margin-left: -205px; margin-top: -150px;">
+    <h1>消息提示<span class="popOut">&times;</span></h1>
+
+    <div class="warning">确定通过</div>
+    <div class="button">
+        <button class="popSubmit">确认</button>
+        <button class="popBack">取消</button>
+    </div>
+</div>
+
+
+<div class="popTips popTipsReturn" style="width: 310px; margin-left: -205px; margin-top: -150px;">
+    <h1>消息提示<span class="popOut">&times;</span></h1>
+
+    <div class="textarea"><textarea placeholder="请输入退回原因" id="textarea"></textarea></div>
+    <div class="button">
+        <button class="popSubmita">提交</button>
+        <button class="popBack">取消</button>
+    </div>
+</div>
+<!--弹窗结束-->
+</body>
+</html>

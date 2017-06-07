@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta charset="UTF-8">
+    <title>角色添加</title>
+    <link rel="stylesheet" type="text/css" href="css/frameHtml.css">
+    <script type="text/javascript" src="js/jquery-1.12.3.min.js"></script>
+    <script type="text/javascript" src="js/rolelist/addRole.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+        	//返回按钮
+            $("div.buttonGather > button.back").click(function () {
+            	location.href="base_roleList.html";
+            })
+            //展开功能模块子功能
+            $("div.roleFunction div.scrollLeft ul li").click(function () {
+                if($(this).attr("dataNo") != undefined){
+                    $(this).siblings().removeClass("selected");
+                    $(this).addClass("selected");
+                    var $promptText = "#R" + $(this).attr("dataNo");
+                    $("div.roleFunction div.scrollRight ul" + $promptText).siblings().css("display","none")
+                    $("div.roleFunction div.scrollRight ul" + $promptText).css("display","block")
+                }
+            })
+            //展开已选功能
+            $("div.scrollHorizontal h1").click(function () {
+                $(this).toggleClass("open");
+                if($(this).next("div.roleResultContent").css("display") == "none"){
+                    $(this).next("div.roleResultContent").css("display","block");
+                }else{
+                    $(this).next("div.roleResultContent").css("display","none");
+                }
+            })
+            //取消按钮
+            $(".cancel").click(function(){
+            	location.href="base_roleList.html";
+            })
+        })
+
+
+    </script>
+</head>
+<body>
+<header>
+    <div><a href="base_roleList.html">角色列表</a>&nbsp;&rArr;&nbsp;<a href="">创建角色</a></div>
+</header>
+<div class="buttonGather"><button class="back">返回</button></div>
+
+<div class="roleInformation">
+    <div class="roleLeft">
+        <ul>   
+            <li><span>角色名称</span><input id="role_name" type="text"></li>
+            <li><span>角色状态</span><label><input name="roleState" type="radio" value="1">启用</label><label><input name="roleState" type="radio" value="0">停用</label></li>
+        </ul>
+    </div>
+    <div class="roleRight">
+        <div class="textarea">
+            <span>角色描述</span>
+            <textarea id="role_info"></textarea>
+        </div>
+    </div>
+</div>
+<div class="roleFunction">
+    <div class="roleLeft role">
+        <span>功能选择</span>
+        <h1>模块</h1>
+        <div class="scroll scrollLeft">
+            <ul>
+                <li dataNo="1" class="selected">基础信息</li><!-- 
+                <li dataNo="2">考试管理</li> -->
+                <li dataNo="3">系统工具</li>
+            </ul>
+        </div>
+    </div>
+    <div class="roleRight role">
+        <h1>功能</h1>
+        <div class="scroll scrollRight">
+            <ul id="R1" style="display: block">
+                <li><label id="lab" ><input id="check"  type="checkbox" value=""></label></li>
+                
+            </ul>
+            <ul id="R2">
+            
+            </ul>
+            <ul id="R3">
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="roleResult role">
+    <h1>已选功能</h1>
+    <div class="scroll scrollHorizontal">
+        <h1>基础信息</h1>
+        <div id = "baseinfo" class="roleResultContent">
+            <a>基础信息</a>
+        </div>
+        <!-- <h1>考试管理</h1>
+        <div class="roleResultContent">
+         
+        </div> -->
+        <h1>系统工具</h1>
+        <div id="systemtools" class="roleResultContent">
+            
+        </div>
+    </div>
+</div>
+<div class="operationGather"><button onclick="sub()" class="submit">提&nbsp;&nbsp;&nbsp;&nbsp;交</button><button class="cancel">取&nbsp;&nbsp;&nbsp;&nbsp;消</button></div>
+</body>
+
+<!--滚动条开始-->
+<link rel="stylesheet" type="text/css" href="mCustomScrollbar/jquery.mCustomScrollbar.css">
+
+<script src="mCustomScrollbar/jquery.mousewheel.min.js"></script>
+<script src="mCustomScrollbar/jquery.mCustomScrollbar.js"></script>
+
+<script type='text/javascript'>
+    (function ($) {
+        $(document).ready(function () {
+            $("div.scroll").mCustomScrollbar({
+                scrollButtons: {
+                    enable: false,
+                    scrollType: "continuous",
+                    scrollSpeed: 20,
+                    scrollAmount: 40
+                },
+                horizontalScroll: false
+            });
+        });
+
+    })(jQuery);
+</script>
+<!--滚动条结束-->
+</html>

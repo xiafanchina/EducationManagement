@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta charset="UTF-8">
+    <title>班级管理-班级列表</title>
+    <link rel="stylesheet" type="text/css" href="css/frameHtml.css">
+    <script type="text/javascript" src="js/jquery-1.12.3.min.js"></script>
+    <script type="text/javascript" src="js/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="js/menu.js"></script>
+    <script type="text/javascript" src="js/base_classManage/base_classManage.js"></script>
+</head>
+<body>
+<header>
+    <div><a href="">班级列表</a></div>
+</header>
+<div class="tableDetails">
+    <table border="0" cellpadding="0" cellspacing="0">
+        <tr>
+            <th>班级名称</th><td><input type="text" id="name"></td>
+            <th>主讲</th><td><input type="text" id="lecturer"></td>
+
+            <th>开班方式</th>
+            <td>
+                <div style="width: 150px; display: inline-block; vertical-align:top;">
+                    <select name="province" class="ui-select" id="class_way">
+                        <option value="">全部</option>
+                        <option value="新创建">新创建</option>
+                        <option value="班级合并">班级合并</option>
+                    </select>
+                </div>
+            </td>
+
+            <th></th><td></td>
+        </tr>
+        <tr>
+            <th>课程方向</th><td><div style="width: 150px; display: inline-block; vertical-align:top;">
+            <select name="province" class="ui-select" id="lesson">
+                <option value="">请选择</option>
+                <option value="JAVA方向">JAVA方向</option>
+                <option value="C++方向">C++方向</option>
+                <option value="IOS方向">IOS方向</option>
+                <option value="Android方向">Android方向</option>
+            </select>
+        </div></td>
+            <th>助教</th><td><input type="text" id="assistant"></td>
+            <th>开班地点</th><td>
+            <div style="width: 147px; display: inline-block; vertical-align:top;">
+            <div class="select-main">
+            <select  name="residentProvince"  id="province" >
+                <option value="">请选择省份</option>
+            </select>
+        	</div>
+	        </div>
+	        <div style="width: 145px; display: inline-block; vertical-align:top;">
+	            <div class="select-main">
+	            <select name="residentCity"  id="city" >
+	                <option value="">请选择城市</option>
+	            </select></div> 
+	        </div>
+            </td>
+            <th></th><td></td>
+        </tr>
+        <tr>
+            <th>班级状态</th><td><div style="width: 150px; display: inline-block; vertical-align:top;">
+            <select name="province" class="ui-select" id="status">
+                <option value="">全部</option>
+                <option value="开课前">开课前</option>
+                <option value="已开课">已开课</option>
+                <option value="停课中">停课中</option>                
+                <option value="已结课">已结课</option>
+            </select>
+        </div></td>
+            <th>班主任</th><td><input type="text" id="teacher"></td>
+
+            <td>
+                <div style="width:95px; display: inline-block; vertical-align:top; margin-left: 20px;">
+                    <select name="province" class="ui-select" id="timeChoice">
+                        <option value="">不选择时间</option>
+                        <option value="开课时间">开课时间</option>
+                        <option value="开班时间">开班时间</option>
+                        <option value="结课时间">结课时间</option>
+                    </select>
+                </div>&nbsp;
+            </td>
+            <td>
+                <input class="datainp" type="text" placeholder="开始时间"  style="width: 88px;" readonly>
+                ~
+                <input class="datainp" type="text" placeholder="结束时间"  style="width: 88px;" readonly>
+            </td>
+            <td colspan="2"><button id="searchClass">搜索</button></td>
+        </tr>
+    </table>
+</div>
+<div><input type="hidden" name="ids"  id="ids">
+</div>
+<div class="buttonGather"><button class="classMerge">合并班级</button><button class="classTransfer">学生转班</button><button class="classModify">编辑班级信息</button></div>
+<div class="tableList">
+    <table border="0" cellpadding="0" cellspacing="0">
+        <tr>
+            <th width="10"></th>
+            <th width="50">班级ID</th>
+            <th width="170">班级名称</th>
+            <th width="70">课程方向</th>
+            <th>主讲</th>
+            <th>助教</th>
+            <th>班主任</th>
+            <th width="55">人数</th>
+            <th width="65">班级状态</th>
+            <th>开课时间</th>
+            <th>结课时间</th>
+            <th>开班时间</th>
+            <th width="70">开班方式</th>
+        </tr>
+        <tbody id="tb">
+        <tr onDblclick="showDetail(this)">
+            <td class="td1"><input type="checkbox" value="CL001" onclick="selectCb(this)"></td>
+            <td class="td1">CL001</td>
+            <td class="td1" align="left">20150909上海复旦一班上海复旦一班上海复旦一班上海复旦一班</td>
+            <td class="td1">Java</td>
+            <td class="td1">郎老师</td>
+            <td class="td1">袁正宜</td>
+            <td class="td1">张三一一</td>
+            <td class="td1">55</td>
+            <td class="td1"><span class="classAgo">开课前</span></td>
+            <td class="td1">----/--/-</td>
+            <td class="td1">----/--/--</td>
+            <td class="td1">2016/03/15</td>
+            <td class="td1">新创建</td>
+        </tr>
+        </tbody>       
+    </table>
+</div>
+<div class="tablePage">
+    <div>共<span id="count">0</span>条记录，每页<span id="pageSize">0</span>条，共<span id="pageNum">0</span>页</div>
+    <a href="#" class="pageTop" onclick="pageFirst()"></a>
+    <a href="#" class="pageUp" onclick="pageUp()"></a>
+    <em><input type="text" name="tablePage"id="tablePage" ></em>
+    <a href="#" class="pageDown" onclick="pageDown()"></a>
+    <a href="#" class="pageBottom" onclick="pageLast()"></a>
+</div>
+</body>
+</html>
+<!--滚动条开始-->
+<link rel="stylesheet" type="text/css" href="mCustomScrollbar/jquery.mCustomScrollbar.css">
+
+<script src="mCustomScrollbar/jquery.mousewheel.min.js"></script>
+<script src="mCustomScrollbar/jquery.mCustomScrollbar.js"></script>
+<style>
+    ._mCS_1 .mCSB_scrollTools .mCSB_dragger .mCSB_dragger_bar,._mCS_1 .mCSB_scrollTools .mCSB_draggerRail{
+        border-radius: 0;
+        margin: 0;
+    }
+    ._mCS_1 .mCSB_scrollTools .mCSB_dragger .mCSB_dragger_bar{
+        /* 2nd scrollbar dragger style... */
+        background-color: #355372;
+        height: 10px;
+    }
+    ._mCS_1 .mCSB_scrollTools .mCSB_draggerRail{
+        height: 8px;
+        border: 1px solid #355372;
+        background-color: #FFFFFF;
+    }
+</style>
+<script type='text/javascript'>
+    (function ($) {
+        $(document).ready(function () {
+            $("div.tableList").mCustomScrollbar({
+                scrollButtons: {
+                    enable: false,
+                    scrollType: "continuous",
+                    scrollSpeed: 20,
+                    scrollAmount: 40
+                },
+                horizontalScroll: true
+            });
+        });
+
+    })(jQuery);
+</script>
+<!--滚动条结束-->
+<!--select选框开始-->
+<link type="text/css" rel="stylesheet" href="css/drop-down.css">
+<script type="text/javascript" src="js/select-widget-min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $(".ui-select").selectWidget({
+            change: function (changes) {
+                return changes;
+            },
+            effect: "slide",
+            keyControl: true,
+            speed: 200,
+            scrollHeight: 250
+        });
+    });
+</script>
+<!--select选框结束-->
+<!--时间选择开始-->
+<script type="text/javascript" src="jedate/jedate.js"></script>
+<link type="text/css" rel="stylesheet" href="jedate/skin/jedate.css">
+<style>
+    .bodys{ padding:50px 0 0 50px;}
+    .datainp{ width:200px; height:30px; border:1px #ccc solid;}
+    .datep{ margin-bottom:40px; line-height:24px; margin-right:15px;}
+</style>
+<script type="text/javascript">
+    jeDate({
+        dateCell: '.datainp',
+        isinitVal:true,
+        format: 'YYYY-MM-DD', // 分隔符可以任意定义，该例子表示只显示年月
+        minDate: '2010-06-01', //最小日期
+        maxDate: '2020-06-01' //最大日期
+    })
+</script>
+<!--时间选择结束-->

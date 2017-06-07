@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta charset="UTF-8">
+    <title>我的课程</title>
+    <link rel="stylesheet" type="text/css" href="css/frameHtml.css">
+    <script type="text/javascript" src="js/jquery-1.12.3.min.js"></script>
+    <script type="text/javascript" src="js/CourseAndExam/courseDetail.js"></script>
+</head>
+<body>
+<header>
+    <div><a href="">课程列表</a>&nbsp;&rAarr;&nbsp;<a href="">课程详情</a></div>
+</header>
+<div class="tableDetails">
+    <table border="0" cellpadding="0" cellspacing="0">
+        <tr>
+            <th>课程ID</th><td class="td3">CL001</td>
+            <th>课程名称</th><td class="td3">20150909上海复旦一班</td>
+            <th>课程方向</th><td class="td3">Java语言开发</td>
+            <th>授课教师姓名</th><td class="td3">袁正宜</td>
+        </tr>
+    </table>
+</div>
+<div class="buttonGather"><button class="back">返回</button>
+<button class="courseAdd">添加学生</button>
+<!-- <button onclick="tabletoExcel('tableExcel')">导出学生列表</button><button class="modify">编辑课程信息</button> --></div>
+<div class="tableList">
+    <table border="0" cellpadding="0" cellspacing="0" id="tableExcel">
+        <tr>
+            <th>学号</th>
+            <th>帐号</th>
+            <th>姓名</th>
+            <th>性别</th>
+            <th>手机号</th>
+            <th>生源院校</th>
+            <th>学生状态</th>
+            <th>操作</th>
+        </tr>
+        <tbody id="tb">
+        <tr>
+            <td class="td1">ST006001</td>
+            <td class="td1">654328976@qq.com</td>
+            <td class="td1">王一一</td>
+            <td class="td1">男</td>
+            <td class="td1">18999876765</td>
+            <td class="td1">北京清华</td>
+            <td><span class="td1">新入学</span></td>
+            <td><span class="courseDelete" onclick="addExam(this)">添加考试</span>
+            <span class="courseDelete" onclick="deleteCourse(this)">删除学生</span></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<div class="tablePage">
+    <div>共<span id="count">0</span>条记录，每页<span id="pageSize">0</span>条，共<span id="pageNum">0</span>页</div>
+    <a href="#" class="pageTop" onclick="pageFirst()"></a>
+    <a href="#" class="pageUp" onclick="pageUp()"></a>
+    <em><input type="text" name="tablePage"id="tablePage" ></em>
+    <a href="#" class="pageDown" onclick="pageDown()"></a>
+    <a href="#" class="pageBottom" onclick="pageLast()"></a>
+</div>
+
+<!--选择学生弹窗开始-->
+<!-- 学生 -->
+<link type="text/css" rel="stylesheet" href="css/popTips.css">
+<div class="blackBg"></div>
+<div class="popTips popTipsTeacher1" style="width: 410px; margin-left: -205px; margin-top: -150px;">
+    <h1>请选择学生<span class="popOut">&times;</span></h1>
+    <!-- <div class="popTeacherSearch"><input type="text" placeholder="请输入学生名称"><button class="search" id="sea1">搜&nbsp;&nbsp;索</button></div> -->
+    <div class="popTeacher">
+        <table border="0" cellpadding="0" cellspacing="0" class="teaMes">           
+        </table>
+    </div>
+    <div class="button">
+        <button class="popSubmitTeacher1">确&nbsp;&nbsp;定</button>
+    </div>
+</div>
+<!--选择教师弹窗结束-->
+</body>
+</html>
+<!--滚动条开始-->
+<link rel="stylesheet" type="text/css" href="mCustomScrollbar/jquery.mCustomScrollbar.css">
+<script src="js/jquery-ui.min.js"></script>
+<script src="mCustomScrollbar/jquery.mousewheel.min.js"></script>
+<script src="mCustomScrollbar/jquery.mCustomScrollbar.js"></script>
+<style>
+    ._mCS_1 .mCSB_scrollTools .mCSB_dragger .mCSB_dragger_bar,._mCS_1 .mCSB_scrollTools .mCSB_draggerRail{
+        border-radius: 0;
+        margin: 0;
+    }
+    ._mCS_1 .mCSB_scrollTools .mCSB_dragger .mCSB_dragger_bar{
+        /* 2nd scrollbar dragger style... */
+        background-color: #355372;
+        height: 10px;
+    }
+    ._mCS_1 .mCSB_scrollTools .mCSB_draggerRail{
+        height: 8px;
+        border: 1px solid #355372;
+        background-color: #FFFFFF;
+    }
+</style>
+<script type='text/javascript'>
+    (function ($) {
+        $(document).ready(function () {
+            $("div.tableList").mCustomScrollbar({
+                scrollButtons: {
+                    enable: false,
+                    scrollType: "continuous",
+                    scrollSpeed: 20,
+                    scrollAmount: 40
+                },
+                horizontalScroll: true
+            });
+        });
+
+    })(jQuery);
+</script>
+<!--滚动条结束-->

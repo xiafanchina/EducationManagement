@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="edu.man.mapper.stuRegisterMapper" >
+
+ <resultMap type="edu.man.bean.RegisterStu" id="stuResult">
+<id property="email" column="stu_email" />
+<result property="fullName" column="stu_name" />
+<result property="IDNo" column="stu_idcard" />
+<result property="password" column="stu_pwd" />
+<result property="status" column="stu_status" />
+</resultMap>
+ <!-- parameterType 接收类型 -->
+<parameterMap type="edu.man.bean.RegisterStu" id="stuParameter">
+<parameter property="email" resultMap="stu_email"/>
+<parameter property="fullName" resultMap="stu_name"/>
+<parameter property="IDNo" resultMap="stu_idcard"/>
+<parameter property="password" resultMap="stu_pwd"/>
+<parameter property="status" resultMap="stu_status"/>
+</parameterMap> 
+<!-- 学生注册信息 -->
+<insert id="stuRegister" parameterType="edu.man.bean.RegisterStu">
+insert into stu_register(stu_email,stu_name,stu_idcard,stu_pwd,stu_status) value(#{email},#{fullName},#{IDNo},#{password},#{status})
+</insert>
+<!-- 根据email查询单个学生 
+<select id="loginQuery" parameterType="java.lang.String" resultType="edu.man.bean.RegisterStu">
+SELECT *from stu_register where stu_email=#{email}
+</select>-->
+<!-- 修改学生注册表的状态 -->
+<update id="updateStuStatus" parameterType="edu.man.bean.RegisterStu">
+update stu_register set stu_status=#{status} where stu_idcard=#{IDNo}
+</update>
+<!-- ************************以上为学生注册表相关sql语句，以下为考试报名表相关sql语句********************** -->
+<!-- 考试信息-->
+<insert id="examInfo" parameterType="edu.man.bean.StuExamInfo">
+insert into exam_info(ex_idcard,ex_name,ex_school,ex_choice) value(#{ex_idcard},#{ex_name},#{ex_school},#{ex_choice})
+</insert>
+<!-- 根据学生身份证id查询考试信息-->
+<select id="showLATidByNo" parameterType="String" resultType="String">
+select ex_choice from exam_info where ex_idcard=#{no}
+</select>		
+<!-- 修改学生的成绩状态 -->
+<update id="updateScoreStatus" parameterType="edu.man.bean.StuExamInfo">
+update exam_info set ex_status=#{ex_status},ex_date=#{ex_date},ex_score=#{ex_score} where ex_idcard=#{ex_idcard}
+</update>
+<!-- *************以下为完善个人信息相关***************** -->
+<insert id="insertStudent" parameterType="edu.man.bean.Student">
+insert into student(id,stus_name,id_card,sex,email,phone,qq,nation,brith_place,political,education,school,major,schooldate,info,class_sid,submit_date) value(#{id},#{stus_name},#{id_card},#{sex},#{email},#{phone},#{qq},#{nation},#{brith_place},#{political},#{education},#{school},#{major}, #{schooldate},
+#{info},#{class_sid},#{submit_date})
+</insert>
+<select id="queryRegister" parameterType="String" resultMap="stuResult">
+SELECT   * from  stu_register  where  stu_email=#{email} 
+</select>
+<select id="queryStudent" parameterType="String" resultType="edu.man.bean.StudentAndClass">
+select  *  from  student s inner join class_info c on s.class_sid=c.class_id
+  where email=#{email}
+</select>
+<update id="updateStudent" parameterType="edu.man.bean.Student">
+UPDATE student SET sex=#{sex},phone=#{phone},qq=#{qq},nation=#{nation},brith_place=#{brith_place},political=#{political},education=#{education},school=#{school},major=#{major},schooldate=#{schooldate} WHERE id=#{id}
+</update>
+<update id="perfectStatus" parameterType="edu.man.bean.Student">
+update stu_register set stu_status=5 where stu_email=#{email}
+</update>
+<!-- 查询班级信息（下拉框） -->
+<select id="queryClassInfo" resultType="edu.man.bean.Class">
+select * from class_info
+</select>
+<select id="selectQuestion" parameterType="edu.man.bean.ExamQuestion" resultType="edu.man.bean.ExamQuestion">
+select * from exam_question where lesson_id=#{lesson_id} and type_id=#{type_id}
+</select>
+<select id="getStuInfo" parameterType="String" resultType="edu.man.bean.StudentMore">
+select s.*,c.name as class_name,c.class_place as class_place,e.ex_score as score,c.lecturer as tname,c.lesson as lname 
+from student s,class_info c,exam_info e where s.class_sid=c.class_id and s.id_card=e.ex_idcard
+and s.id_card=#{idcard}
+</select>
+</mapper>

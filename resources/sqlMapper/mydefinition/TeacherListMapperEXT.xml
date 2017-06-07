@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="edu.man.mapper.TeacherMapper" >
+  <!-- 数据库teacher表中的字段和Teacher实体类中的属性进行映射 -->
+  <resultMap id="TeacherResultMap" type="edu.man.bean.Teacher" >
+     <id column="id" property="id"  />
+     <result column="name" property="name"  />
+     <result column="id_card" property="idCard"  />
+     <result column="sex" property="sex"  />
+     <result column="email" property="email"  />
+     <result column="phone" property="phone"  />
+     <result column="qq" property="qq"  />
+     <result column="nation" property="nation"  />
+     <result column="birth_place" property="birthPlace"  />
+     <result column="political" property="political"  />
+     <result column="education" property="education"  />
+     <result column="school" property="school"  />
+     <result column="major" property="major"  />
+     <result column="img" property="img"  />
+     <result column="info" property="info"  />
+     <result column="account_status" property="accountStatus"  />
+     <result column="department" property="department"  />
+     <result column="role_id" property="roleId"  />
+     <result column="course" property="course"  />
+     <result column="working_way" property="workingWay"  />
+     <result column="working_place" property="workingPlace"  />
+     <result column="submit_date" property="submitDate"  />
+    </resultMap>
+  
+  <!-- 通过传入的值的条件，查询符合条件的而且审核通过的老师的集合 -->
+  <select id="getTeacherList" parameterType="map" resultMap="TeacherResultMap">
+  select teacher.* from teacher ,tea_register 
+  <where>
+      <if test="name!=null and name!=''">
+          name like CONCAT('%',#{name},'%') 
+      </if>
+      <if test="sex!=null and sex!=''">
+          AND sex=#{sex}
+      </if>
+      <if test="course!=null and course!=''">
+          AND course=#{course}
+      </if>
+      <if test="workingWay!=null and workingWay!=''">
+         AND working_way=#{workingWay}
+      </if>
+      <if test="accountStatus!=null and accountStatus!=''">
+         AND account_status=#{accountStatus}
+      </if>
+      <if test="resident!=null and resident!=''">
+         AND working_place like '${resident}%'
+      </if>
+      <if test="department!=null and department!=''">
+         AND department=#{department}
+      </if>
+      <if test="role!=null and role!=''">
+        AND role_id=#{role}
+      </if>
+      <if test="nation!=null and nation!=''">
+        AND  case when #{nation}="汉族" then nation=#{nation}
+                  when #{nation}="回族" then nation=#{nation}
+                  when #{nation}="其他" then nation!="汉族" and nation!="回族" end
+      </if >
+        AND tea_email=email and tea_status=3
+        AND role_id&gt;#{roleId}
+      
+   </where>
+ 	 limit  #{pageIndex},#{pageSize}
+  </select>
+  
+  <!-- 通过传入的值的条件，查询符合条件的而且审核通过的老师的人数 -->
+  <select id="getTeacherCount"  parameterType="map" resultType="int">
+  select count(id) from teacher ,tea_register 
+  <where>
+      <if test="name!=null and name!=''">
+          name like CONCAT('%',#{name},'%') 
+      </if>
+      <if test="sex!=null and sex!=''">
+          AND sex=#{sex}
+      </if>
+      <if test="course!=null and course!=''">
+          AND course=#{course}
+      </if>
+      <if test="workingWay!=null and workingWay!=''">
+         AND working_way=#{workingWay}
+      </if>
+      <if test="accountStatus!=null and accountStatus!=''">
+         AND account_status=#{accountStatus}
+      </if>
+      <if test="resident!=null and resident!=''">
+          AND working_place like '${resident}%'      
+      </if>
+      <if test="department!=null and department!=''">
+         AND department=#{department}
+      </if>
+      <if test="role!=null and role!=''">
+        AND role_id=#{role}
+      </if>
+      <if test="nation!=null and nation!=''">
+        AND  case when #{nation}="汉族" then nation=#{nation}
+                  when #{nation}="回族" then nation=#{nation}
+                  when #{nation}="其他" then nation!="汉族" and nation!="回族" end
+       </if>
+        AND tea_email=email and tea_status=3
+        AND role_id&gt;#{roleId}
+   </where>
+  
+  <!-- 通过传入的老师的id值，查询老师的全部信息 -->
+  </select  >
+  <select id="getteacherListById"  parameterType="int" resultMap="TeacherResultMap">
+    select * from teacher where id=#{id}
+  </select>
+  
+  <!-- 修改老师的信息 -->
+  <update id="teacherTranslateModify" parameterType="map">
+    UPDATE teacher 
+    <trim prefix="set" suffixOverrides=",">
+       <if test="accountStatus!=null and accountStatus!=''">
+       account_status=#{accountStatus},
+       </if>
+       <if test="department!=null and department!=''">
+       department=#{department},
+       </if>
+       <if test="workingWay!=null and workingWay!=''">
+       working_way=#{workingWay},
+       </if>
+       <if test="course!=null and course!=''">
+       course=#{course},
+       </if>
+       <if test="workingPlace!=null and workingPlace!=''">
+       working_place=#{workingPlace},
+       </if>
+       <if test="sex!=null and sex!=''">
+       sex=#{sex},
+       </if>
+       <if test="phone!=null and phone!=''">
+        phone=#{phone},
+       </if>
+       <if test="qq!=null and qq!=''">
+         qq=#{qq},
+       </if>
+       <if test="nation!=null and nation!=''">
+          nation=#{nation},
+       </if>
+       <if test="birthPlace!=null and birthPlace!=''">
+          birth_place=#{birthPlace},
+       </if>
+       <if test="political!=null and political!=''">
+          political=#{political},
+       </if>
+       <if test="education!=null and education!=''">
+            education=#{education},
+       </if>
+       <if test="school!=null and school!=''">
+            school=#{school},
+       </if>
+       <if test="major!=null and major!=''">
+         major=#{major},
+       </if>
+       </trim>
+         WHERE id=#{id}
+  </update>
+  <!-- 通过邮箱查询教师的角色 -->
+   <select id="getRoleIdByEmail"  parameterType="String" resultType="int" >
+   select role_id FROM teacher WHERE email=#{email}
+   </select>
+  <!-- 通过id和roleId修改角色 -->
+  <update  id="RoleModify" parameterType="map" >
+     update teacher  set role_id=#{roleId} where id=#{id}
+  </update>
+  
+</mapper>

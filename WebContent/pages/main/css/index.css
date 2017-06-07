@@ -1,0 +1,29 @@
+*{
+	margin: 0 ;
+	padding: 0;
+}
+a{
+	text-decoration: none;
+}
+#login{
+	height:70px;
+}
+.student_logo{
+	float: right;
+	margin-top:35px ;
+	margin-right: 80px;
+}
+.teacher_logo{
+	float: right;
+	margin-top:35px ;
+	margin-right: 30px;
+}
+.c_b{
+	clear: both;
+}
+
+#footer_text{
+	text-align: center;
+	margin-top: 20px;
+	font-size: 14px;
+}

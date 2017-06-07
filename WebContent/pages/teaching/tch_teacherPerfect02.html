@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta charset="UTF-8">
+    <title>完善个人信息</title>
+    <link type="text/css" rel="stylesheet" href="css/tch_css.css">
+    <link type="text/css" rel="stylesheet" href="css/tch_teacherInput.css">
+    <link type="text/css" rel="stylesheet" href="css/tch_drop-down.css"> <!--select选框CSS-->
+    <script type="text/javascript" src="js/jquery-1.12.3.min.js"></script>
+    <script type="text/javascript" src="js/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="js/select-widget-min.js"></script><!-- select选框JS -->
+    <script type="text/javascript" src="js/tch_formRequired.js"></script><!-- 表单验证JS  -->
+    <script type="text/javascript" src="js/teacherJs/menu3.js"></script>
+    <script type="text/javascript" src="js/teacherJs/teacherInfo02.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $(".ui-select").selectWidget({
+                change: function (changes) {
+                    return changes;
+                },
+                effect: "slide",
+                keyControl: true,
+                speed: 200,
+                scrollHeight: 250
+            });
+            $(".nation").click(function () {
+                $(".blackBg").css("display","block");
+                $(".popTips").css("display","block");
+            });
+            $(".blackBg,span.popOut,button.popBack").click(function () {
+                $(".blackBg").css("display","none");
+                $(".popTips").css("display","none");
+            });
+            $("label.radio").click(function () {
+                if($(this).find("input").is(":checked")){
+                    $("label.radio").removeClass("checked");
+                    $(this).addClass("checked");
+                }else{
+                    $(this).removeClass("checked");
+                }
+            })
+            $("div.popButton > button").click(function () {
+                var $checkedVal = $("input[name='nationOther']:checked").val()
+                $("input.other").val($checkedVal);
+                $("input.other").siblings("a").text($checkedVal);
+                $(".blackBg").css("display","none");
+                $(".popTips").css("display","none");
+                $("input.other").attr("checked","checked");
+                $("input.other").parent().addClass("checked");
+            })
+        });
+    </script>
+</head>
+<body>
+<header>
+    <div class="center">
+        <img src="images/ruizhi.png">
+    </div>
+</header>
+<div id="studentInput">
+    <h1>
+        完善个人信息
+        <ul>
+            <li>1</li>
+            <li class="ing">2</li>
+            <li>3</li>
+        </ul>
+    </h1>
+    <section>
+        <form action="tch_teacherPerfect03.html" method="post" name="studentForm">
+            <table border="0" cellpadding="0" cellspacing="0">
+                <tr>
+                    <td>性别</td>
+                    <td>
+                        <div style="width: 220px; display: inline-block; vertical-align:top;">
+                            <select name="Gender" class="ui-select promptselect" promptNull="请选择性别" id="sex">
+                                <option value="">请选择</option>
+                                <option value="男">男</option>
+                                <option value="女">女</option>
+                            </select>
+                        </div>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>民族</td>
+                    <td>
+                        <label class="radio"><input name="nation" type="radio" value="汉族">汉族</label>
+                        <label class="radio"><input name="nation" type="radio" value="满族">满族</label>
+                        <label class="radio"><input name="nation" type="radio" value="回族">回族</label><br>
+                        <label class="radio"><input name="nation" type="radio" class="other" value=""> <a class="nation">其他民族选择</a></label>
+                        <br><span class="radioSpan">*&nbsp;点击按钮选择其他民族</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>籍贯</td>
+                    <td>
+                        <div style="width: 220px; display: inline-block; vertical-align:top;">
+                            <select name="nativePlace" class="ui-select promptselect" promptNull="请选择籍贯" id="birthPlace">
+                                 <option value="">请选择</option>
+                                 <option value="北京">北京</option>
+				                 <option value="上海">上海</option>
+				                 <option value="天津">天津</option>
+				                 <option value="重庆">重庆</option>
+				                 <option value="黑龙江">黑龙江</option>
+				                 <option value="吉林">吉林</option>
+				                 <option value="辽宁">辽宁</option>
+				                 <option value="江苏">江苏</option>
+				                 <option value="山东">山东</option>
+				                 <option value="安徽">安徽</option>
+				                 <option value="河北">河北</option>
+				                 <option value="河南">河南</option>
+				                 <option value="湖北">湖北</option>
+				                 <option value="湖南">湖南</option>
+				                 <option value="江西">江西</option>
+				                 <option value="陕西">陕西</option>
+				                 <option value="山西">山西</option>
+				                 <option value="四川">四川</option>
+				                 <option value="青海">青海</option>
+				                 <option value="海南">海南</option>
+				                 <option value="广东">广东</option>
+				                 <option value="贵州">贵州</option>
+				                 <option value="浙江">浙江</option>
+				                 <option value="福建">福建</option>
+				                 <option value="台湾">台湾</option>
+				                 <option value="甘肃">甘肃</option>
+				                 <option value="云南">云南</option>
+				                 <option value="内蒙古">内蒙古</option>
+				                 <option value="宁夏">宁夏</option>
+				                 <option value="新疆">新疆</option>
+				                 <option value="西藏">西藏</option>
+				                 <option value="广西">广西</option>
+				                 <option value="香港">香港</option>
+				                 <option value="澳门">澳门</option>
+				                 <option value="海外">海外</option>
+                            </select>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>政治面貌</td>
+                    <td>
+                        <div style="width: 220px; display: inline-block; vertical-align:top;">
+                            <select name="politicalLandscape" class="ui-select promptselect" promptNull="请选择政治面貌" id="political">
+                                <option value="">请选择</option>
+                                <option value="中共党员">中共党员</option>
+                                <option value="共青团员">共青团员</option>
+                                <option value="普通公民">普通公民</option>
+                                <option value="其他">其他</option>
+                            </select>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>学历</td>
+                    <td>
+                        <div style="width: 220px; display: inline-block; vertical-align:top;">
+                            <select name="education" class="ui-select promptselect" promptNull="请选择当前学历" id="education">
+                                <option value="">请选择</option>
+                                 <option value="博士研究生">博士研究生</option>
+                                <option value="硕士研究生">硕士研究生</option>
+                                <option value="本科毕业">本科毕业</option>
+                                <option value="专科毕业">专科毕业</option>
+                            </select>
+                         </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>毕业院校</td>
+                    <td>
+                        <div style="width: 220px; display: inline-block; vertical-align:top;">
+                            <select name="province"  id="school1" >
+                                <option value="">请选择省(市)</option>
+                                
+                            </select>
+                        </div>
+                        <div style="height: 10px;"></div>
+                        <div style="width: 220px; display: inline-block; vertical-align:top;">
+                            <select name="school"   id="school3">
+                                <option value="">请选择学校</option>
+                                
+                            </select>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>所学专业</td>
+                    <td><input type="text" name="major" class="major" placeholder="请输入所学专业" promptNull="所学专业不能为空"
+                               promptError="请输入中文专业名称" id="major"></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>
+                        <button type="submit" id="submit" onclick="teacherInfo02()">下&nbsp;&nbsp;一&nbsp;&nbsp;步</button>
+                    </td>
+                </tr>
+
+            </table>
+            <div class="warningRed perfect03">请完善信息后，点击“下一步”</div>
+        </form>
+    </section>
+</div>
+<footer>&copy; - 湖北工程学院</footer>
+<div class="blackBg"></div>
+<div class="popTips">
+    <h1>其他民族<span class="popOut">&times;</span></h1>
+    <table border="0" cellpadding="0" cellspacing="0">
+        <tr>
+            <td><label class="radio"><input name="nationOther" type="radio" checked value="阿昌族">阿昌族</label></td>
+            <td><label class="radio"><input name="nationOther" type="radio" value="白族">白族</label></td>
+            <td><label class="radio"><input name="nationOther" type="radio" value="保安族">保安族</label></td>
+            <td><label class="radio"><input name="nationOther" type="radio" value="布朗族">布朗族</label></td>
+            <td><label class="radio"><input name="nationOther" type="radio" value="布依族">布依族</label></td>
+            <td><label class="radio"><input name="nationOther" type="radio" value="朝鲜族">朝鲜族</label></td>
+            <td><label class="radio"><input name="nationOther" type="radio" value="达斡尔族">达斡尔族</label></td>
+            <td><label class="radio"><input name="nationOther" type="radio" value="傣族">傣族</label></td>
+            <td><label class="radio"><input name="nationOther" type="radio" value="德昂族">德昂族</label></td>
+        </tr>
+        <tr>
+            <td><label class="radio"><input name="nationOther" type="radio" value="侗族">侗族</label></td>
+            <td><label class="radio"><input name="nationOther" type="radio" value="东乡族">东乡族</label></td>
+            <td><label class="radio"><input name="nationOther" type="radio" value="独龙族">独龙族</label></td>
+            <td><label class="radio"><input name="nationOther" type="radio" value="鄂伦春族">鄂伦春族</label></td>
+            <td><label class="radio"><input name="nationOther" type="radio" value="俄罗斯族">俄罗斯族</label></td>
+            <td><label class="radio"><input name="nationOther" type="radio" value="鄂温克族">鄂温克族</label></td>
+            <td><label class="radio"><input name="nationOther" type="radio" value="高山族">高山族</label></td>
+            <td><label class="radio"><input name="nationOther" type="radio" value="仡佬族">仡佬族</label></td>
+            <td><label class="radio"><input name="nationOther" type="radio" value="哈尼族">哈尼族</label></td>
+        </tr>
+        <tr>
+            <td><label class="radio"><input name="nationOther" type="radio" value="哈萨克族">哈萨克族</label></td>
+            <td><label class="radio"><input name="nationOther" type="radio" value="赫哲族">赫哲族</label></td>
+            <td><label class="radio"><input name="nationOther" type="radio" value="基诺族">基诺族</label></td>
+            <td><label class="radio"><input name="nationOther" type="radio" value="京族">京族</label></td>
+            <td><label class="radio"><input name="nationOther" type="radio" value="景颇族">景颇族</label></td>
+            <td><label class="radio"><input name="nationOther" type="radio" value="乌孜别克族">乌孜别克族</label></td>
+            <td><label class="radio"><input name="nationOther" type="radio" value="拉祜族">拉祜族</label></td>
+            <td><label class="radio"><input name="nationOther" type="radio" value="黎族">黎族</label></td>
+            <td><label class="radio"><input name="nationOther" type="radio" value="僳僳族">僳僳族</label></td>
+        </tr>
+        <tr>
+            <td><label class="radio"><input name="nationOther" type="radio" value="珞巴族">珞巴族</label></td>
+            <td><label class="radio"><input name="nationOther" type="radio" value="毛南族">毛南族</label></td>
+            <td><label class="radio"><input name="nationOther" type="radio" value="门巴族">门巴族</label></td>
+            <td><label class="radio"><input name="nationOther" type="radio" value="蒙古族">蒙古族</label></td>
+            <td><label class="radio"><input name="nationOther" type="radio" value="苗族">苗族</label></td>
+            <td><label class="radio"><input name="nationOther" type="radio" value="仫佬族">仫佬族</label></td>
+            <td><label class="radio"><input name="nationOther" type="radio" value="纳西族">纳西族</label></td>
+            <td><label class="radio"><input name="nationOther" type="radio" value="怒族">怒族</label></td>
+            <td><label class="radio"><input name="nationOther" type="radio" value="普米族">普米族</label></td>
+        </tr>
+        <tr>
+            <td><label class="radio"><input name="nationOther" type="radio" value="羌族">羌族</label></td>
+            <td><label class="radio"><input name="nationOther" type="radio" value="撒拉族">撒拉族</label></td>
+            <td><label class="radio"><input name="nationOther" type="radio" value="畲族">畲族</label></td>
+            <td><label class="radio"><input name="nationOther" type="radio" value="水族">水族</label></td>
+            <td><label class="radio"><input name="nationOther" type="radio" value="塔吉克族">塔吉克族</label></td>
+            <td><label class="radio"><input name="nationOther" type="radio" value="塔塔尔族">塔塔尔族</label></td>
+            <td><label class="radio"><input name="nationOther" type="radio" value="土族">土族</label></td>
+            <td><label class="radio"><input name="nationOther" type="radio" value="土家族">土家族</label></td>
+            <td><label class="radio"><input name="nationOther" type="radio" value="佤族">佤族</label></td>
+        </tr>
+        <tr>
+            <td><label class="radio"><input name="nationOther" type="radio" value="维吾尔族">维吾尔族</label></td>
+            <td><label class="radio"><input name="nationOther" type="radio" value="柯尔克孜族">柯尔克孜族</label></td>
+            <td><label class="radio"><input name="nationOther" type="radio" value="锡伯族">锡伯族</label></td>
+            <td><label class="radio"><input name="nationOther" type="radio" value="瑶族">瑶族</label></td>
+            <td><label class="radio"><input name="nationOther" type="radio" value="彝族">彝族</label></td>
+            <td><label class="radio"><input name="nationOther" type="radio" value="裕固族">裕固族</label></td>
+            <td><label class="radio"><input name="nationOther" type="radio" value="藏族">藏族</label></td>
+            <td><label class="radio"><input name="nationOther" type="radio" value="壮族">壮族</label></td>
+            <td><label class="radio"><input name="nationOther" type="radio" value="维吾尔族">维吾尔族</label></td>
+        </tr>
+    </table>
+    <div class="popButton"><button>确&nbsp;&nbsp;&nbsp;&nbsp;定</button></div>
+</div>
+</body>
+</html>

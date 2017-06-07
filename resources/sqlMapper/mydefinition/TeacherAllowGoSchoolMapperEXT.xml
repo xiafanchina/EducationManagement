@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="edu.man.TeacherallowStudentGotoSchool" >
+
+	<!-- 允许入学。将为未通过的状态4变成3 -->
+	<update id="teacherAllowUpDate" parameterType="edu.man.bean.RegisterStu" >
+		update stu_register set stu_status = #{status} where stu_idcard = #{IDNo}
+	</update>
+	<update id="updateExam" parameterType="edu.man.bean.RegisterStu">
+		update exam_info set ex_status = 0 where ex_idcard = #{IDNo}
+	</update>
+	<!-- 重新考试。将为未通过的状态4变成2 -->
+	<update id="teacherAllowreplyUpDate" parameterType="edu.man.bean.RegisterStu" >
+		update stu_register set stu_status = #{status} where stu_idcard = #{IDNo}
+	</update>
+</mapper>

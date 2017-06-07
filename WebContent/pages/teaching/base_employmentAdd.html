@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta charset="UTF-8">
+    <title>添加就业</title>
+    <link rel="stylesheet" type="text/css" href="css/frameHtml.css">
+    <script type="text/javascript" src="js/jquery-1.12.3.min.js"></script>
+    <script type="text/javascript" src="js/jquery-ui.min.js"></script>
+    <!-- <script type="text/javascript" src="../../statics/layer/layer.js"></script>-->
+    <script type="text/javascript" src="../../statics/layer/extend/layer.ext.js"></script> 
+    <script type="text/javascript" src="js/menu.js"></script>
+    <script type="text/javascript" src="js/JobInfo/addJobInfo.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("div.buttonGather > button.back").click(function () {
+                history.back();
+            })
+            //单选题样式
+            $('div.popTeacher table tr').click(function () {
+                if ($(this).find("input").is(":checked")) {
+                    $("div.popTeacher table tr").removeClass("selected");
+                    $(this).addClass("selected");
+                } else {
+                    $(this).removeClass("selected");
+                }
+            })
+        })
+
+    </script>
+</head>
+<body>
+<header>
+    <div><a href="">就业信息</a>&nbsp;&rAarr;&nbsp;<a href="">班级就业信息</a>&nbsp;&rAarr;&nbsp;<a href="">学生就业信息</a>&nbsp;&rAarr;&nbsp;<a href="">新增就业信息</a></div>
+</header>
+<div class="buttonGather"><button class="back">返回</button></div>
+<table class="addClass" style="width: 400px;" border="0" cellspacing="0" cellpadding="0">
+    <tr><th>公司名称</th><td><input type="text" placeholder="请输入公司全称" id="com_name"></td></tr>
+    <tr><th>公司电话</th><td><input type="text" placeholder="例如8610 59217333-8055" id="com_phone"></td></tr>
+    <tr><th>公司地址</th><td class="classAddress">
+        <div style="width: 147px; display: inline-block; vertical-align:top;">
+            <div class="select-main">
+            <select  name="residentProvince"  id="province" >
+                <option value="">请选择省份</option>
+            </select>
+        	</div>
+	        </div>
+	        <div style="width: 145px; display: inline-block; vertical-align:top;">
+	            <div class="select-main">
+	            <select name="residentCity"  id="city" >
+	                <option value="">请选择城市</option>
+	            </select></div> 
+	        </div>
+        <div style="height: 10px;"></div>
+        <input type="text" placeholder="请输入详细地址信息..."  id="address3">
+    </td></tr>
+    <tr><th>职位</th><td><input type="text" id="job"></td></tr>
+    <tr><th>转正薪资</th><td><input type="text" style="width: 100px;" id="salary">&nbsp;&nbsp;元/每月（税前）</td></tr>
+</table>
+<div class="operationGather"><button class="submit" onclick="addJobInfo()">提&nbsp;&nbsp;&nbsp;&nbsp;交</button><button class="cancel">取&nbsp;&nbsp;&nbsp;&nbsp;消</button></div>
+</body>
+</html>
+<!--select选框开始-->
+<link type="text/css" rel="stylesheet" href="css/drop-down.css">
+<script type="text/javascript" src="js/select-widget-min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $(".ui-select").selectWidget({
+            change: function (changes) {
+                return changes;
+            },
+            effect: "slide",
+            keyControl: true,
+            speed: 200,
+            scrollHeight: 250
+        });
+    });
+</script>
+<!--select选框结束-->
+

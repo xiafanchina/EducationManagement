@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="edu.man.mapper.MyClass" >
+ <!-- 查询所有班级-->
+ <select id="selectAllClass"  parameterType="map" resultType="edu.man.bean.Class">
+ 	select  *  from  class_info where lecturer =#{tea_name} or assistant =#{tea_name} or teacher =#{tea_name} limit #{pageIndex},#{pageSize}
+ </select>
+ 
+ <!-- 查询班级总条数 -->
+ <select id="geClassCount" parameterType="map"  resultType="int">
+   select  count(class_id)  from  class_info where lecturer =#{tea_name} or assistant =#{tea_name} or teacher =#{tea_name}
+ </select>
+ 
+ <!-- 根据班级id查询该班级的信息 -->
+ <select id="selectAllByDataId"  parameterType="String"  resultType="edu.man.bean.Class">
+ 	 select  *  from  class_info where class_id=#{dataId}
+ </select>
+
+<!--根据班级id查询该班级所有学生的信息  -->
+<select id="selectStudentByclsaaId" parameterType="map"    resultType="edu.man.bean.Student">
+	SELECT * from student s INNER JOIN stu_register r ON s.stus_name = r.stu_name WHERE class_sid=#{dataId} AND r.stu_status = 6 limit #{pageIndex},#{pageSize}
+</select>
+
+<!-- 获得学生总条数 -->
+<select id="getStudentCount" parameterType="int" resultType="int">
+   SELECT count(id) from student s INNER JOIN stu_register r ON s.stus_name = r.stu_name WHERE class_sid=#{dataId} AND r.stu_status = 6 
+</select>
+
+<!--根据学生id查询该班级所有学生的信息  -->
+<select id="selectstudentbyId"  parameterType="String" resultType="edu.man.bean.Student">
+	select s.*,c.name as class_name,c.class_place as class_place from class_info c,student s where c.class_id = s.class_sid and id=#{stuId}
+</select>
+
+<!-- 根据班级id修改该班级学生的状态 -->
+<select id="updateStudnetStatus"  parameterType="edu.man.bean.Student">
+	 UPDATE student SET stu_status=#{stu_status}
+    WHERE id=#{id} 
+</select>
+
+<!-- 修改班级状态 为已开课-->
+<select id="updateHaveclass"  parameterType="edu.man.bean.Class">
+	 UPDATE class_info SET course_start=#{course_start} status=#{status}
+    WHERE class_id=#{class_id} 
+</select>
+<update id="updateStudentByClass" parameterType="java.lang.Integer">
+	
+</update>
+<!-- 修改班级状态 -->
+<select id="updateClassStadus"  parameterType="edu.man.bean.Class">
+	 UPDATE class_info SET status=#{status}
+    WHERE class_id=#{class_id} 
+</select>
+</mapper>
+
+

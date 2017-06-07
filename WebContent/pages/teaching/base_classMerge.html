@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta charset="UTF-8">
+    <title>班级合并</title>
+    <link rel="stylesheet" type="text/css" href="css/frameHtml.css">
+    <script type="text/javascript" src="js/jquery-1.12.3.min.js"></script>
+    <script type="text/javascript" src="js/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="js/menu.js"></script>
+    <script type="text/javascript" src="js/base_classManage/base_classMerge.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            //单选题样式
+            $('div.popTeacher table tr').click(function () {
+                if ($(this).find("input").is(":checked")) {
+                    $("div.popTeacher table tr").removeClass("selected");
+                    $(this).addClass("selected");
+                } else {
+                    $(this).removeClass("selected");
+                }
+            })
+
+            //点击"点击选择主讲"后触发的事件
+            $("table.addClass td > a:eq(0)").click(function () {
+                $(".blackBg").css("display","block");
+                $(".popTipsTeacher1").css("display","block");
+            });
+          	//点击"点击选择助教"后触发的事件
+            $("table.addClass td > a:eq(1)").click(function () {
+                $(".blackBg").css("display","block");
+                $(".popTipsTeacher2").css("display","block");
+            });
+          	//点击"点击选择班主任"后触发的事件
+            $("table.addClass td > a:eq(2)").click(function () {
+                $(".blackBg").css("display","block");
+                $(".popTipsTeacher3").css("display","block");
+            });
+          	//点击"提交"后触发的事件
+            $("div.operationGather button.submit").click(function () {
+                $(".blackBg").css("display","block");
+                $(".popTipsSubmit").css("display","block");
+            });
+          	//点击"取消"后触发的事件
+            $("div.operationGather button.cancel").click(function () {
+                $(".blackBg").css("display","block");
+                $(".popTipsCancel").css("display","block");
+            });
+          	//点击弹出框中"取消"后触发的事件
+            $(".blackBg,span.popOut,button.popBack").click(function () {
+                $(".blackBg").css("display","none");
+                $(".popTips").css("display","none");
+            });
+
+            $("div.button button.popSubmitTeacher1").click(function () {
+                var $checkedVal = $("input[name='popTeacher']:checked").val()
+                $("table.addClass td > a:eq(0)").text($checkedVal);
+                $(".blackBg").css("display","none");
+                $(".popTips").css("display","none");
+            })
+            $("div.button button.popSubmitTeacher2").click(function () {
+                var $checkedVal = $("input[name='popTeacher']:checked").val()
+                $("table.addClass td > a:eq(1)").text($checkedVal);
+                $(".blackBg").css("display","none");
+                $(".popTips").css("display","none");
+            })
+            $("div.button button.popSubmitTeacher3").click(function () {
+                var $checkedVal = $("input[name='popTeacher']:checked").val()
+                $("table.addClass td > a:eq(2)").text($checkedVal);
+                $(".blackBg").css("display","none");
+                $(".popTips").css("display","none");
+            })
+        })
+
+    </script>
+</head>
+<body>
+<div class="originalTitle">
+    <div>原&nbsp;始&nbsp;班&nbsp;级&nbsp;一</div>
+</div>
+<div class="tableDetails">
+    <table border="0" cellpadding="0" cellspacing="0">
+        <tr>
+            <th>班级ID</th><td class="td">CL001</td>
+            <th>班级名称</th><td class="td">20150909上海复旦一班</td>
+            <th>班级人数</th><td class="td">45</td>
+        </tr>
+        <tr>
+            <th>主讲</th><td class="td">袁正宜</td>
+            <th>方向</th><td class="td">Java语言开发</td>
+            <th>开班时间</th><td class="td">2015/04/15</td>
+        </tr>
+        <tr>
+            <th>助教</th><td class="td">张三五</td>
+            <th>开班地点</th><td class="td">湖北黄冈</td>
+            <th>开课时间</th><td class="td">----/--/--</td>
+        </tr>
+        <tr>
+            <th>班主任</th><td class="td">赵娜儿</td>
+            <th>班级状态</th><td><span class="classAgo">开课前</span></td>
+            <th></th><td></td>
+        </tr>
+    </table>
+</div>
+<div class="originalTitle">
+    <div>原&nbsp;始&nbsp;班&nbsp;级&nbsp;二</div>
+</div>
+<div class="tableDetails">
+    <table border="0" cellpadding="0" cellspacing="0">
+        <tr>
+            <th>班级ID</th><td class="td">CL001</td>
+            <th>班级名称</th><td class="td">20150909上海复旦一班</td>
+            <th>班级人数</th><td class="td">45</td>
+        </tr>
+        <tr>
+            <th>主讲</th><td class="td">袁正宜</td>
+            <th>方向</th><td class="td">Java语言开发</td>
+            <th>开班时间</th><td class="td">2015/04/15</td>
+        </tr>
+        <tr>
+            <th>助教</th><td class="td">张三五</td>
+            <th>开班地点</th><td class="td">湖北黄冈</td>
+            <th>开课时间</th><td class="td">----/--/--</td>
+        </tr>
+        <tr>
+            <th>班主任</th><td class="td">赵娜儿</td>
+            <th>班级状态</th><td><span class="classAgo">开课前</span></td>
+            <th></th><td></td>
+        </tr>
+    </table>
+</div>
+<div class="targetTitle">
+    <div>目&nbsp;标&nbsp;班&nbsp;级</div>
+</div>
+<table class="addClass" border="0" cellspacing="0" cellpadding="0">
+    <tr><th>班级名称</th><td><input type="text" class="name1" placeholder="例201602黑科技一班"></td><td>命名规则：日期+学校简称+几班</td></tr>
+    <tr><th>开班地点</th><td class="classAddress">
+        
+        <div style="width: 147px; display: inline-block; vertical-align:top;">
+            <div class="select-main">
+            <select  name="residentProvince"  id="province" >
+                <option value="">请选择省份</option>
+            </select>
+        	</div>
+	        </div>
+	        <div style="width: 145px; display: inline-block; vertical-align:top;">
+	            <div class="select-main">
+	            <select name="residentCity"  id="city" >
+	                <option value="">请选择城市</option>
+	            </select></div> 
+	        </div>
+        <div style="height: 10px;"></div>
+        <input type="text" class="name1" placeholder="请输入具体地址信息...">
+    </td><td><br><br>例如：北京市中南海1号</td></tr>
+    <tr><th>课程方向</th><td>
+        <div style="width: 300px; display: inline-block; vertical-align:top;">
+             <select name="fangxiang" class="ui-select" id="showLesson">
+                <!-- 本来想用动态添加课程的方式实现，原本已经添加到页面，可惜因为select-widget-min.js的原因，暂时用静态页面把 -->
+                <option value="JAVA方向">JAVA方向</option>
+                <option value="C++方向">C++方向</option>
+                <option value="IOS方向">IOS方向</option>
+                <option value="Android方向">Android方向</option> 
+            </select>
+        </div>
+    </td><td></td></tr>
+    <tr><th>主讲</th><td><a id="tea1">点击选择主讲</a></td><td></td></tr>
+    <tr><th>助教</th><td><a id="tea2">点击选择助教</a></td><td></td></tr>
+    <tr><th>班主任</th><td><a id="tea3">点击选择班主任</a></td><td></td></tr>
+
+</table>
+<div class="operationGather"><button class="submit">提&nbsp;&nbsp;&nbsp;&nbsp;交</button><button class="cancel">取&nbsp;&nbsp;&nbsp;&nbsp;消</button></div>
+<!--选择教师弹窗开始-->
+<!-- 主讲 -->
+<link type="text/css" rel="stylesheet" href="css/popTips.css">
+<div class="blackBg"></div>
+<div class="popTips popTipsTeacher1" style="width: 410px; margin-left: -205px; margin-top: -150px;">
+    <h1>请选择主讲<span class="popOut">&times;</span></h1>
+    <div class="popTeacherSearch"><input type="text" placeholder="请输入主讲名称"><button class="search" id="sea1">搜&nbsp;&nbsp;索</button></div>
+    <div class="popTeacher">
+        <table border="0" cellpadding="0" cellspacing="0" class="teaMes">           
+        </table>
+    </div>
+    <div class="button">
+        <button class="popSubmitTeacher1">确&nbsp;&nbsp;定</button>
+    </div>
+</div>
+<!-- 助教  -->
+<div class="blackBg"></div>
+<div class="popTips popTipsTeacher2" style="width: 410px; margin-left: -205px; margin-top: -150px;">
+    <h1>请选择助教<span class="popOut">&times;</span></h1>
+    <div class="popTeacherSearch"><input type="text" placeholder="请输入助教名称"><button class="search" id="sea2">搜&nbsp;&nbsp;索</button></div>
+    <div class="popTeacher">
+        <table border="0" cellpadding="0" cellspacing="0" class="teaMes">
+        </table>
+    </div>
+    <div class="button">
+        <button class="popSubmitTeacher2">确&nbsp;&nbsp;定</button>
+    </div>
+</div>
+<!-- 班主任  -->
+<div class="blackBg"></div>
+<div class="popTips popTipsTeacher3" style="width: 410px; margin-left: -205px; margin-top: -150px;">
+    <h1>请选择班主任<span class="popOut">&times;</span></h1>
+    <div class="popTeacherSearch"><input type="text" placeholder="请输入班主任名称"><button class="search" id="sea3">搜&nbsp;&nbsp;索</button></div>
+    <div class="popTeacher">
+        <table border="0" cellpadding="0" cellspacing="0" class="teaMes">
+        </table>
+    </div>
+    <div class="button">
+        <button class="popSubmitTeacher3">确&nbsp;&nbsp;定</button>
+    </div>
+</div>
+<!--选择教师弹窗结束-->
+<!--提交弹窗开始-->
+<div class="blackBg"></div>
+<div class="popTips popTipsSubmit" style="width: 410px; margin-left: -205px; margin-top: -150px;">
+    <h1>消息提示<span class="popOut">&times;</span></h1>
+    <div class="warning">确认提交新合并班级？</div>
+    <table class="content" border="0" cellpadding="0" cellspacing="0">
+        <tr><td>班级名称：</td><td>201602黑科技一班</td></tr>
+        <tr><td>课程方向：</td><td>Java</td></tr>
+        <tr><td>主讲：</td><td>张三</td></tr>
+        <tr><td>助教：</td><td>李四儿</td></tr>
+        <tr><td>班主任：</td><td>赵六儿</td></tr>
+        <tr><td>开班地点：</td><td>北京市 大兴区 <br>亦庄经济开发区大族企业湾6号2层</td></tr>
+    </table>
+    <div class="button">
+        <button class="popSubmit">确认</button>
+        <button class="popBack">取消</button>
+    </div>
+</div>
+</body>
+</html>
+<!--提交弹窗结束-->
+<!--取消弹窗开始-->
+<div class="blackBg"></div>
+<div class="popTips popTipsCancel" style="width: 410px; margin-left: -205px; margin-top: -150px;">
+    <h1>消息提示<span class="popOut">&times;</span></h1>
+    <div class="warning">确认放弃合并班级？</div>
+    <div class="button">
+        <button class="cancleSubmit">确认</button>
+        <button class="popBack">取消</button>
+    </div>
+</div>
+</body>
+</html>
+<!--取消弹窗结束-->
+</body>
+</html>
+<!--select选框开始-->
+<link type="text/css" rel="stylesheet" href="css/drop-down.css">
+<script type="text/javascript" src="js/select-widget-min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $(".ui-select").selectWidget({
+            change: function (changes) {
+                return changes;
+            },
+            effect: "slide",
+            keyControl: true,
+            speed: 200,
+            scrollHeight: 250
+        });
+    });
+</script>
+<!--select选框结束-->
+<!--滚动条开始-->
+<link rel="stylesheet" type="text/css" href="mCustomScrollbar/jquery.mCustomScrollbar.css">
+
+<script src="mCustomScrollbar/jquery.mousewheel.min.js"></script>
+<script src="mCustomScrollbar/jquery.mCustomScrollbar.js"></script>
+<style>
+
+</style>
+<script type='text/javascript'>
+    (function ($) {
+        $(document).ready(function () {
+            $("div.popTeacher").mCustomScrollbar({
+                scrollButtons: {
+                    enable: false,
+                    scrollType: "continuous",
+                    scrollSpeed: 20,
+                    scrollAmount: 40
+                },
+                horizontalScroll: false
+            });
+        });
+
+    })(jQuery);
+</script>
+<!--滚动条结束-->
+

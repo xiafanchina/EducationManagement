@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta charset="UTF-8">
+    <title>教师列表（高级）</title>
+    <link rel="stylesheet" type="text/css" href="css/frameHtml.css">
+    <script type="text/javascript" src="js/jquery-1.12.3.min.js"></script>
+    <script type="text/javascript" src="js/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="js/base_teacherList/base_teacherListSenior.js"></script>
+</head>
+<body>
+<header>
+    <div><a href="">教师列表(高级)</a></div>
+    <nav>
+        <a href="base_teacherList.html">简单</a>
+        <a>高级</a>
+    </nav>
+</header>
+<div class="tableDetails">
+    <table border="0" cellpadding="0" cellspacing="0">
+        <tr>
+            <th>姓名</th><td><input type="text" id="tname"></td>
+            <th>性别</th><td><div style="width: 150px; display: inline-block; vertical-align:top;">
+            <select name="sex" class="ui-select">
+                <option value="">请选择</option>
+                <option value="男">男</option>
+                <option value="女">女</option>
+            </select>
+        </div></td>
+
+            <th>常驻地</th>
+            <td><div style="width: 100px; display: inline-block; vertical-align:top;">
+            <div class="select-main">
+            <select  name="residentProvince"  id="residentProvince" >
+                <option value="">请选择省份</option>
+            </select></div>
+        	</div>
+            <div style="width: 100px; display: inline-block; vertical-align:top;" >
+            <div class="select-main">
+            <select name="residentCity"  id="residentCity" >
+                <option value="">请选择城市</option>
+            </select></div> 
+        	</div>
+        	</td>
+            <th></th><td></td>
+        </tr>
+        <tr>
+            <th>代课方向</th><td><div style="width: 150px; display: inline-block; vertical-align:top;">
+            <select name="course" class="ui-select">
+                <option value="">请选择</option>
+                <option value="JAVA方向">JAVA方向</option>
+                <option value="C++方向">C++方向</option>
+                <option value="IOS方向">IOS方向</option>
+                <option value="Android方向">Android方向</option>
+            </select>
+        </div></td>
+            <th>办公方式</th><td><div style="width: 150px; display: inline-block; vertical-align:top;">
+            <select name="workingWay" class="ui-select">
+                <option value="">请选择</option>
+                <option value="基地授课">基地授课</option>
+                <option value="在家办公">在家办公</option>
+                <option value="外地办公">外地办公</option>
+                <option value="基地研发">基地研发</option>
+            </select>
+        </div></td>
+            <th>部门</th><td><div style="width: 150px; display: inline-block; vertical-align:top;">
+            <select name="department" class="ui-select">
+                <option value="">请选择</option>
+                <option value="教学部">教学部</option>
+         		<option value="开发部">开发部</option>
+                <option value="后勤部">后勤部</option>
+            </select>
+        </div></td>
+            <th>职务</th><td><div style="width: 150px; display: inline-block; vertical-align:top;">
+            <select name="role" class="ui-select">
+                <option value="">全部</option>
+                <option value="2">教学总监</option>
+                <option value="3">班主任</option>
+                <option value="4">讲师</option>
+                <option value="5">助教</option>
+            </select>
+        </div></td>
+        </tr>
+        <tr>
+            
+            <th>民族</th><td><div style="width: 150px; display: inline-block; vertical-align:top;">
+            <select name="nation" class="ui-select">
+                <option value="">全部</option>
+                <option value="汉族">汉族</option>
+                <option value="回族">回族</option>
+                <option value="其他">其他</option>
+            </select>
+        </div></td>
+            <th>帐号状态</th><td><div style="width: 150px; display: inline-block; vertical-align:top;">
+            <select name="accountStatus" class="ui-select">
+                <option value="">请选择</option>
+                <option value="1">正常</option>
+                <option value="2">已冻结</option>
+            </select>
+        </div></td>
+            <th></th>
+            <td align="left"><button onclick="splitPage(1)">搜索</button></td>
+        </tr>
+    </table>
+</div>
+<div class="buttonGather"><button onclick=" tabletoExcel('tableExcel')">导出教师列表</button></div>
+<div class="tableList">
+    <table border="0" cellpadding="0" cellspacing="0" id="tableExcel">
+        <thead>
+        <tr>
+            <th >教师编号</th>
+            <th>姓名</th>
+            <th>性别</th>
+            <th>职务</th>
+            <th>部门</th>
+            <th>常驻地</th>
+            <th>代课方向</th>
+            <th>办公方式</th>
+            <th>手机号</th>
+            <th>QQ号</th>
+            <th width="40">帐号</th>
+            <th width="70">身份证号</th>
+            <th>民族</th>
+            <th>帐号状态</th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody id="tb">
+        <tr dataId="ST006001" class="tr">
+            <td id="id">TH12006</td>
+            <td id="name">王一一</td>
+            <td id="sex">男</td>
+            <td id="role">讲师</td>
+            <td id="department"></td>
+            <td id="workingPlace">常住地</td>
+            <td id="course">代课方向</td>
+            <td id="workingWay">办公方式</td>
+            <td id="phone">18999876765</td>
+            <td id="qq">7363377282</td>
+            <td id="email"><div class="tableOmitted" style="width: 50px;" title="654328976@qq.com">654328976@qq.com</div></td>
+            <td id="idCard"><div class="tableOmitted" style="width: 50px;" title="110909876567898765">110909876567898765</div></td>
+            <td id="nation">汉族</td>
+            <td id="accountStatus">正常</td>
+            <td><span class="roleModify"><img src="images/roleModify.png"></span></td>
+        </tr>
+        </tbody>
+        
+        
+    </table>
+</div>
+<div class="tablePage">
+    <div>共<span id="count">34</span>条记录，每页<span id="pageSize">10</span>条，共<span id="pageNumber">4</span>页</div>
+    <a  class="pageTop" onclick="pageTop()"></a>
+    <a  class="pageUp" onclick="pageUp()"></a>
+    <em><input type="text" name="tablePage" id="tablePage"></em>
+    <a  class="pageDown" onclick="pageDown()"></a>
+    <a  class="pageBottom" onclick="pagebottom()"></a>
+</div>
+</body>
+<!--滚动条开始-->
+<link rel="stylesheet" type="text/css" href="mCustomScrollbar/jquery.mCustomScrollbar.css">
+
+<script src="mCustomScrollbar/jquery.mousewheel.min.js"></script>
+<script src="mCustomScrollbar/jquery.mCustomScrollbar.js"></script>
+<style>
+    ._mCS_1 .mCSB_scrollTools .mCSB_dragger .mCSB_dragger_bar,._mCS_1 .mCSB_scrollTools .mCSB_draggerRail{
+        border-radius: 0;
+        margin: 0;
+    }
+    ._mCS_1 .mCSB_scrollTools .mCSB_dragger .mCSB_dragger_bar{
+        /* 2nd scrollbar dragger style... */
+        background-color: #355372;
+        height: 10px;
+    }
+    ._mCS_1 .mCSB_scrollTools .mCSB_draggerRail{
+        height: 8px;
+        border: 1px solid #355372;
+        background-color: #FFFFFF;
+    }
+</style>
+<script type='text/javascript'>
+    (function ($) {
+        $(document).ready(function () {
+            $("div.tableList").mCustomScrollbar({
+                scrollButtons: {
+                    enable: false,
+                    scrollType: "continuous",
+                    scrollSpeed: 20,
+                    scrollAmount: 40
+                },
+                horizontalScroll: true
+            });
+        });
+
+    })(jQuery);
+</script>
+<!--滚动条结束-->
+<!--select选框开始-->
+<link type="text/css" rel="stylesheet" href="css/drop-down.css">
+<script type="text/javascript" src="js/select-widget-min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $(".ui-select").selectWidget({
+            change: function (changes) {
+                return changes;
+            },
+            effect: "slide",
+            keyControl: true,
+            speed: 200,
+            scrollHeight: 250
+        });
+    });
+</script>
+<!--select选框结束-->
+</html>

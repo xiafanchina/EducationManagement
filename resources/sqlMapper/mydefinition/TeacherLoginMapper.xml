@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="edu.man.TeacherLoginMapper" >
+	 <resultMap id="TeacherMap" type="edu.man.bean.Teacher" >
+     <id column="id" property="id"  />
+     <result column="id_card" property="idCard"  />
+     <result column="birth_place" property="birthPlace"  />
+     <result column="account_status" property="accountStatus"  />
+     <result column="role_id" property="roleId"  />
+     <result column="working_way" property="workingWay"  />
+     <result column="working_place" property="workingPlace"  />
+     <result column="submit_date" property="submitDate"  />
+    </resultMap>
+	<select id="teacherLogin" parameterType="map" resultType="edu.man.bean.RegisterTch">
+		SELECT * FROM tea_register WHERE tea_email=#{email} AND tea_pwd=#{password}
+	</select>
+	<select id="indexLoginer" parameterType="java.lang.String" resultMap="TeacherMap">
+		SELECT * FROM teacher WHERE email=#{email}
+	</select>
+	<select id="queryRoleStatus" parameterType="java.lang.Integer" resultType="java.lang.Integer">
+		select role_status from role where role_id =#{role_id}
+	</select>
+</mapper>

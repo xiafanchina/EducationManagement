@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta charset="UTF-8">
+    <title>教师列表</title>
+    <link rel="stylesheet" type="text/css" href="css/frameHtml.css">
+    <script type="text/javascript" src="js/jquery-1.12.3.min.js"></script>
+    <script type="text/javascript" src="js/jquery-ui.min.js"></script>
+    <script type="text/javascript"  src="js/menu.js"></script>
+    <script type="text/javascript"  src="js/base_teacherList/base_teacherList.js"></script>
+</head> 
+<body >
+<header>
+    <div><a href="">教师列表</a></div>
+    <nav>
+        <a>简单</a>
+        <a href="base_teacherListSenior.html">高级</a>
+    </nav>
+</header>
+<div class="tableDetails">
+    <table border="0" cellpadding="0" cellspacing="0" >
+        <tr>
+            <th>姓名</th><td><input type="text" id="tname"></td>
+            <th>代课方向</th><td><div style="width: 150px; display: inline-block; vertical-align:top;">
+            <select name="course" class="ui-select" >
+                <option value="">请选择</option>
+                <option value="JAVA方向">JAVA方向</option>
+                <option value="C++方向">C++方向</option>
+                <option value="IOS方向">IOS方向</option>
+                <option value="Android方向">Android方向</option>
+            </select>
+        </div></td>
+           
+            <th>常驻地</th>
+            <td><div style="width: 100px; display: inline-block; vertical-align:top;">
+            <div class="select-main">
+            <select  name="residentProvince"  id="residentProvince" >
+                <option value="">请选择省份</option>
+            </select></div>
+        	</div>
+            <div style="width: 100px; display: inline-block; vertical-align:top;" >
+            <div class="select-main">
+            <select name="residentCity"  id="residentCity" >
+                <option value="">请选择城市</option>
+            </select></div> 
+        	</div>
+        	</td>
+      </tr>
+      <tr>
+            <th>性别</th><td><div style="width: 150px; display: inline-block; vertical-align:top;">
+            <select name="sex" class="ui-select">
+                <option value="">请选择</option>
+                <option value="男">男</option>
+                <option value="女">女</option>
+            </select>
+        </div></td>
+            <th>办公方式</th><td><div style="width: 150px; display: inline-block; vertical-align:top;">
+            <select name="workingWay" class="ui-select">
+                <option value="">请选择</option>
+                <option value="基地授课">基地授课</option>
+                <option value="在家办公">在家办公</option>
+                <option value="外地办公">外地办公</option>
+                <option value="基地研发">基地研发</option>
+            </select>
+        </div></td>
+            <th>帐号状态</th><td><div style="width: 150px; display: inline-block; vertical-align:top;">
+            <select name="accountStatus" class="ui-select">
+                <option value="">请选择</option>
+                <option value="1">正常</option>
+                <option value="2">已冻结</option>
+            </select>
+        </div></td>
+            <td colspan="2" ><button onclick="splitPage(1)">搜索</button></td>
+       </tr>
+    </table>
+    
+</div>
+<div class="buttonGather"><button onclick=" tabletoExcel('tableExcel')">导出教师列表</button></div>
+<div class="tableList">
+    <table border="0" cellpadding="0" cellspacing="0" id="tableExcel">
+      	<thead>  
+        <tr>
+           
+            <th width="70">教师编号</th>
+            <th width="70">姓名</th>
+            <th width="40">性别</th>
+            <th>常驻地</th>
+            <th width="100">代课方向</th>
+            <th width="80">办公方式</th>
+            <th width="90">手机号</th>
+            <th>QQ号</th>
+            <th width="70">帐号状态</th>
+            <th></th>
+        </tr>
+        	</thead>
+        <tbody  id="tb">
+        <tr dataId="ST006001" class="tr">
+          
+            <td id="id"></td>
+            <td id="name"></td>
+            <td id="sex"></td>
+            <td id="workingPlace"></td>
+            <td id="course"></td>
+            <td id="workingWay"></td>
+            <td id="phone"></td>
+            <td id="qq"></td>
+            <td id="status"></td>
+            <td><span class="roleModify"><img src="images/roleModify.png"></span></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<div class="tablePage">
+    <div>共<span id="count">34</span>条记录，每页<span id="pageSize">10</span>条，共<span id="pageNumber">4</span>页</div>
+    <a  class="pageTop" onclick="pageTop()"></a>
+    <a  class="pageUp" onclick="pageUp()"></a>
+    <em><input type="text" name="tablePage" id="tablePage" onKeyDown="keydownEvent()"/></em>
+    <a  class="pageDown" onclick="pageDown()"></a>
+    <a  class="pageBottom" onclick="pageBottom()"></a>
+</div>
+
+</body>
+</html>
+<!--滚动条开始-->
+<link rel="stylesheet" type="text/css" href="mCustomScrollbar/jquery.mCustomScrollbar.css">
+
+<script src="mCustomScrollbar/jquery.mousewheel.min.js"></script>
+<script src="mCustomScrollbar/jquery.mCustomScrollbar.js"></script>
+<style>
+    ._mCS_1 .mCSB_scrollTools .mCSB_dragger .mCSB_dragger_bar,._mCS_1 .mCSB_scrollTools .mCSB_draggerRail{
+        border-radius: 0;
+        margin: 0;
+    }
+    ._mCS_1 .mCSB_scrollTools .mCSB_dragger .mCSB_dragger_bar{
+        /* 2nd scrollbar dragger style... */
+        background-color: #355372;
+        height: 10px;
+    }
+    ._mCS_1 .mCSB_scrollTools .mCSB_draggerRail{
+        height: 8px;
+        border: 1px solid #355372;
+        background-color: #FFFFFF;
+    }
+</style>
+<script type='text/javascript'>
+    (function ($) {
+        $(document).ready(function () {
+            $("div.tableList").mCustomScrollbar({
+                scrollButtons: {
+                    enable: false,
+                    scrollType: "continuous",
+                    scrollSpeed: 20,
+                    scrollAmount: 40
+                },
+                horizontalScroll: true
+            });
+        });
+
+    })(jQuery);
+</script>
+<!--滚动条结束-->
+<!--select选框开始-->
+<link type="text/css" rel="stylesheet" href="css/drop-down.css">
+<script type="text/javascript" src="js/select-widget-min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $(".ui-select").selectWidget({
+            change: function (changes) {
+                return changes;
+            },
+            effect: "slide",
+            keyControl: true,
+            speed: 200,
+            scrollHeight: 250
+        });
+    });
+</script>
+<!--select选框结束-->

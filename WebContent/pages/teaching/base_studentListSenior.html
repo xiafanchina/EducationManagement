@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta charset="UTF-8">
+    <title>学生列表（高级）</title>
+    <link rel="stylesheet" type="text/css" href="css/frameHtml.css">
+    <link rel="stylesheet" type="text/css" href="css/pages.css" />
+    <script type="text/javascript" src="js/jquery-1.12.3.min.js"></script>
+    <script type="text/javascript" src="js/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="js/StudentManagement/StudentPageSenior.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+        	/* choice(); */
+            $("div.tableList > table tr").dblclick(function () {
+                if($(this).attr("dataId") != undefined){
+                    location.href = "base_myClassStudent.html?dataId=" + $(this).attr("dataId");
+                }
+            })
+            temp=$("#tb").clone();
+	        $("#tb").empty();
+	        pageFirst();
+        })
+        function SearchAll(){
+          	 pageFirst();
+        }
+    </script>
+</head>
+<body>
+<header>
+    <div>学&nbsp;生&nbsp;列&nbsp;表（高级）</div>
+    <nav>
+        <a href="base_studentList.html">简单</a>
+        <a>高级</a>
+    </nav>
+</header>
+<div class="tableDetails tableInput">
+    <table border="0" cellpadding="0" cellspacing="0">
+        <tr>
+            <th>姓名</th><td><input type="text" id="stus_name"></td>
+            <th>性别</th><td><div  style="width: 150px; display: inline-block; vertical-align:top;">
+            <select name="province" id="sex" class="ui-select" >
+                <option value="">请选择</option>
+                <option value="1">男</option>
+                <option value="2">女</option>
+            </select>
+             </div></td>
+            <th>账号</th><td><input type="text" id="email"></td>
+            <th>帐号状态</th><td><div  style="width: 150px; display: inline-block; vertical-align:top;">
+            <select name="province" id="account_status" class="ui-select" >
+                <option value="">全部</option>
+                <option value="1">正常</option>
+                <option value="2">已冻结</option>
+            </select>
+            </div></td>
+        </tr>
+        <tr>
+            <th>手机号</th><td><input type="text" id="phone"></td>
+            <th>QQ号</th><td><input type="text" id="qq"></td>
+            <th>生源学校</th><td><input type="text" id="school"></td>
+            <th>学生状态</th><td><div id="stu_status" style="width: 150px; display: inline-block; vertical-align:top;">
+            <select name="province" class="ui-select" >
+                <option value="">全部</option>
+                <option value="1">新入学</option>
+                <option value="2">正在上课</option>
+                <option value="3">休学中</option>
+                <option value="4">已毕业</option>
+            </select>
+        </div></td>
+        </tr>
+        <tr>
+            <th>所在班级</th><td><input type="text" id="name"></td>
+            <th>方向</th><td><div id="lesson" style="width: 150px; display: inline-block; vertical-align:top;">
+            <select name="province" class="ui-select" >
+                <option value="">全部</option>
+                <option value="JAVA方向">JAVA方向</option>
+                <option value="C++方向">C++方向</option>
+                <option value="IOS方向">IOS方向</option>
+                <option value="Android方向">Android方向</option>
+            </select>
+        </div></td>
+            <th>开班地点</th>
+            <td class="classAddress">
+        
+        <input type="text"   id="address3">
+    </td>
+            <th></th><td></td>
+        </tr>
+        <tr>
+            <th>主讲</th><td><input type="text" id="lecturer"></td>
+            <th>助教</th><td><input type="text" id="assistant"></td>
+            <th>班主任</th><td><input type="text" id="teacher"></td>
+            <th></th>
+            <td><button  onclick="SearchAll()">搜索</button ></td>
+        </tr>
+    </table>
+</div>
+<div class="buttonGather"><button onclick="tabletoExcel('tableExcel')">导出学生列表</button></div>
+<div class="tableList">
+    <table border="0" cellpadding="0" cellspacing="0" id="tableExcel">
+        <tr>
+            <th></th>
+            <th>学号</th>
+            <th>帐号</th>
+            <th>身份证号</th>
+            <th>姓名</th>
+            <th>性别</th>
+            <th>手机号</th>
+            <th>QQ号</th>
+            <th>所在班级</th>
+            <th>方向</th>
+            <th>开班地点</th>
+            <th>主讲</th>
+            <th>助教</th>
+            <th>班主任</th>
+            <th>生源学校</th>
+            <th>学生状态</th>
+            <th>账号状态</th>
+            <th></th>
+        </tr>
+        <tbody id="tb">
+        <tr dataId="ST006001">
+            <td id="td1"></td>
+            <td id="td2"></td>
+            <td id="td3"></td>
+            <td id="td4"></td>
+            <td id="td5"></td>
+            <td id="td6"></td>
+            <td id="td7"></td>
+            <td id="td8"></td>
+            <td id="td9"></td>
+            <td id="td10"></td>
+            <td id="td11"></td>
+            <td id="td12"></td>
+            <td id="td13"></td>
+            <td id="td14"></td>
+            <td id="td15"></td>
+            <td id="td16"><span class="classAgo"></span></td>
+            <td id="td17"></td>
+            <td><a id="td18"><img src="images/listModify.png"></a></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<div class="tablePage">
+    <div>共<span id="count">0</span>条记录，每页<span id="pageSize">0</span>条，共<span id="pageNum">4</span>页</div>
+    <a  class="pageTop" onclick="pageFirst()" ></a>
+    <a class="pageUp" onclick="pageUp()"></a>
+    <em><input type="text" name="tablePage"  id="tablePage" onchange="turnPage(this)"></em>
+    <a  class="pageDown" onclick="pageDown()"></a>
+    <a  class="pageBottom" onclick="pageLast()"></a>
+</div>
+</body>
+</html>
+<!--滚动条开始-->
+<link rel="stylesheet" type="text/css" href="mCustomScrollbar/jquery.mCustomScrollbar.css">
+
+<script src="mCustomScrollbar/jquery.mousewheel.min.js"></script>
+<script src="mCustomScrollbar/jquery.mCustomScrollbar.js"></script>
+<style>
+    ._mCS_1 .mCSB_scrollTools .mCSB_dragger .mCSB_dragger_bar,._mCS_1 .mCSB_scrollTools .mCSB_draggerRail{
+        border-radius: 0;
+        margin: 0;
+    }
+    ._mCS_1 .mCSB_scrollTools .mCSB_dragger .mCSB_dragger_bar{
+        /* 2nd scrollbar dragger style... */
+        background-color: #355372;
+        height: 10px;
+    }
+    ._mCS_1 .mCSB_scrollTools .mCSB_draggerRail{
+        height: 8px;
+        border: 1px solid #355372;
+        background-color: #FFFFFF;
+    }
+</style>
+<script type='text/javascript'>
+    (function ($) {
+        $(document).ready(function () {
+            $("div.tableList").mCustomScrollbar({
+                scrollButtons: {
+                    enable: false,
+                    scrollType: "continuous",
+                    scrollSpeed: 20,
+                    scrollAmount: 40
+                },
+                horizontalScroll: true
+            });
+        });
+
+    })(jQuery);
+</script>
+<!--滚动条结束-->
+<!--select选框开始-->
+<link type="text/css" rel="stylesheet" href="css/drop-down.css">
+<script type="text/javascript" src="js/select-widget-min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $(".ui-select").selectWidget({
+            change: function (changes) {
+                return changes;
+            },
+            effect: "slide",
+            keyControl: true,
+            speed: 200,
+            scrollHeight: 250
+        });
+    });
+</script>
+<!--select选框结束-->

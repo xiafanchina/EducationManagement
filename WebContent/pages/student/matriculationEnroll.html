@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en" style="width: 100%; height: 100%;">
+<head>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta charset="UTF-8">
+    <title>入学考试报名</title>
+    <link type="text/css" rel="stylesheet" href="css/css.css">
+    <link type="text/css" rel="stylesheet" href="css/studentInput.css">
+    <link type="text/css" rel="stylesheet" href="css/drop-down.css"> <!--select选框CSS-->
+    <script type="text/javascript" src="js/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="js/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="js/select-widget-min.js"></script><!--select选框JS-->
+    <script type="text/javascript" src="js/formRequired.js"></script><!--表单验证JS-->
+    <script type="text/javascript" src="js/stuJs/beforExam.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $(".ui-select").selectWidget({
+                change: function (changes) {
+                    return changes;
+                },
+                effect: "slide",
+                keyControl: true,
+                speed: 200,
+                scrollHeight: 250
+            });
+
+
+        });
+    </script>
+</head>
+<body>
+<header>
+    <div class="center">
+        <img src="images/ruizhi.png">
+    </div>
+</header>
+<div id="studentInput">
+    <h1>入学考试报名</h1>
+    <section>
+
+
+        <form action="matriculationNote.html" method="post" name="studentForm" class="popForm">
+            <table border="0" cellpadding="0" cellspacing="0">
+                <tr class="warningRed">
+                    <td></td>
+                    <td>*&nbsp;本页所有选项，皆为必填项</td>
+                </tr>
+                <tr>
+                    <td>姓名</td>
+                    <td id="name"></td>
+                </tr>
+                <tr>
+                    <td>身份证号</td>
+                    <td id="idCard"></td>
+                </tr>
+                <tr>
+                    <td>生源院校</td>
+                    <td>
+                        
+                        <div style="width: 220px; display: inline-block; vertical-align:top;">
+                            <select name="school" id="school" class="ui-select promptselect" promptNull="请选择院校">
+                                <option value="">请先选择学校所在区域</option>
+                                <option value="北京大学">北京大学</option>
+                                <option value="清华大学">清华大学</option>
+                                <option value="北京科技大学">北京科技大学</option>
+                                <option value="湖北工程学院">湖北工程学院</option>
+                                <option value="武汉大学">武汉大学</option>
+                                <option value="华中科技大学">华中科技大学</option>
+                                <option value="厦门大学">厦门大学大学</option>
+                            </select>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>报名方向</td>
+                    <td>
+                        <div style="width: 220px; display: inline-block; vertical-align:top;">
+                            <select name="province" id="choice" class="ui-select promptselect" promptNull="请选择报名方向">
+                                <option value="">请选择</option>
+                                <option value="JAVA方向">JAVA方向</option>
+                                <option value="C++方向">C++方向</option>
+                                <option value="IOS方向">IOS方向</option>
+                                <option value="Android方向">Android方向</option>
+                            </select>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>
+                        <button type="button" id="btnId" onclick="baoming()">报&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;名</button>
+                       
+                    </td>
+                         
+                </tr>
+            </table>
+        </form>
+    </section>
+</div>
+<footer>&copy; - 湖北工程学院</footer>
+
+</body>
+</html>

@@ -1,0 +1,200 @@
+﻿h1,h2,h3,h4,h5,h6{margin: 0; font-weight: lighter;}
+input,button{font-family: "黑体";}
+ul.testType{
+    width: 1000px;
+    height: 60px;
+    margin: 40px auto 20px;
+}
+ul.testType > li{
+    float: left;
+    padding: 0px 18px;
+    height: 30px;
+    text-align: center;
+    line-height: 30px;
+    font-size: 18px;
+    color: #38B65A;
+    border-top: 1px solid #38B65A;
+    border-right:1px solid #38B65A;
+    border-bottom: 1px solid #38B65A;
+}
+
+ul.testType > li:first-child{
+    border-left:1px solid #38B65A;
+    background-color: #38B65A;
+    color: #FFFFFF;
+}
+
+ul.testType > li:hover{
+    cursor: pointer;
+    background-color: #38B65A;
+    color: #FFFFFF;
+}
+
+section > div.testQuestion{
+    width: 700px;
+    margin: 0 auto;
+    /*border: 1px solid #C7CACA;*/
+}
+section > div.testQuestion > h2{
+    padding: 5px;
+}
+section > div.testQuestion > span{
+    color: #505050;
+    font-size: 18px;
+    margin: 0px 100px 5px 5px;
+}
+div.testQuestion > button{
+    width: 120px;
+    height: 35px;
+    border: 1px solid #38B65A;
+    background: #38B65A;
+    font-size: 18px;
+    text-align: center;
+    cursor:pointer;
+    color: #FFFFFF;
+}
+div.testQuestion > button:hover{
+    background: #3bbf5f;
+}
+div.testQuestion > button.delete{
+    background: #FF4A3E;
+    border: 1px solid #FF4A3E;
+    margin-left: 20px;
+}
+div.testQuestion > button.delete:hover{
+    background: #FF0000;
+}
+div.testQuestion > ul{
+    margin: 10px 0px 10px 0px;
+    font-size: 18px;
+    padding: 5px;
+}
+div.testQuestion > ul > li{
+    padding: 5px;
+}
+/*div.testQuestion > ul > li > label > span{*/
+    /*width: 20px;*/
+    /*height: 20px;*/
+    /*line-height: 20px;*/
+    /*display: inline-block;*/
+    /*border: 1px solid #38B65A;*/
+    /*color: #38B65A;*/
+    /*text-align: center;*/
+    /*vertical-align: middle;*/
+    /*margin-right: 10px;*/
+    /*border-radius: 50%;*/
+/*}*/
+/*div.testQuestion > ul > li > label{cursor: pointer}*/
+/*div.testQuestion > ul > li > label input[type="radio"]{display: none}*/
+/*div.testQuestion > ul > li > label > span.checked{background:#38B65A; color: #FFFFFF;}*/
+ul.answerT{
+    margin-bottom: 30px;
+}
+ul.answerT > li > font{
+    width: 300px;
+    display: inline-block;
+    vertical-align: top;
+    min-height: 15px;
+    word-wrap: break-word;
+}
+ul.answerT > li > span:first-child{
+    color: #505050;
+    font-size: 18px;
+    margin: 0px 15px 0px 40px;
+}
+ul.pages{
+    margin-top: 40px;
+}
+ul.pages > li{
+    float: left;
+    width: 25px;
+    height: 20px;
+    text-align: center;
+    line-height: 20px;
+    font-weight: bold;
+    border-top: 1px solid #505050;
+    border-right:1px solid #505050;
+    border-bottom: 1px solid #505050;
+}
+ul.pages > li:hover{
+    cursor: pointer;
+}
+ul.pages > li.checked{
+    background: #C7CACA;
+}
+ul.pages > li:first-child{
+    border-left: 1px solid #505050;
+    color: #C7CACA;
+}
+
+section > div.testReview{
+    width: 700px;
+    margin: 60px 0px 30px 300px;
+}
+section > div.testReview > h2{
+    padding: 0px 0px 5px 5px;
+    font-size: 25px;
+}
+section > div.testReview > span{
+    color: #505050;
+    font-size: 18px;
+    margin-left: 5px;
+}
+div.testReview > ul{
+    margin: 10px 0px 10px 0px;
+    font-size: 18px;
+    padding: 5px;
+}
+div.testReview > ul > li{
+    padding: 5px;
+    font-size: 20px;
+}
+div.testReview > ul > li:first-child{
+    padding-bottom: 20px;
+    font-size: 20px;
+}
+
+div.testReview > ul > li > label > span{
+    width: 20px;
+    height: 20px;
+    line-height: 20px;
+    margin-bottom: 3px;
+    display: inline-block;
+    border: 1px solid #38B65A;
+    color: #38B65A;
+    text-align: center;
+    vertical-align: middle;
+    margin-right: 10px;
+    border-radius: 50%;
+}
+div.testReview > ul > li > label{cursor: pointer}
+div.testReview > ul > li > label input[type="radio"]{display: none}
+div.testReview > ul > li > label > span.checked{background:#38B65A; color: #FFFFFF;}
+div.testBtn > button{
+    width: 140px;
+    height: 35px;
+    cursor:pointer;
+    background: #38B65A;
+    color: #FFFFFF;
+    border: 1px solid #38B65A;
+    font-size: 18px;
+    text-align: center;
+    padding: 0px 10px;
+    margin-right: 170px;
+}
+div.testBtn > button:hover{
+    background: #3bbf5f;
+}
+div.testBtn > button.over{
+    background: #FF4A3E;
+    padding: 5px;
+    border: 1px solid #FF4A3E;
+}
+div.testBtn > button.over:hover{
+    background: #ff0000;
+}
+
+
+
+
+

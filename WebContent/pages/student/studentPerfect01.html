@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta charset="UTF-8">
+    <title>完善个人信息</title>
+    <link type="text/css" rel="stylesheet" href="css/css.css">
+    <link type="text/css" rel="stylesheet" href="css/studentInput.css">
+    <link type="text/css" rel="stylesheet" href="css/drop-down.css"> <!--select选框CSS-->
+    <script type="text/javascript" src="js/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="js/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="js/select-widget-min.js"></script><!--select选框JS-->
+    <script type="text/javascript" src="js/formRequired.js"></script><!--表单验证JS-->
+    <script type="text/javascript" src="js/stuJs/info1.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $(".ui-select").selectWidget({
+                change: function (changes) {
+                    return changes;
+                },
+                effect: "slide",
+                keyControl: true,
+                speed: 200,
+                scrollHeight: 250
+            });
+        });
+    </script>
+</head>
+<body>
+<header>
+    <div class="center">
+        <img src="images/ruizhi.png">
+    </div>
+</header>
+<div id="studentInput">
+    <h1>
+        完善个人信息
+        <ul>
+            <li class="ing">1</li>
+            <li>2</li>
+            <li>3</li>
+        </ul>
+    </h1>
+    <section>
+        <form  name="studentForm">
+            <table class="perfect01" border="0" cellpadding="0" cellspacing="0">
+                
+                <tr>
+                    <td>姓名</td>
+                    <td id="name"></td>
+                </tr>
+                <tr>
+                    <td>邮箱</td>
+                    <td id="email"></td>
+                </tr>
+                <tr>
+                    <td>身份证号</td>
+                    <td id="idCard"></td>
+                </tr>
+                <tr>
+                      <td>所在班级</td>
+                    <td>
+                        <div id="qq" style="height:40px ;width: 220px; display: inline-block; vertical-align:top;">
+                            <select name="stuClass"   id="stuClass" class="ui-select promptselect" promptNull="请选择班级">
+                          
+                            </select>
+                        </div>
+                    </td>
+                    
+                <tr>
+                    <td>备注</td>
+                    <td><textarea id="info" name="info" ></textarea></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>
+                        <button type="button" id="submit" onclick="info1()">下&nbsp;&nbsp;一&nbsp;&nbsp;步</button>
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </section>
+</div>
+<footer>&copy; - 湖北工程学院</footer>
+</body>
+</html>

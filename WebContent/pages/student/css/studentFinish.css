@@ -1,0 +1,154 @@
+h1.finishTitle{
+    text-align: center;
+    font-size: 22px;
+    color: #5FBA7E;
+    margin-top: 40px;
+    margin-bottom: 30px;
+}
+h1.finishTitle > span{
+    color: #323232;
+    margin: 0 10px;
+}
+ul.finishInformation{
+    width: 1061px;
+    height: 530px;
+    margin: 0 auto 30px;
+
+}
+ul.finishInformation > li{
+    float: left;
+    width: 500px;
+    height: 100%;
+}
+ul.finishInformation > li:first-child{
+    border-right: 1px solid #5FBA7E;
+}
+ul.finishInformation > li > ul > li{
+    line-height: 22px;
+    margin-top: 20px;
+}
+ul.finishInformation > li > ul > li > img{
+    margin-left: 180px;
+    border: 1px solid #5FBA7E;
+}
+ul.finishInformation > li > ul > li > span{
+    display: inline-block;
+    vertical-align: top;
+}
+ul.finishInformation > li > ul > li > span:first-child{
+    width: 180px;
+    text-align: right;
+    color: #999;
+    font-size: 15px;
+    padding-right: 12px;
+}
+
+
+div#testTime {
+    width: 800px;
+    margin: 30px auto
+}
+div#testTime > section{
+    width: 100%;
+    background: #FFFFFF;
+    border: 1px solid #5FBA7E;
+    padding: 20px 0;
+    margin: 2px auto;
+    font-size: 18px;
+    font-family: "黑体";
+}
+ul.testTimeT{
+    width: 100%;
+}
+ul.testTimeT > li{
+    float: left;
+    height: 100%;
+    width: 330px;
+    padding: 5px;
+    display: inline-block;
+}
+ul.testTimeT > li > ul > li > span.hong{
+    color: #ff0000;
+    font-size: 24px;
+    padding-left: 15px;
+    font-weight: bold;
+}
+ul.testTimeT > li > ul > li > span.hei{
+    color: #000000;
+    font-size: 24px;
+    padding-left: 15px;
+    font-weight: bold;
+}
+ul.testTimeT > li > ul{
+    margin: 15px 0px 0px 100px;
+}
+ul.testTimeT > li > span{
+    display: inline-block;
+    vertical-align: top;
+}
+ul.testTimeT > li > span:first-child{
+    width: 90px;
+    text-align: right;
+    margin-right: 20px;
+}
+div#testTime > section > div{
+    margin:60px 0px 0px 300px;
+}
+div#testTime > section > div > button{
+    width: 220px;
+    height: 35px;
+    border: 1px solid #5FBA7E;
+    background: #5FBA7E;
+    font-size: 18px;
+    margin: 35px 0 10px 0;
+    text-align: center;
+    cursor:pointer;
+    color: #FFFFFF;
+}
+div#testTime > section > div.btt > button{
+    width: 220px;
+    height: 35px;
+    border: 1px solid #C8C8C8;
+    background: #C8C8C8;
+    font-size: 18px;
+    margin: 35px 0 10px 0;
+    text-align: center;
+    cursor: no-drop;
+    color: #FFFFFF;
+}
+div#practiceResult{
+    width: 700px;
+    margin: 100px auto;
+}
+div#practiceResult > section{
+    width: 100%;
+    background: #FFFFFF;
+    margin: auto 80px;
+    font-size: 20px;
+    font-family: "黑体";
+}
+div#practiceResult > section > span{
+    font-size: 24px;
+    margin-left: 180px;
+}
+div#practiceResult section ul li{
+    padding-bottom: 15px;
+}
+div#practiceResult > div > a{
+    display: block;
+    width: 180px;
+    height: 35px;
+    line-height: 35px;
+    background: #5FBA7E;
+    font-size: 18px;
+    margin: 50px 0px 70px 220px;
+    text-align: center;
+    cursor:pointer;
+    color: #FFFFFF;
+}
+div#practiceResult > div > a:hover{
+    background: #3bbf5f;
+}
+
+
+

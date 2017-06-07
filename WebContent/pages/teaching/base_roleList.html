@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta charset="UTF-8">
+    <title>角色列表</title>
+    <link rel="stylesheet" type="text/css" href="css/frameHtml.css">
+    <script type="text/javascript" src="js/jquery-1.12.3.min.js"></script>
+    <script type="text/javascript" src="js/rolelist/queryPage.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("div.buttonGather > button").click(function () {
+                location.href = "base_roleAdd.html"
+            })
+           	temp = $("#tb").clone();		//克隆表结构
+            first();						//跳转到分页查询首页
+        })
+        
+    </script>
+</head>
+<body>
+<header>
+    <div><a href="">角色列表</a></div>
+</header>
+<div class="buttonGather"><button>创建角色</button></div>
+<div class="tableList">
+    <table id = "roletable" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+            <th></th>
+            <th>角色ID</th>
+            <th>角色名称</th>
+            <th>角色描述</th>
+            <th>角色状态</th>
+            <th></th>
+        </tr>
+        <tbody id ="tb">
+			<tr class="rolelist" dataId="AC001">
+				<td id="row">1</td>
+				<td id="dataid">0000</td>
+				<td id="name">初始化</td>
+				<td id="info">初始化</td>
+				<td id="status">初始化</td>
+				<td id="role_id"><a href="base_roleModify.html"><img class="mCS_img_loaded" src="images/listModify.png"></a></td>
+			</tr>
+		</tbody>
+        
+    </table>
+</div>
+<div class="tablePage">
+    <div>共<span id = "totalNums">0</span>条记录，每页<span id="pageSize">0</span>条，共<span id = "pageNums">0</span>页</div>
+    <a class="pageTop" onclick="first()"></a> 
+    <a class="pageUp" onclick="pageUp()"></a>
+    <em><input id = "inputPage" onchange="turnPage(this)" type="text" name="tablePage" value=""></em>
+    <a class="pageDown" onclick="pageDown()"></a>
+    <a class="pageBottom" onclick="last()"></a>
+</div>
+</body>
+
+<!--滚动条开始-->
+<link rel="stylesheet" type="text/css" href="mCustomScrollbar/jquery.mCustomScrollbar.css">
+<script src="js/jquery-ui.min.js"></script>
+<script src="mCustomScrollbar/jquery.mousewheel.min.js"></script>
+<script src="mCustomScrollbar/jquery.mCustomScrollbar.js"></script>
+<style>
+    ._mCS_1 .mCSB_scrollTools .mCSB_dragger .mCSB_dragger_bar,._mCS_1 .mCSB_scrollTools .mCSB_draggerRail{
+        border-radius: 0;
+        margin: 0;
+    }
+    ._mCS_1 .mCSB_scrollTools .mCSB_dragger .mCSB_dragger_bar{
+        /* 2nd scrollbar dragger style... */
+        background-color: #355372;
+        height: 10px;
+    }
+    ._mCS_1 .mCSB_scrollTools .mCSB_draggerRail{
+        height: 8px;
+        border: 1px solid #355372;
+        background-color: #FFFFFF;
+    }
+</style>
+<script type='text/javascript'>
+    (function ($) {
+        $(document).ready(function () {
+            $("div.tableList").mCustomScrollbar({
+                scrollButtons: {
+                    enable: false,
+                    scrollType: "continuous",
+                    scrollSpeed: 20,
+                    scrollAmount: 40
+                },
+                horizontalScroll: true
+            });
+        });
+
+    })(jQuery);
+</script>
+<!--滚动条结束-->
+</html>

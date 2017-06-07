@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="edu.man.mapper.teacherLoginAndRegister" >
+
+	<!-- 教师注册时判断邮箱是否存在 -->
+	<select id="teacherRegisterCheckEmail" parameterType="String" resultType="edu.man.bean.RegisterTch">
+	 select * from tea_register where tea_email=#{email}
+	</select>
+	
+	<!-- 教师注册时是否成功 -->
+	<insert id="teacherRegister" parameterType="Map">
+      insert into tea_register(tea_email,tea_pwd,tea_name,tea_idcard,tea_status) values (#{tea_email},#{tea_pwd},#{tea_name},#{tea_idcard},#{tea_status})
+	</insert>
+	
+	<!-- 教师添加完善个人信息 -->
+	<insert id="teacherInformation" parameterType="edu.man.bean.Teacher">
+	  insert into teacher (name,id_card,sex,email,phone,qq,nation,birth_place,political,education,school,major,info,department,role_id,course,working_way,working_place,submit_date) 
+	  values (#{name},#{idCard},#{sex},#{email},#{phone},#{qq},#{nation},#{birthPlace},#{political},#{education},#{school},#{major},#{info},#{department},#{roleId},#{course},#{workingWay},#{workingPlace},(select current_date as systemtime))
+	</insert>
+	<!-- 教师完善信息后，根据邮箱修改其注册表中的状态值 -->
+	<update id="updateStatus" parameterType="map">
+	 	update tea_register set tea_status=#{status} where tea_email=#{email}
+	</update>
+	
+	<!-- 教师忘记密码 -->
+	<select id="passwordForgetCheckEmail" parameterType="map" resultType="edu.man.bean.RegisterTch">
+		select * from tea_register where tea_email=#{tea_email}
+	</select>
+	
+	<!-- 教师忘记密码后修改密码 -->
+	<update id="passwordForgetAfterModifyPwd" parameterType="map">
+		update tea_register set tea_pwd=#{pwd} where tea_email=#{email}
+	</update>
+	
+</mapper>

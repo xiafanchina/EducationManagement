@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en" style="width: 100%; height: 100%;">
+<head>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta charset="UTF-8">
+    <title>睿智入门考试</title>
+    <link type="text/css" rel="stylesheet" href="css/css.css">
+    <link type="text/css" rel="stylesheet" href="css/List.css"/>
+     <!-- <link type="text/css" rel="stylesheet" href="css/examination.css">  -->
+    <script type="text/javascript" src="js/jquery-1.11.0.js"></script>
+    <script type="text/javascript" src="js/examination.js"></script>
+</head>
+<body>
+<header>
+    <div class="center">
+        <img src="images/ruizhi.png">        
+    </div>
+</header>
+<section>
+    <div class="information">
+        <div style="width: 285px; margin: 20px auto;">
+        <h1>入门考试</h1>
+        <div class="timing">
+            倒计时：
+            <time>50:12</time>
+            <button class="prohibit" id="submit">交&nbsp;&nbsp;卷</button>
+        </div>
+        <ul class="note">
+            <li>注意事项：</li>
+            <li>1、本次考试时间为15分钟</li>
+            <li>2、开考3分钟内不可交卷</li>
+            <li>3、到达考试时间系统将强制自动交卷</li>
+        </ul>       
+        </div>
+    </div>
+    <div class="content">
+        <div style="width: 800px; padding-left: 20px;">
+	        <h1>一、单选题</h1>
+	        <div id="qaa">
+	        	<div class="words">1、事务隔离级别是由谁实现的？</div>
+	            <ul class="singleChoice">
+	                <li><label><span>A</span><input name="1" type="radio" value="A" class="words"><span class="answer">Java应用程序</span></label></li>
+	                <li><label><span>B</span><input name="1" type="radio" value="B" class="words"><span class="answer">Java应用程序</span></label></li>
+	                <li><label><span>C</span><input name="1" type="radio" value="C" class="words"><span class="answer">Java应用程序</span></label></li>
+	                <li><label><span>D</span><input name="1" type="radio" value="D" class="words"><span class="answer">Java应用程序</span></label></li>
+	            </ul> 
+	            <div>--------------------------------------------------------</div>                           
+        	</div>
+		</div>
+    </div>
+</section>
+
+<footer>&copy; - 湖北工程学院</footer>
+</body>
+</html>
+<link rel="stylesheet" type="text/css" href="mCustomScrollbar/jquery.mCustomScrollbar.css">
+<script src="js/jquery-ui.min.js"></script>
+<script src="mCustomScrollbar/jquery.mousewheel.min.js"></script>
+<script src="mCustomScrollbar/jquery.mCustomScrollbar.js"></script>
+<script type='text/javascript'>
+    (function ($) {
+        $(document).ready(function () {
+            $("div.information,div.content").mCustomScrollbar({
+                scrollButtons: {
+                    enable: false,
+                    scrollType: "continuous",
+                    scrollSpeed: 20,
+                    scrollAmount: 40
+                },
+                horizontalScroll: false,
+            });
+        });
+
+    })(jQuery);
+</script>

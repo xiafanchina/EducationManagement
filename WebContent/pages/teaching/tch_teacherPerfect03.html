@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta charset="UTF-8">
+    <title>完善个人信息</title>
+    <link type="text/css" rel="stylesheet" href="css/tch_css.css">
+    <link type="text/css" rel="stylesheet" href="css/tch_teacherInput.css">
+    <link type="text/css" rel="stylesheet" href="css/tch_drop-down.css"> <!--select选框CSS-->
+    <script type="text/javascript" src="js/jquery-1.12.3.min.js"></script>
+    <script type="text/javascript" src="js/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="js/select-widget-min.js"></script><!--select选框JS-->
+    <script type="text/javascript" src="js/tch_formRequired.js"></script><!--表单验证JS-->
+    <script type="text/javascript" src="js/menu.js"></script>
+    <script type="text/javascript" src="js/teacherJs/teacherInfo03.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $(".ui-select").selectWidget({
+                change: function (changes) {
+                    return changes;
+                },
+                effect: "slide",
+                keyControl: true,
+                speed: 200,
+                scrollHeight: 250
+            });
+        });
+    </script>
+</head>
+<body>
+<header>
+    <div class="center">
+        <img src="images/ruizhi.png">
+    </div>
+</header>
+<div id="studentInput">
+    <h1>
+        完善个人信息
+        <ul>
+            <li>1</li>
+            <li>2</li>
+            <li class="ing">3</li>
+        </ul>
+    </h1>
+    <section>
+        <form action="studentFinish.html" method="post" name="studentForm">
+            <table border="0" cellpadding="0" cellspacing="0">
+                <tr>
+                    <td>手机号</td>
+                    <td><input type="text" name="PhoneNo" class="PhoneNo" placeholder="请输入手机号码" promptNull="手机号码不能为空"
+                        promptError="请输入正确11位手机号" id="phone"></td>
+                </tr>
+                <tr>
+                    <td>QQ号</td>
+                    <td><input type="text" name="QQNo" class="QQNo" placeholder="请输入QQ号" promptNull="QQ号不能为空"
+                        promptError="请输入有效QQ号" id="qq"></td>
+                </tr>
+                <tr>
+                    <td>部门</td>
+                    <td>
+                        <div style="width: 220px; display: inline-block; vertical-align:top;">
+                            <select name="department" class="ui-select promptselect" promptNull="请选择部门" id="department">
+                                <option value="">请选择</option>
+                                <option value="教学部">教学部</option>
+                                <option value="开发部">开发部</option>
+                                <option value="后勤部">后勤部</option>
+                            </select>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>职务</td>
+                    <td>
+                        <div style="width: 220px; display: inline-block; vertical-align:top;">
+                            <select name="post" class="ui-select promptselect" promptNull="请选择职务" id="roleId">
+                                <option value="">请选择</option>
+                                <option value="1">校长</option>
+                                <option value="2">教学总监</option>
+                                <option value="3">班主任</option>
+                                <option value="4">讲师</option>
+                                <option value="5">助教</option>
+                                
+                            </select>
+                        </div>
+                    </td>
+
+                <tr>
+                    <td>代课方向</td>
+                    <td>
+                        <div style="width: 220px; display: inline-block; vertical-align:top;">
+                            <select name="direction" class="ui-select promptselect" promptNull="请选择代课方向" id="course">
+                                <option value="">请选择</option>
+                                <option value="Java方向">Java方向</option>
+                                <option value="C++方向">C++方向</option>
+                                <option value="IOS方向">IOS方向</option>
+                                <option value="Android方向">Android方向</option>
+                            </select>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>办公方式</td>
+                    <td>
+                        <div style="width: 220px; display: inline-block; vertical-align:top;">
+                            <select name="officeMode" class="ui-select promptselect" promptNull="请选择办公方式" id="workingWay">
+                                <option value="">请选择</option>
+                                <option value="基地授课">基地授课</option>
+                                <option value="外出授课">外出授课</option>
+                                <option value="在家办公">在家办公</option>
+                                <option value="基地研发">基地研发</option>
+                            </select>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>常驻地</td>
+            <td><div style="width: 100px; display: inline-block; vertical-align:top;">
+            
+            <select  name="residentProvince"  id="residentProvince" >
+                <option value="">请选择省份</option>
+            </select>
+        	</div>
+            <div style="width: 100px; display: inline-block; vertical-align:top;" >
+            
+            <select name="residentCity"  id="residentCity" >
+                <option value="">请选择城市</option>
+            </select> 
+        	</div>
+        	</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>
+                        <input type="button" value="提交" onclick="teacherInfo03()">
+                    </td>
+                </tr>
+
+            </table>
+            <div class="warningRed perfect03">请完善信息后，点击“提交”</div>
+        </form>
+    </section>
+</div>
+<footer>&copy; - 湖北工程学院</footer>
+</body>
+</html>

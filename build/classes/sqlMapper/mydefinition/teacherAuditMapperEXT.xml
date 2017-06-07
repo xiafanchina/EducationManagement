@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="edu.man.mapper.teacher" >
+<resultMap id="TeacherMap" type="edu.man.bean.Teacher" >
+     <id column="id" property="id"  />
+     <result column="name" property="name"  />
+     <result column="id_card" property="idCard"  />
+     <result column="sex" property="sex"  />
+     <result column="email" property="email"  />
+     <result column="phone" property="phone"  />
+     <result column="qq" property="qq" />
+     <result column="nation" property="nation"  />
+     <result column="birth_place" property="birthPlace"  />
+     <result column="political" property="political"  />
+     <result column="education" property="education"  />
+     <result column="school" property="school"  />
+     <result column="major" property="major"  />
+     <result column="img" property="img"  />
+     <result column="info" property="info"  />
+     <result column="account_status" property="accountStatus"/>
+     <result column="department" property="department"/>
+     <result column="role_id" property="roleId"/>
+     <result column="course" property="course"/>
+     <result column="working_way" property="workingWay"/>
+     <result column="working_place" property="workingPlace"/>
+     <result column="submit_date" property="submitDate"/> 
+     </resultMap>
+
+  <resultMap id="TeacherAndRoleMap" type="edu.man.bean.TeacherAndRole" >
+     <id column="id" property="id"  />
+     <result column="name" property="name"  />
+     <result column="id_card" property="idCard"  />
+     <result column="sex" property="sex"  />
+     <result column="email" property="email"  />
+     <result column="phone" property="phone"  />
+     <result column="qq" property="qq" />
+     <result column="nation" property="nation"  />
+     <result column="birth_place" property="birthPlace"  />
+     <result column="political" property="political"  />
+     <result column="education" property="education"  />
+     <result column="school" property="school"  />
+     <result column="major" property="major"  />
+     <result column="img" property="img"  />
+     <result column="info" property="info"  />
+     <result column="account_status" property="accountStatus"/>
+     <result column="department" property="department"/>
+     <result column="role_id" property="roleId"/>
+     <result column="course" property="course"/>
+     <result column="working_way" property="workingWay"/>
+     <result column="working_place" property="workingPlace"/>
+     <result column="submit_date" property="submitDate"/>   
+   <association property="role" javaType="edu.man.bean.Role" >
+        <id  column="role_id" property="role_id"  /> 
+       <result column="role_name" property="role_name"/>   
+       <result column="role_info" property="role_info"/>   
+       <result column="role_status" property="role_status"/>   
+     </association>
+  </resultMap>
+<select id="findTeacherByid" parameterType="String" resultMap="TeacherAndRoleMap">
+SELECT * FROM Teacher
+ INNER JOIN role ON Teacher.role_id = role.role_id where id=#{id}  
+</select>
+<!-- 分页查询待审核的教师们 -->
+<select  id="findcurrentPage"  parameterType="int"  resultMap="TeacherMap">  
+        select teacher.* from Teacher 
+         INNER JOIN tea_register ON Teacher.email = tea_register.tea_email where tea_register.tea_status=2  
+         limit #{currentPage} , #{pageSize}   
+    </select>
+ <!-- 进行分页查询时，获得的总数据量  -->
+  <select id="getCount"  resultType="int">
+  	        select count(*) from Teacher 
+         INNER JOIN tea_register ON Teacher.email = tea_register.tea_email where tea_register.tea_status=2
+  </select>
+  <!-- 根据email(主键)使得某教师审核通过 -->
+  <update id="updateAudit" parameterType="String">
+  update tea_register set tea_status =3 where tea_email=#{email}
+  
+  </update>
+  <!-- 根据email(主键)使得某教师审核未通过，并且返回未通过的项和未通过原因 -->
+  <update id="updatedisAudit" parameterType="map">
+  update tea_register set tea_reason =#{reason} , tea_result=#{wrong},tea_status=4  where tea_email=#{email}
+  
+  </update>
+  <!-- 分页查询教师的详细信息 -->
+  <select id="findcurrentPageList" parameterType="map" resultMap="TeacherAndRoleMap">
+  SELECT teacher.*,role.* FROM Teacher
+ INNER JOIN role ON Teacher.role_id = role.role_id
+  limit #{currentPage} , #{pageSize} 
+  </select>
+  <!-- 获得(高级)教师总数 -->
+  <select id="getCountlist" resultType="int">
+   SELECT count(*) FROM Teacher
+  
+  </select>
+  <select id="updateSenior" parameterType="int"></select>
+
+
+</mapper>

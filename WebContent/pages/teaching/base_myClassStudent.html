@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta charset="UTF-8">
+    <title>我的班级-学生信息</title>
+    <link rel="stylesheet" type="text/css" href="css/frameHtml.css">
+    <script type="text/javascript" src="js/jquery-1.12.3.min.js"></script>
+    <script type="text/javascript" src="../../statics/layer/layer.js"></script>
+    <script type="text/javascript" src="../../statics/layer/extend/layer.ext.js"></script>
+    <script type="text/javascript" src="./js/myclass/base_myClassStudent.js"></script>
+</head>
+<body>
+<header>
+    <div><a href="./base_myClass.html">我的班级</a>&nbsp;&rAarr;&nbsp;<a href='#' onClick="javascript:history.back(-1);">班级详情</a>&nbsp;&rAarr;&nbsp;<span>学生信息</span></div>
+</header>
+
+<div class="buttonGather"><button class="back">返回</button><button class="studentState">修改学生状态</button></div>
+
+<h1 class="finishTitle"><span id="name"></span>个人档案</h1>
+<ul class="finishInformation">
+    <li>
+        <ul>
+            <li><img src="images/portrait1.jpg" width="97" height="137"></li>
+            <li><span>学生状态</span><span id="status"></span></li>
+            <li><span>帐号状态</span><span id="account_status"></span></li>
+            <li><span>学号</span><span id="id"></span></li>
+            <li><span>所在班级</span><span id="class_name"></span></li>
+            <li><span>开班地点</span><span id="class_place"></span></li>
+            <li><span>邮箱</span><span id="email"></span></li>
+            <li><span>身份证号</span><span id="id_card"></span></li>
+        </ul>
+    </li>
+    <li>
+        <ul>
+            <li><span>姓名</span><span id="name1"></span></li>
+            <li><span>性别</span><span id="sex"></span></li>
+            <li><span>手机号</span><span id="phone"></span></li>
+            <li><span>QQ号</span><span id="qq"></span></li>
+            <li><span>民族</span><span id="nation"></span></li>
+            <li><span>籍贯</span><span id="brith_place"></span></li>
+            <li><span>政治面貌</span><span id="political"></span></li>
+            <li><span>当前学历</span><span id="education"></span></li>
+            <li><span>生源院校</span><span id="school"></span></li>
+            <li><span>所学专业</span><span id="major"></span></li>
+            <li><span>入学年份</span><span id="schooldate"></span></li>
+        </ul>
+    </li>
+</ul>
+<!--弹窗开始-->
+<link type="text/css" rel="stylesheet" href="css/popTips.css">
+
+<div class="blackBg"></div>
+
+<div class="popTips" style="width: 310px; margin-left: -205px; margin-top: -150px;">
+    <h1>消息提示<span class="popOut">&times;</span></h1>
+    <div class="popStudent">
+        <label class="checked"><input name="classState" type="radio" value="新入学" checked>新入学</label>
+        <label><input name="classState" type="radio" value="正在上课">正在上课</label>
+        <label><input name="classState" type="radio" value="休学中">休学中</label>
+        <label><input name="classState" type="radio" value="已毕业">已毕业</label>
+    </div>
+    <div class="button">
+        <button class="popSubmit" onclick="updateStatus()">确认</button>
+        <button class="popBack">取消</button>
+    </div>
+</div>
+<!--弹窗结束-->
+</body>
+</html>

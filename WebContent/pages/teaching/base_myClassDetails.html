@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta charset="UTF-8">
+    <title>我的班级</title>
+    <link rel="stylesheet" type="text/css" href="css/frameHtml.css">
+    <link rel="stylesheet" type="text/css" href="./css/pages.css">
+    <script type="text/javascript" src="js/jquery-1.12.3.min.js"></script>
+    <script type="text/javascript" src="../../statics/layer/layer.js"></script>
+    <script type="text/javascript" src="../../statics/layer/extend/layer.ext.js"></script>
+    <script type="text/javascript" src="./js/jquery.page.js"></script>
+    <script type="text/javascript" src="./js/myclass/base_myClassDetails.js"></script>
+</head>
+<body>
+<header>
+    <div><a href="./base_myClass.html">我的班级</a>&nbsp;&rAarr;&nbsp;<span>班级详情</span></div>
+</header>
+<div class="tableDetails">
+    <table border="0" cellpadding="0" cellspacing="0" >
+        <tr>
+            <th>班级名称</th><td colspan="7" id="name"></td>
+        </tr>
+        <tr>
+            <th>班级ID</th><td id="class_id"></td>
+            <th>方向</th><td id="lesson"></td>
+            <th>开班地点</th><td id="class_place"></td>
+            <th>班级人数</th><td id="class_num"></td>
+        </tr>
+        <tr>
+            <th>主讲</th><td id="lecturer"></td>
+            <th>助教</th><td id="assistant"></td>
+            <th>班主任</th><td id="teacher"></td>
+            <th>班级状态</th><td><span class="classAgo"></span></td>
+        </tr>
+        <tr>
+            <th>开课时间</th><td id="course_start">----/--/--</td>
+            <th>结束时间</th><td id="course_end">----/--/--</td>
+            <th></th><td></td>
+            <td colspan="2"></td>
+        </tr>
+    </table>
+</div>
+<div class="buttonGather"><button class="back">返回</button><button type="button" onclick="PrintTableToExcel(Table1)">导出学生列表</button><button class="modify">修改班级状态</button></div>
+<div class="tableList">
+    <table border="0" cellpadding="0" cellspacing="0" id="Table1">
+    	<thead>
+    		<tr>
+	            <th width="70">学号</th>
+	            <th width="150">帐号</th>
+	            <th width="120">姓名</th>
+	            <th width="50">性别</th>
+	            <th>手机号</th>
+	            <th>生源院校</th>
+	            <th width="70">学生状态</th>
+       		</tr>
+    	</thead>
+        <tbody id="tb">
+        	<tr dataId="ST006001">
+	            <td id="id"></td>
+	            <td id="email"></td>
+	            <td id="name"></td>
+	            <td id="sex"></td>
+	            <td id="phone"></td>
+	            <td id="school"></td>
+	            <td id="sta"></td>
+        	</tr>
+        </tbody>
+    </table>
+</div>
+<div class="tablePage">
+    <div>共<span id = "totalNums">0</span>条记录，每页<span id="pageSize">0</span>条，共<span id = "pageNums">0</span>页</div>
+    <a class="pageTop" onclick="first()"></a> 
+    <a class="pageUp" onclick="pageUp()"></a>
+    <em><input id = "inputPage" onchange="turnPage(this)" type="text" name="tablePage" value=""></em>
+    <a class="pageDown" onclick="pageDown()"></a>
+    <a class="pageBottom" onclick="last()"></a>
+</div>
+</body>
+
+</body>
+<!--弹窗开始-->
+<link type="text/css" rel="stylesheet" href="css/popTips.css">
+<div class="blackBg"></div>
+<div class="popTips" style="width: 410px; margin-left: -205px; margin-top: -150px;">
+    <h1>消息提示<span class="popOut">&times;</span></h1>
+	
+		<div class="popClassAgo" id="popClassAgo1">当前班级状态是<span class="classAgo" id="classAgo"></span>，<br>您要将班级状态设置为</div>
+		<div class="popClassAgo" id="popClassAgo2">当前班级状态是<span class="classAgo" id="classAgo"></span>，<br>您要将班级状态设置为<span class="classNow">已开课</span>么？</div>
+	    <div class="warning" id="warning1">（本次修改不可逆）</div>
+	    <div class="button" id="button1">
+	        <button class="popSubmit" onclick="updateHaveclass()">确认</button>
+	        <button class="popBack">取消</button>
+	    </div>
+    <div class="popClassState">
+        <label class="checked"><input name="classState" type="radio" value="已开课" checked>已开课</label>
+        <label><input name="classState" type="radio" value="停课中">停课中</label>
+        <label><input name="classState" type="radio" value="已结课">已结课</label>
+    </div>
+    <div class="warning" id="warning">（已结课状态设置后不可逆）</div>
+    <div class="button" id="button">
+        <button class="popSubmit" onclick="updateClassStadus()">确认</button>
+        <button class="popBack">取消</button>
+    </div>
+</div>
+<!--弹窗结束-->
+<!--滚动条开始-->
+<link rel="stylesheet" type="text/css" href="mCustomScrollbar/jquery.mCustomScrollbar.css">
+<script src="js/jquery-ui.min.js"></script>
+<script src="mCustomScrollbar/jquery.mousewheel.min.js"></script>
+<script src="mCustomScrollbar/jquery.mCustomScrollbar.js"></script>
+<style>
+    ._mCS_1 .mCSB_scrollTools .mCSB_dragger .mCSB_dragger_bar,._mCS_1 .mCSB_scrollTools .mCSB_draggerRail{
+        border-radius: 0;
+        margin: 0;
+    }
+    ._mCS_1 .mCSB_scrollTools .mCSB_dragger .mCSB_dragger_bar{
+        /* 2nd scrollbar dragger style... */
+        background-color: #355372;
+        height: 10px;
+    }
+    ._mCS_1 .mCSB_scrollTools .mCSB_draggerRail{
+        height: 8px;
+        border: 1px solid #355372;
+        background-color: #FFFFFF;
+    }
+</style>
+<!--滚动条结束-->
+</html>

@@ -1,0 +1,233 @@
+input{font-family: "幼圆";}
+
+body{
+    display: -moz-box;
+    display: -webkit-box;
+    display: -o-box;
+    display: box;
+    -moz-box-orient: vertical;
+    -webkit-box-orient: vertical;
+    -o-box-orient: vertical;
+    box-orient: vertical;
+}
+
+
+article{
+    -moz-box-flex: 1.0;
+    box-flex: 1.0;
+    -webkit-box-flex: 1.0;
+    background: #F5F5F5;
+}
+
+article > div.joiningPrior{
+    width: 585px;
+    margin: 0 auto;
+}
+
+article > div.joiningPrior > h3{
+    width: 100%;
+    color: #38B65A;
+    font-size: 24px;
+    height: 44px;
+    line-height: 44px;
+    border-bottom: 1px solid #38B65A;
+    margin: 20px 0;
+    font-family: "黑体";
+    font-weight: inherit;
+    display: block;
+    position: relative;
+}
+article > div.joiningPrior > h3 > ul{
+    display: inline-block;
+    position: absolute;
+    right: 0px;
+    bottom: -22px;
+}
+article > div.joiningPrior > h3 > ul > li{
+    display: inline-block;
+    border: 1px solid #38B65A;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    background: #EAE9E9;
+    margin-left: 20px;
+}
+article > div.joiningPrior > h3 > ul > li.ing{
+    background: #ffffff;
+}
+article > div.joiningPrior > section{
+    width: 100%;
+    border: 1px solid #38B65A;
+    list-style: none;
+    padding: 20px 0;
+    background: #FFFFFF;
+}
+
+article > div.joiningPrior > section > .label{
+    font-size: 18px;
+    min-height: 35px;
+    line-height: 35px;
+    margin: 10px 0;
+    display: -moz-box;
+    display: -webkit-box;
+    display: -o-box;
+    display: box;
+    -moz-box-orient: horizontal;
+    -webkit-box-orient: horizontal;
+    -o-box-orient: horizontal;
+    box-orient: horizontal;
+
+}
+article > div.joiningPrior > section > .label > span,article > div.joiningPrior > section > .label > div{
+    display: block;
+}
+article > div.joiningPrior > section > .label > span{
+    width: 185px;
+    text-align: right;
+}
+article > div.joiningPrior > section > .label > div{
+    -moz-box-flex: 1.0;
+    box-flex: 1.0;
+    -webkit-box-flex: 1.0;
+}
+
+article > div.joiningPrior > section > .label > div > input{
+    border: 1px solid #38B65A;
+    font-size: 18px;
+    text-indent: 15px;
+
+}
+article > div.joiningPrior > section > .label > div > input:focus{
+    border: 1px solid #33D6FF;
+}
+article > div.joiningPrior > section > .label > div > button{
+    border: 1px solid #38B65A;
+    background: #38B65A;
+    font-size: 18px;
+    margin: 5px 0;
+    text-align: center;
+    cursor:pointer;
+    color: #FFFFFF;
+}
+article > div.joiningPrior > section > .label > div > button:hover{
+    background: #3bbf5f;
+}
+
+section table.content{
+    min-width: 300px;
+    max-width: 400px;
+    margin: 0 auto;
+}
+section table.content tr td{
+    line-height: 35px;
+    vertical-align: top;
+    padding-bottom: 10px;
+}
+
+section table.content tr td:first-child{
+    text-align: right;
+    white-space: nowrap;
+}
+section table.content tr td > textarea{
+    width: 200px;
+    height: 50px;
+    font-size: 16px;
+    font-family: "幼圆";
+    resize: none;
+}
+section table.content tr td > label.radio{
+    display: inline-block;
+    min-width: 60px;
+    text-indent: 20px;
+    cursor:pointer;
+    background: url("../images/radioGreen.png") no-repeat left center;
+}
+section table.content tr td > label.checked{
+    background: url("../images/radioGreenChecked.png") no-repeat left center;
+}
+section table.content tr td > label.radio > input[type="radio"]{
+    display: none;
+}
+section table.content tr td > input{
+    height: 35px;
+    border: 1px solid #38B65A;
+    font-size: 16px;
+    font-family: "幼圆";
+}
+section table.content tr td > input.register{
+    width: 200px;
+}
+section table.content tr td > button.nation{
+    width: 105px;
+    height: 35px;
+    border: 0;
+    background: #38B65A;
+    cursor:pointer;
+    font-size: 14px;
+    font-family: "幼圆";
+    color: #FFFFFF;
+}
+section div.button{
+    text-align: center;
+}
+section div.button > button{
+    width: 197px;
+    height: 35px;
+    border: 0px;
+    background: #3bbf5f;
+    font-size: 16px;
+    font-family: "幼圆";
+    color: #FFFFFF;
+    cursor:pointer;
+}
+section div.button > button:hover{
+    background: #3bbf5f;
+}
+
+section >  div.warning{
+    width: 100%;
+    height: 36px;
+    line-height: 36px;
+    text-align: center;
+    color: #ff0000;
+}
+section > div.portrait{
+    text-align: center;
+}
+section > div.portrait > img{
+    border: 1px solid #3bbf5f;
+}
+section > div.prompt_green,section > div.upload,section > div.prompt_black{
+    padding-left: 185px;
+    margin: 15px 0px;
+}
+section > div.prompt_green{
+    color: #3bbf5f;
+}
+section > div.upload > input{
+    width: 195px;
+    height: 30px;
+    border: 1px solid #3bbf5f;
+    font-size: 16px;
+    font-family: "幼圆";
+    vertical-align: middle;
+    margin-right: 15px;
+}
+section > div.upload > button{
+    width: 50px;
+    height: 30px;
+    border: 0px;
+    background: #3bbf5f;
+    cursor:pointer;
+    font-family: "幼圆";
+    color: #FFFFFF;
+}
+section > div.prompt_black{
+    font-size: 14px;
+}
+
+
+
+

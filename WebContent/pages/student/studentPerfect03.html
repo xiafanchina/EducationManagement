@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta charset="UTF-8">
+    <title>完善个人信息</title>
+    <link type="text/css" rel="stylesheet" href="css/css.css">
+    <link type="text/css" rel="stylesheet" href="css/studentInput.css">
+    <link type="text/css" rel="stylesheet" href="css/drop-down.css"> <!--select选框CSS-->
+    <script type="text/javascript" src="js/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="js/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="js/select-widget-min.js"></script><!--select选框JS-->
+    <script type="text/javascript" src="js/formRequired.js"></script><!--表单验证JS-->
+    <script type="text/javascript" src="js/stuJs/menu3.js"></script>
+    <script type="text/javascript" src="js/stuJs/info3.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $(".ui-select").selectWidget({
+                change: function (changes) {
+                    return changes;
+                },
+                effect: "slide",
+                keyControl: true,
+                speed: 200,
+                scrollHeight: 250
+            });
+        });
+    </script>
+</head>
+<body>
+<header>
+    <div class="center">
+        <img src="images/ruizhi.png">
+    </div>
+</header>
+<div id="studentInput">
+    <h1>
+        完善个人信息
+        <ul>
+            <li>1</li>
+            <li>2</li>
+            <li class="ing">3</li>
+        </ul>
+    </h1>
+    <section>
+        <form action="studentFinish.html" method="post" name="studentForm">
+            <table border="0" cellpadding="0" cellspacing="0">
+                <tr class="warningRed">
+                    <td></td>
+                    <td>*&nbsp;本页所有选项，皆为必填项</td>
+                </tr>
+                <tr>
+                    <td>当前学历</td>
+                    <td>
+                        <div style="width: 220px; display: inline-block; vertical-align:top;">
+                            <select name="education" id="education" class="ui-select promptselect" promptNull="请选择当前学历">
+                                <option value="">请选择</option>
+                                <option value="本科未毕业">本科未毕业</option>
+                                <option value="本科已毕业">本科已毕业</option>
+                                <option value="专科未毕业">专科未毕业</option>
+                                <option value="专科已毕业">专科已毕业</option>
+                            </select>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>生源院校</td>
+                    <td>
+                        <div style="width: 220px; display: inline-block; vertical-align:top;">
+                            <select name="province"  id="school1" >
+                                <option value="">请选择省(市)</option>
+                                
+                            </select>
+                        </div>
+                        <div style="height: 10px;"></div>
+                        <div style="width: 220px; display: inline-block; vertical-align:top;">
+                            <select name="school"   id="school">
+                                <option value="">请选择学校</option>
+                                
+                            </select>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>所学专业</td>
+                    <td><input type="text" name="major" id="major" class="major" placeholder="请输入所学专业" promptNull="所学专业不能为空"
+                               promptError="请输入中文专业名称"></td>
+                </tr>
+                <tr>
+                    <td>入学年份</td>
+                    <td>
+                        <div style="width: 220px; display: inline-block; vertical-align:top;">
+                            <select name="enrollmentYear" id="enrollmentYear" class="ui-select promptselect" promptNull="请选择入学年份">
+                                <option value="">请选择</option>
+                                <option value="2014-09-01">2014-09-01</option>
+                                <option value="2013-09-01">2013-09-01</option>
+                                <option value="2012-09-01">2012-09-01</option>
+                            </select>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>
+                        <button type="button"  onclick="info3()">提&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;交</button>
+                    </td>
+                </tr>
+
+            </table>
+        </form>
+    </section>
+</div>
+<footer>&copy; - 湖北工程学院</footer>
+</body>
+</html>

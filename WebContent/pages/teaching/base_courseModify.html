@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta charset="UTF-8">
+    <title>编辑课程</title>
+    <link rel="stylesheet" type="text/css" href="css/frameHtml.css">
+    <script type="text/javascript" src="js/jquery-1.12.3.min.js"></script>
+    <script type="text/javascript" src="js/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="js/CourseAndExam/courseModify.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            //单选题样式
+            $('div.popTeacher table tr').click(function () {
+                if ($(this).find("input").is(":checked")) {
+                    $("div.popTeacher table tr").removeClass("selected");
+                    $(this).addClass("selected");
+                } else {
+                    $(this).removeClass("selected");
+                }
+            })
+			//点击"点击选择主讲"后触发的事件
+            $("table.addClass td > a:eq(0)").click(function () {
+                $(".blackBg").css("display","block");
+                $(".popTipsTeacher1").css("display","block");
+            });
+          	//点击"点击选择助教"后触发的事件
+            $("table.addClass td > a:eq(1)").click(function () {
+                $(".blackBg").css("display","block");
+                $(".popTipsTeacher2").css("display","block");
+            });
+          	//点击"点击选择班主任"后触发的事件
+            $("table.addClass td > a:eq(2)").click(function () {
+                $(".blackBg").css("display","block");
+                $(".popTipsTeacher3").css("display","block");
+            });
+          	//点击"提交"后触发的事件
+            $("div.operationGather button.submit").click(function () {
+                $(".blackBg").css("display","block");
+                $(".popTipsSubmit").css("display","block");
+            });
+          	//点击"取消"后触发的事件
+            $("div.operationGather button.cancel").click(function () {
+                $(".blackBg").css("display","block");
+                $(".popTipsCancel").css("display","block");
+                history.back();
+            });
+          	//点击弹出框中"取消"后触发的事件
+            $(".blackBg,span.popOut,button.popBack").click(function () {
+                $(".blackBg").css("display","none");
+                $(".popTips").css("display","none");
+            });
+
+            $("div.button button.popSubmitTeacher1").click(function () {
+                var $checkedVal = $("input[name='popTeacher']:checked").val();
+                $("table.addClass td > a:eq(0)").text($checkedVal);
+                $(".blackBg").css("display","none");
+                $(".popTips").css("display","none");
+            })
+            $("div.button button.popSubmitTeacher2").click(function () {
+                var $checkedVal = $("input[name='popTeacher']:checked").val()
+                $("table.addClass td > a:eq(1)").text($checkedVal);
+                $(".blackBg").css("display","none");
+                $(".popTips").css("display","none");
+            })
+            $("div.button button.popSubmitTeacher3").click(function () {
+                var $checkedVal = $("input[name='popTeacher']:checked").val()
+                $("table.addClass td > a:eq(2)").text($checkedVal);
+                $(".blackBg").css("display","none");
+                $(".popTips").css("display","none");
+            })
+        })
+
+    </script>
+</head>
+<body>
+<header>
+    <div>编&nbsp;辑&nbsp;课&nbsp;程</div>
+</header>
+<table class="addClass" border="0" cellspacing="0" cellpadding="0">
+    <tr><th>课程名称</th><td><input type="text" class="name1" ></td></tr>
+    <tr><th>课程方向</th><td>
+        <div style="width: 300px; display: inline-block; vertical-align:top;">
+             <select name="fangxiang" class="ui-select" id="showLesson">
+                <option value="1">JAVA方向</option>
+                <option value="2">C++方向</option>
+                <option value="3">IOS方向</option>
+                <option value="4">Android方向</option> 
+            </select>
+        </div>
+    </td><td></td></tr>
+    <tr><th>教师</th><td><a id="tea1" >点击选择教师</a></td><td></td></tr>
+
+</table>
+<div class="operationGather"><button class="submit">提&nbsp;&nbsp;&nbsp;&nbsp;交</button><button class="cancel">取&nbsp;&nbsp;&nbsp;&nbsp;消</button></div>
+<!--选择教师弹窗开始-->
+<!-- 主讲 -->
+<link type="text/css" rel="stylesheet" href="css/popTips.css">
+<div class="blackBg"></div>
+<div class="popTips popTipsTeacher1" style="width: 410px; margin-left: -205px; margin-top: -150px;">
+    <h1>请选择教师<span class="popOut">&times;</span></h1>
+    <div class="popTeacherSearch"><input type="text" placeholder="请输入教师名称"><button class="search" id="sea1">搜&nbsp;&nbsp;索</button></div>
+    <div class="popTeacher">
+        <table border="0" cellpadding="0" cellspacing="0" class="teaMes">           
+        </table>
+    </div>
+    <div class="button">
+        <button class="popSubmitTeacher1">确&nbsp;&nbsp;定</button>
+    </div>
+</div>
+<!--选择教师弹窗结束-->
+
+</body>
+</html>
+<!--select选框开始-->
+<link type="text/css" rel="stylesheet" href="css/drop-down.css">
+<script type="text/javascript" src="js/select-widget-min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $(".ui-select").selectWidget({
+            change: function (changes) {
+                return changes;
+            },
+            effect: "slide",
+            keyControl: true,
+            speed: 200,
+            scrollHeight: 250
+        });
+    });
+</script>
+<!--select选框结束-->
+<!--滚动条开始-->
+<link rel="stylesheet" type="text/css" href="mCustomScrollbar/jquery.mCustomScrollbar.css">
+
+<script src="mCustomScrollbar/jquery.mousewheel.min.js"></script>
+<script src="mCustomScrollbar/jquery.mCustomScrollbar.js"></script>
+<style>
+
+</style>
+<script type='text/javascript'>
+    (function ($) {
+        $(document).ready(function () {
+            $("div.popTeacher").mCustomScrollbar({
+                scrollButtons: {
+                    enable: false,
+                    scrollType: "continuous",
+                    scrollSpeed: 20,
+                    scrollAmount: 40
+                },
+                horizontalScroll: false
+            });
+        });
+
+    })(jQuery);
+</script>
+<!--滚动条结束-->
+
